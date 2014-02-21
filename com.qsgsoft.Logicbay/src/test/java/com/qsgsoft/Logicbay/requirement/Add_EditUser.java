@@ -22,26 +22,40 @@ public class Add_EditUser extends Configuration{
 	@After
 	public void tearDown() throws Exception {
 		driver.close();
-		//driver.quit();
+		driver.quit();
 	}
 	@Test
 	public void AddUserToSalesPerformanceCenter() throws Exception{	
 		gstrTCID = "132534";
 		gstrTO = "Verify that a user can be added in Performance Center";
 		// Login credentials
-		String strUserName = objTestData.strAdminName;
-		String strPassword = objTestData.strAdminPswd;
+		String strAdminUserName = objTestData.strAdminName;
+		String strAdminPassword = objTestData.strAdminPswd;
+		//Data for creating a contact
+		String strUsername=objTestData.strUsername;
+		String strConfirmUsername=strUsername;
+		String strEmailAddress=objTestData.strEmailAddress;
+		String strFirstName=objTestData.strFirstName;
+		String strLastName=objTestData.strLastName;
+		String strPassword=objTestData.strPassword;
+		String strLocale=objTestData.strLocale;
 		// Create page objects
 		LoginPage objLoginPage = new LoginPage();
 		HomePage objHomePage =new HomePage();
 		SelectCampusAdminPage objSelectCampusAdminPage=new SelectCampusAdminPage();
-
+		AdminPage objAdminPage=new AdminPage();
+		ContactCreationPage objContactCreationPage=new ContactCreationPage();
+		
 		objLoginPage.launchURL(driver);
-		
-		objLoginPage.login(driver, strUserName, strPassword);
-		
+
+		objLoginPage.login(driver, strAdminUserName, strAdminPassword);
+
 		objSelectCampusAdminPage.SelectCampusAdmin(driver);
+
+		objHomePage.SalesPerformancePage(driver);
 		
-		objHomePage.SalesPerformancePage(driver);	
+		objAdminPage.SelectUserAdmin(driver);
+		
+		objContactCreationPage.enterContactDetails(driver,strUsername,strConfirmUsername,strEmailAddress,strFirstName,strLastName,strPassword,strLocale);	
 	}
 }

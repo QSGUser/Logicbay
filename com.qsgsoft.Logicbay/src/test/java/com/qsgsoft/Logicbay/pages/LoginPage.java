@@ -21,9 +21,9 @@ public class LoginPage extends WaitForElement{
 	public void enterUsername(WebDriver driver, String strUsername)
 			throws Exception {
 		waitForElement(driver, username);
-		driver.findElement(By.cssSelector(username)).clear();
-		driver.findElement(By.cssSelector(username)).sendKeys(strUsername);
-		assertEquals(strUsername, driver.findElement(By.cssSelector(username))
+		driver.findElement(By.xpath(username)).clear();
+		driver.findElement(By.xpath(username)).sendKeys(strUsername);
+		assertEquals(strUsername, driver.findElement(By.xpath(username))
 				.getAttribute("value"));
 	}
 
