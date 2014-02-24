@@ -56,6 +56,42 @@ public class Add_EditUser extends Configuration{
 		
 		objAdminPage.SelectUserAdmin(driver);
 		
-		objContactCreationPage.enterContactDetails(driver,strUsername,strConfirmUsername,strEmailAddress,strFirstName,strLastName,strPassword,strLocale);	
+		objContactCreationPage.createContact(driver,strUsername,strConfirmUsername,strEmailAddress,strFirstName,strLastName,strPassword,strLocale);	
 	}
+	
+	@Test
+	public void AddUserToNmhgServer() throws Exception{	
+		String strAdminUserName = objTestData.strNmhgAdminName;
+		String strAdminPassword = objTestData.strNmhgAdminPassword;
+		//Data for craeting a contact
+		String strUsername=objTestData.strUsername;
+		String strConfirmUsername=strUsername;
+		String strEmailAddress=objTestData.strEmailAddress;
+		String strFirstName=objTestData.strFirstName;
+		String strLastName=objTestData.strLastName;
+		String strPassword=objTestData.strPassword;
+		String strLocale=objTestData.strLocale;
+		String strTimeZone=objTestData.strTimezone;
+		String strMemberStatus=objTestData.strMemberstatus;
+		String strSystemRole=objTestData.strSystemrole;
+		String strJobRole=objTestData.strJobrole;
+		String strJobTitle=objTestData.strJobtitle;
+		
+		LoginPage objLoginPage = new LoginPage();
+		NmhgHomePage objHomePage =new NmhgHomePage();
+		AdminPage objAdminPage=new AdminPage();
+		ContactCreationPage objContactCreationPage=new ContactCreationPage();
+		objLoginPage.launchNmhgURL(driver);
+
+		objLoginPage.nmhglogin(driver, strAdminUserName, strAdminPassword);
+		
+		objHomePage.NavigateToAdmin(driver);
+		
+		objAdminPage.SelectUserAdmin(driver);
+		
+		objContactCreationPage.createContactinNmhg(driver,strEmailAddress,strFirstName,strLastName,strPassword,strTimeZone,strLocale,strMemberStatus,strSystemRole,strJobRole,strJobTitle);	
+		
+
+	}
+	
 }
