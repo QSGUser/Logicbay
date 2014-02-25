@@ -1,5 +1,4 @@
-package com.qsgsoft.Logicbay.pages;
-
+package com.qsgsoft.Logicbay.pages.Core;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +10,6 @@ import static org.junit.Assert.*;
 
 public class HomePage extends WaitForElement{
 	private static String selectCampusTab="//tr[@id='javascriptMenuTop']/td[6]";
-	//private static String selectCampusTab1="//table/tbody/tr/td[@id='_PCMM_TabText_6']";
 	private static String selectAdmin="td[id=\"_PCMM_ID_96_text\"][class=\"Menu_DynamicRule2\"]";
 	
 	public void SalesPerformancePage(WebDriver driver) throws Exception {
@@ -28,14 +26,11 @@ public class HomePage extends WaitForElement{
 		            frameId = frameName.getAttribute("id");
 		        }
 		}
-
 		try {
 		    Thread.sleep(10000);
 		    } catch (InterruptedException e) {
-		        // TODO Auto-generated catch block
 		    e.printStackTrace();
 		    }
-	
 		driver.switchTo().frame("leftSide");
 		driver.switchTo().frame("topFrame");
 		assertTrue(isElementPresent(By.xpath(selectCampusTab), driver));
@@ -48,3 +43,6 @@ public class HomePage extends WaitForElement{
 		assertTrue(strSelectedVal.equals("Admin"));
 	}
 }
+
+
+

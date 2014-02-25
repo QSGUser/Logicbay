@@ -1,9 +1,7 @@
-package com.qsgsoft.Logicbay.pages;
+package com.qsgsoft.Logicbay.pages.Core;
 
 import static org.junit.Assert.*;
-
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.qsgsoft.Logicbay.support.TestData;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
-public class ContactCreationPage extends WaitForElement{
+public class UserPage extends WaitForElement{
 	TestData objTestData = new TestData();	
 	private static String usernamefield="username";
 	private static String confirmUsernamefield="input[id='confirm_username']";
@@ -32,25 +30,6 @@ public class ContactCreationPage extends WaitForElement{
 	private static String jobRole="job";
 	private static String jobtitle="empType";
 	private static String savebutton="saveGroup";
-	private static String centerMembership="//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]";
-	private static String organizationMembership="//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]";
-	private static String getItems="btnGetItems";
-	private static String selectSrc="//form/table[3]/tbody/tr[2]/td[1]/select[@name='srcList']/option[@value='1]";
-	private static String checkTarget="//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']";
-	private static String moveRight="move_right";
-	private static String moveLeft="move_left";
-	
-	public void createContact(WebDriver driver,String username,String confirmUsername,String emailAddress,String firstName,String lastName,String Password,String strLocale) throws Exception{
-		enterusername(driver,username);
-		enterConfirmUsername(driver,confirmUsername);
-		enterEmail(driver,emailAddress);
-		enterConfirmEmail(driver,emailAddress);
-		enterFirstName(driver,firstName);
-		enterLastName(driver,lastName);
-		enterPassword(driver,Password);
-		enterConfirmPassword(driver,Password);
-	}	
-	
 	
 	
 	public void switchToGeneralTab(WebDriver driver) throws Exception{
@@ -165,26 +144,6 @@ public class ContactCreationPage extends WaitForElement{
 	public void selectSave(WebDriver driver) throws Exception{
 		driver.findElement(By.id(savebutton)).click();	
 		driver.switchTo().alert().accept();	
-		driver.switchTo().alert().accept();		
-	}
-	public void selectcenterMembership(WebDriver driver)throws Exception{	
-		driver.findElement(By.xpath(centerMembership)).click();	
-		driver.switchTo().alert().accept();		
-		driver.findElement(By.id(getItems)).click();
-		try{
-			assertTrue(isElementPresent(By.xpath(selectSrc),driver));
-			driver.findElement(By.xpath(selectSrc)).click();
-		}
-		catch (AssertionError e){
-			System.out.println("Element Not Found");
-		}
-
-		driver.findElement(By.id(moveRight)).click();	
-		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
-	}
-	
-	public void selectorganziationMembership(WebDriver driver)throws Exception{	
-		driver.findElement(By.xpath(organizationMembership)).click();	
 		driver.switchTo().alert().accept();		
 	}
 }

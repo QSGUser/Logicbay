@@ -11,9 +11,9 @@ public class TestData {
 	public final String strNmhgAdminPassword="qsg@2006";	
 	//Data for craeting a contact	
 	public final String strUsername="user1"+System.currentTimeMillis();
-	public final String strEmailAddress=System.currentTimeMillis()+"@yopmail.com";
-	public final String strFirstName="FN"+System.currentTimeMillis();
-	public final String strLastName="LN"+System.currentTimeMillis();
+	public final String strEmailAddress=System.currentTimeMillis()+"@Logicbay.com";
+	public final String strFirstName="test"+System.currentTimeMillis();
+	public final String strLastName="User"+System.currentTimeMillis();
 	public final String strPassword="Qsg@2014";
 	public final String strLocale="English";	
 	public final String strGender="Male";

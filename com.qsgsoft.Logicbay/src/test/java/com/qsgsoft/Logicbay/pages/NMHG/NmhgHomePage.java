@@ -1,4 +1,4 @@
-package com.qsgsoft.Logicbay.pages;
+package com.qsgsoft.Logicbay.pages.NMHG;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class NmhgHomePage extends WaitForElement {
 	private static String CenterTab="_PCMM_TabText_5";
-	private static String Admin="_PCMM_ID_34";
+	private static String Admin="_PCMM_ID_35_text";
 
 	public void NavigateToAdmin(WebDriver driver) throws Exception {
 		selectCenterTab(driver);
@@ -30,3 +30,4 @@ public class NmhgHomePage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build().perform();	
 	}
 }
+
