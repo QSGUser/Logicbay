@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 public class AdminPage extends WaitForElement{
 	private static String selectUsers="//img[@id='catBullet6']";
 	private static String selectAddUsers="//td[@id='addLTUser']";
+	private static String selectReturn="//td[@id='adminLink2']";
 
 	public void SelectUserAdmin(WebDriver driver) throws Exception{		
 		selectUser(driver);
@@ -25,4 +26,12 @@ public class AdminPage extends WaitForElement{
 		assertTrue(isElementPresent(By.xpath(selectAddUsers),driver));
 		driver.findElement(By.xpath(selectAddUsers)).click();	
 	}
+	
+	public void returnToHome(WebDriver driver) throws Exception{
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
+		driver.switchTo().window("");	
+		driver.switchTo().frame(driver.findElement(By.id("contents")));	
+		driver.findElement(By.xpath(selectReturn)).click();
+	}
+		
 }

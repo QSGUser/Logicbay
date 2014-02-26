@@ -7,7 +7,7 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class NmhgHomePage extends WaitForElement {
 	private static String CenterTab="_PCMM_TabText_5";
-	private static String Admin="_PCMM_ID_35_text";
+	private static String Admin="_PCMM_ID_36_text";
 
 	public void NavigateToAdmin(WebDriver driver) throws Exception {
 		selectCenterTab(driver);

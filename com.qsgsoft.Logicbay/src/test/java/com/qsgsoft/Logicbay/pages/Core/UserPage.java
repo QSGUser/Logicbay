@@ -12,7 +12,7 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 public class UserPage extends WaitForElement{
 	TestData objTestData = new TestData();	
 	private static String usernamefield="username";
-	private static String confirmUsernamefield="input[id='confirm_username']";
+	private static String confirmUsernamefield="confirm_username";
 	private static String emailfield="email";
 	private static String confirmEmailfield="confirm_email";
 	private static String firstnamefield="first_name";
@@ -30,6 +30,7 @@ public class UserPage extends WaitForElement{
 	private static String jobRole="job";
 	private static String jobtitle="empType";
 	private static String savebutton="saveGroup";
+	private static String gender="//input[@type='radio']";
 	
 	
 	public void switchToGeneralTab(WebDriver driver) throws Exception{
@@ -91,15 +92,15 @@ public class UserPage extends WaitForElement{
 		driver.findElement(By.id(lastnamefield)).sendKeys(lastName);
 		assertEquals(lastName, driver.findElement(By.id(lastnamefield)).getAttribute("value"));
 	}
-	public void enterPassword(WebDriver driver,String Password)throws Exception{
+	public void enterPassword(WebDriver driver,String password)throws Exception{
 		driver.findElement(By.id(passwordfield)).clear();
-		driver.findElement(By.id(passwordfield)).sendKeys(Password);
-		assertEquals(Password, driver.findElement(By.id(passwordfield)).getAttribute("value"));	
+		driver.findElement(By.id(passwordfield)).sendKeys(password);
+		assertEquals(password, driver.findElement(By.id(passwordfield)).getAttribute("value"));	
 	}
-	public void enterConfirmPassword(WebDriver driver,String Password)throws Exception{
+	public void enterConfirmPassword(WebDriver driver,String password)throws Exception{
 		driver.findElement(By.id(confirmpasswordfield)).clear();
-		driver.findElement(By.id(confirmpasswordfield)).sendKeys(Password);
-		assertEquals(Password, driver.findElement(By.id(confirmpasswordfield)).getAttribute("value"));	
+		driver.findElement(By.id(confirmpasswordfield)).sendKeys(password);
+		assertEquals(password, driver.findElement(By.id(confirmpasswordfield)).getAttribute("value"));	
 	}
 	
 	public void selectTimeZone(WebDriver driver,String TimeZone) throws Exception{		
@@ -144,6 +145,34 @@ public class UserPage extends WaitForElement{
 	public void selectSave(WebDriver driver) throws Exception{
 		driver.findElement(By.id(savebutton)).click();	
 		driver.switchTo().alert().accept();	
+		Thread.sleep(1000);
 		driver.switchTo().alert().accept();		
+	}
+	
+	public void selectGender(WebDriver driver, String genderType) throws Exception{
+		driver.findElement(By.xpath(gender));
+		driver.findElement(By.xpath(gender)).click();
+	}
+	
+	public void AddUser(WebDriver driver,String userName,String emailAddress,String firstName,String lastName,String password,String timeZone,String locale,String MemberStatus,String SystemRole,String JobRole,String genderType)throws Exception{
+		switchToGeneralTab(driver);
+		enterusername(driver,userName);
+		enterConfirmUsername(driver,userName);
+		enterEmail(driver,emailAddress);
+		enterConfirmEmail(driver,emailAddress);
+		enterFirstName(driver,firstName);
+		enterLastName(driver,lastName);
+		enterPassword(driver,password);
+		enterConfirmPassword(driver,password);
+		selectTimeZone(driver,timeZone);
+		selectLocale(driver,locale);
+		selectGender(driver,genderType);
+		switchToStatusTab(driver);
+		selectMemberStatus(driver,MemberStatus);
+		switchToSettingsTab(driver);
+		selectSystemRole(driver,SystemRole);
+		selectJobRole(driver,JobRole);
+		selectSave(driver);
+		switchToAffiliationsTab(driver);	
 	}
 }

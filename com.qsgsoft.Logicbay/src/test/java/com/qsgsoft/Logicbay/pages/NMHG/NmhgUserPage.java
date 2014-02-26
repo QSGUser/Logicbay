@@ -5,8 +5,8 @@ import com.qsgsoft.Logicbay.pages.Core.UserPage;
 import com.qsgsoft.Logicbay.pages.Core.MembershipAdminPage;
 
 public class NmhgUserPage extends UserPage{
+	MembershipAdminPage objMembershipAdminPage=new MembershipAdminPage();
 	public void NmhgUserCreation(WebDriver driver,String emailAddress,String firstName,String lastName,String Password,String TimeZone,String Locale,String MemberStatus,String SystemRole,String JobRole,String JobTitle) throws Exception{
-		MembershipAdminPage objMembershipAdminPage=new MembershipAdminPage();
 		switchToGeneralTab(driver);
 		enterEmail(driver,emailAddress);
 		enterConfirmEmail(driver,emailAddress);
@@ -24,7 +24,10 @@ public class NmhgUserPage extends UserPage{
 		enterJobTitle(driver,JobTitle);
 		selectSave(driver);	
 		switchToAffiliationsTab(driver);
-		objMembershipAdminPage.selectcenterMembership(driver);
+	}
+	
+	public void NmhgUserMapping(WebDriver driver,String strcentersubType,String strcenterSrc)throws Exception{
+		objMembershipAdminPage.selectcenterMembership(driver,strcentersubType, strcenterSrc);
 		objMembershipAdminPage.selectSubmitOnMapping(driver);
 		objMembershipAdminPage.selectReturnOnMapping(driver);
 	}

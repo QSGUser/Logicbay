@@ -1,17 +1,16 @@
 package com.qsgsoft.Logicbay.requirement.NMHG;
+import com.qsgsoft.Logicbay.modules.DashboardFunctions;
 import com.qsgsoft.Logicbay.pages.Core.AdminPage;
 import com.qsgsoft.Logicbay.pages.Core.LoginPage;
 import com.qsgsoft.Logicbay.pages.NMHG.NmhgHomePage;
 import com.qsgsoft.Logicbay.pages.NMHG.NmhgLoginPage;
 import com.qsgsoft.Logicbay.pages.NMHG.NmhgUserPage;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
-import com.qsgsoft.Logicbay.pages.*;
 
 public class Add_EditUserNMHG extends Configuration{
 	public WebDriver driver;
@@ -35,7 +34,6 @@ public class Add_EditUserNMHG extends Configuration{
 		strAdminUserName = objTestData.strNmhgAdminName;
 		strAdminPassword = objTestData.strNmhgAdminPassword;
 		//Data for creating a contact
-		String strUsername=objTestData.strUsername;
 		String strEmailAddress=objTestData.strEmailAddress;
 		String strFirstName=objTestData.strFirstName;
 		String strLastName=objTestData.strLastName;
@@ -46,13 +44,16 @@ public class Add_EditUserNMHG extends Configuration{
 		String strSystemRole=objTestData.strSystemrole;
 		String strJobRole=objTestData.strJobrole;
 		String strJobTitle=objTestData.strJobtitle;
+		String strcentersubType=objTestData.strcenterSubtype;
+		String strcenterSrc=objTestData.strcenterSrcNMHG;	
+		String strnewPassword=objTestData.strnewPassword;
 		//Creating objects
 		LoginPage objLoginPage = new LoginPage();
 		NmhgLoginPage objNmhgLoginPage=new NmhgLoginPage();
 		NmhgHomePage objNmhgHomePage =new NmhgHomePage();
 		AdminPage objAdminPage=new AdminPage();
 		NmhgUserPage objNmhgUserPage=new NmhgUserPage();
-		
+		DashboardFunctions objDashBoardFunctions=new DashboardFunctions();
 		
 		objLoginPage.launchURL(driver,url);
 
@@ -64,7 +65,16 @@ public class Add_EditUserNMHG extends Configuration{
 		
 		objNmhgUserPage.NmhgUserCreation(driver,strEmailAddress,strFirstName,strLastName,strPassword,strTimeZone,strLocale,strMemberStatus,strSystemRole,strJobRole,strJobTitle);	
 		
-	
-	}
-	
+		objNmhgUserPage.NmhgUserMapping(driver,strcentersubType,strcenterSrc);
+		
+		objAdminPage.returnToHome(driver);
+		
+		objDashBoardFunctions.logOff(driver);
+		
+		objNmhgLoginPage.loginToNMHG(driver, strEmailAddress, strPassword);
+		
+		objLoginPage.acceptAgreement(driver);
+		
+		objLoginPage.passwordReset(driver,strPassword,strnewPassword);	
+	}	
 }
