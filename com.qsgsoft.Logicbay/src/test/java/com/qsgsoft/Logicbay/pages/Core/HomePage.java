@@ -1,14 +1,9 @@
 package com.qsgsoft.Logicbay.pages.Core;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 import com.qsgsoft.Logicbay.support.WaitForElement;
-import static org.junit.Assert.*;
 
 public class HomePage extends WaitForElement{
 	private static String CampusTab="_PCMM_TabText_4";
@@ -18,7 +13,6 @@ public class HomePage extends WaitForElement{
 		selectCampusTab(driver);
 		selectAdmin(driver);
 	}
-
 	public void selectCampusTab(WebDriver driver) throws Exception{
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
@@ -26,7 +20,6 @@ public class HomePage extends WaitForElement{
 		driver.switchTo().frame(driver.findElement(By.name("topFrame")));		
 		action.moveToElement(driver.findElement(By.id(CampusTab))).click().build().perform();		
 	}
-
 	public void selectAdmin(WebDriver driver) throws Exception{
 		Actions action = new Actions(driver);	
 		driver.switchTo().window("");
@@ -34,11 +27,6 @@ public class HomePage extends WaitForElement{
 		driver.switchTo().frame("menuiframe_4");
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build().perform();	
 	}
-	
-	public void verifyUser(WebDriver driver,String user) throws Exception{
-		
-	}
-	
 }
 
 

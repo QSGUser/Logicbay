@@ -1,5 +1,4 @@
 package com.qsgsoft.Logicbay.pages.NMHG;
-
 import org.openqa.selenium.WebDriver;
 import com.qsgsoft.Logicbay.pages.Core.UserPage;
 import com.qsgsoft.Logicbay.pages.Core.MembershipAdminPage;
@@ -24,8 +23,7 @@ public class NmhgUserPage extends UserPage{
 		enterJobTitle(driver,JobTitle);
 		selectSave(driver);	
 		switchToAffiliationsTab(driver);
-	}
-	
+	}	
 	public void NmhgUserMapping(WebDriver driver,String strcentersubType,String strcenterSrc)throws Exception{
 		objMembershipAdminPage.selectcenterMembership(driver,strcentersubType, strcenterSrc);
 		objMembershipAdminPage.selectSubmitOnMapping(driver);

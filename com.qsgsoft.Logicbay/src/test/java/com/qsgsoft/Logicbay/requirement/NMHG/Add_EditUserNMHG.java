@@ -3,7 +3,6 @@ import com.qsgsoft.Logicbay.modules.DashboardFunctions;
 import com.qsgsoft.Logicbay.pages.Core.AdminPage;
 import com.qsgsoft.Logicbay.pages.Core.LoginPage;
 import com.qsgsoft.Logicbay.pages.NMHG.NmhgHomePage;
-import com.qsgsoft.Logicbay.pages.NMHG.NmhgLoginPage;
 import com.qsgsoft.Logicbay.pages.NMHG.NmhgUserPage;
 import org.junit.After;
 import org.junit.Before;
@@ -49,32 +48,21 @@ public class Add_EditUserNMHG extends Configuration{
 		String strnewPassword=objTestData.strnewPassword;
 		//Creating objects
 		LoginPage objLoginPage = new LoginPage();
-		NmhgLoginPage objNmhgLoginPage=new NmhgLoginPage();
 		NmhgHomePage objNmhgHomePage =new NmhgHomePage();
 		AdminPage objAdminPage=new AdminPage();
 		NmhgUserPage objNmhgUserPage=new NmhgUserPage();
 		DashboardFunctions objDashBoardFunctions=new DashboardFunctions();
-		
+		//Calling the functions
 		objLoginPage.launchURL(driver,url);
-
-		objNmhgLoginPage.loginToNMHG(driver, strAdminUserName, strAdminPassword);
-		
+		objLoginPage.login(driver, strAdminUserName, strAdminPassword);
 		objNmhgHomePage.NavigateToAdmin(driver);
-		
 		objAdminPage.SelectUserAdmin(driver);
-		
-		objNmhgUserPage.NmhgUserCreation(driver,strEmailAddress,strFirstName,strLastName,strPassword,strTimeZone,strLocale,strMemberStatus,strSystemRole,strJobRole,strJobTitle);	
-		
+		objNmhgUserPage.NmhgUserCreation(driver,strEmailAddress,strFirstName,strLastName,strPassword,strTimeZone,strLocale,strMemberStatus,strSystemRole,strJobRole,strJobTitle);
 		objNmhgUserPage.NmhgUserMapping(driver,strcentersubType,strcenterSrc);
-		
-		objAdminPage.returnToHome(driver);
-		
+		objAdminPage.returnToHome(driver);	
 		objDashBoardFunctions.logOff(driver);
-		
-		objNmhgLoginPage.loginToNMHG(driver, strEmailAddress, strPassword);
-		
+		objLoginPage.login(driver, strEmailAddress, strPassword);
 		objLoginPage.acceptAgreement(driver);
-		
 		objLoginPage.passwordReset(driver,strPassword,strnewPassword);	
 	}	
 }

@@ -1,5 +1,4 @@
 package com.qsgsoft.Logicbay.pages.Core;
-
 import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
@@ -16,9 +15,11 @@ public class UserPage extends WaitForElement{
 	private static String emailfield="email";
 	private static String confirmEmailfield="confirm_email";
 	private static String firstnamefield="first_name";
+	private static String middlenamefield="middle_name";
 	private static String lastnamefield="last_name";
 	private static String passwordfield="new_password";
 	private static String confirmpasswordfield="confirm_new_password";
+	private static String employeeIdfield="employee_id";
 	private static String localefield="localeFK";
 	private static String timezone="timezone";
 	private static String generalTab="tab_1";
@@ -31,8 +32,7 @@ public class UserPage extends WaitForElement{
 	private static String jobtitle="empType";
 	private static String savebutton="saveGroup";
 	private static String gender="//input[@type='radio']";
-	
-	
+
 	public void switchToGeneralTab(WebDriver driver) throws Exception{
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
@@ -41,14 +41,12 @@ public class UserPage extends WaitForElement{
 		driver.findElement(By.id(generalTab));
 		action.moveToElement(driver.findElement(By.id(generalTab))).click().build().perform();		
 	}
-	
 	public void switchToStatusTab(WebDriver driver) throws Exception{
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
 		driver.findElement(By.id(statusTab));
 		action.moveToElement(driver.findElement(By.id(statusTab))).click().build().perform();		
 	}
-	
 	public void switchToSettingsTab(WebDriver driver) throws Exception{
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
@@ -61,7 +59,6 @@ public class UserPage extends WaitForElement{
 		driver.findElement(By.id(AffiliationsTab)).click();
 		action.moveToElement(driver.findElement(By.id(AffiliationsTab))).click().build().perform();		
 	}
-	
 	public void enterusername(WebDriver driver,String username) throws Exception{
 		driver.findElement(By.id(usernamefield)).clear();
 		driver.findElement(By.id(usernamefield)).sendKeys(username);
@@ -87,6 +84,11 @@ public class UserPage extends WaitForElement{
 		driver.findElement(By.id(firstnamefield)).sendKeys(firstName);
 		assertEquals(firstName, driver.findElement(By.id(firstnamefield)).getAttribute("value"));
 	}
+	public void enterMiddleName(WebDriver driver,String middleName)throws Exception{
+		driver.findElement(By.id(middlenamefield)).clear();
+		driver.findElement(By.id(middlenamefield)).sendKeys(middleName);
+		assertEquals(middleName, driver.findElement(By.id(middlenamefield)).getAttribute("value"));
+	}
 	public void enterLastName(WebDriver driver,String lastName)throws Exception{
 		driver.findElement(By.id(lastnamefield)).clear();
 		driver.findElement(By.id(lastnamefield)).sendKeys(lastName);
@@ -102,58 +104,57 @@ public class UserPage extends WaitForElement{
 		driver.findElement(By.id(confirmpasswordfield)).sendKeys(password);
 		assertEquals(password, driver.findElement(By.id(confirmpasswordfield)).getAttribute("value"));	
 	}
-	
+	public void enterTechOrEmpID(WebDriver driver,String ID)throws Exception{
+		driver.findElement(By.id(employeeIdfield)).clear();
+		driver.findElement(By.id(employeeIdfield)).sendKeys(ID);
+		assertEquals(ID, driver.findElement(By.id(employeeIdfield)).getAttribute("value"));	
+	}
+
 	public void selectTimeZone(WebDriver driver,String TimeZone) throws Exception{		
-		assertTrue(isElementPresent(By.id(timezone), driver));
-		new Select(driver.findElement(By.id(timezone))).selectByVisibleText(TimeZone);
-		String strSelectedVal = new Select(driver.findElement(By.id(timezone))).getFirstSelectedOption().getText();
+		assertTrue(isElementPresent(By.name(timezone), driver));
+		new Select(driver.findElement(By.name(timezone))).selectByVisibleText(TimeZone);
+		String strSelectedVal = new Select(driver.findElement(By.name(timezone))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(TimeZone));
 	}
 	public void selectLocale(WebDriver driver,String Locale) throws Exception{
-		assertTrue(isElementPresent(By.id(localefield), driver));
-		new Select(driver.findElement(By.id(localefield))).selectByVisibleText(Locale);
-		String strSelectedVal = new Select(driver.findElement(By.id(localefield))).getFirstSelectedOption().getText();
+		assertTrue(isElementPresent(By.name(localefield), driver));
+		new Select(driver.findElement(By.name(localefield))).selectByVisibleText(Locale);
+		String strSelectedVal = new Select(driver.findElement(By.name(localefield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(Locale));
 	}
-	
 	public void selectMemberStatus(WebDriver driver,String MemberStatus) throws Exception{
-		assertTrue(isElementPresent(By.id(memberStatus), driver));
-		new Select(driver.findElement(By.id(memberStatus))).selectByVisibleText(MemberStatus);
-		String strSelectedVal = new Select(driver.findElement(By.id(memberStatus))).getFirstSelectedOption().getText();
+		assertTrue(isElementPresent(By.name(memberStatus), driver));
+		new Select(driver.findElement(By.name(memberStatus))).selectByVisibleText(MemberStatus);
+		String strSelectedVal = new Select(driver.findElement(By.name(memberStatus))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(MemberStatus));	
 	}
 	public void selectSystemRole(WebDriver driver,String SystemRole) throws Exception{
-		assertTrue(isElementPresent(By.id(systemRole), driver));
-		new Select(driver.findElement(By.id(systemRole))).selectByVisibleText(SystemRole);
-		String strSelectedVal = new Select(driver.findElement(By.id(systemRole))).getFirstSelectedOption().getText();
+		assertTrue(isElementPresent(By.name(systemRole), driver));
+		new Select(driver.findElement(By.name(systemRole))).selectByVisibleText(SystemRole);
+		String strSelectedVal = new Select(driver.findElement(By.name(systemRole))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(SystemRole));	
 	}
-	
 	public void selectJobRole(WebDriver driver,String JobRole) throws Exception{
-		assertTrue(isElementPresent(By.id(jobRole), driver));
-		new Select(driver.findElement(By.id(jobRole))).selectByVisibleText(JobRole);
-		String strSelectedVal = new Select(driver.findElement(By.id(jobRole))).getFirstSelectedOption().getText();
+		assertTrue(isElementPresent(By.name(jobRole), driver));
+		new Select(driver.findElement(By.name(jobRole))).selectByVisibleText(JobRole);
+		String strSelectedVal = new Select(driver.findElement(By.name(jobRole))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(JobRole));	
 	}
-	
 	public void enterJobTitle(WebDriver driver,String JobTitle)throws Exception{
 		driver.findElement(By.id(jobtitle)).clear();
 		driver.findElement(By.id(jobtitle)).sendKeys(JobTitle);
 		assertEquals(JobTitle, driver.findElement(By.id(jobtitle)).getAttribute("value"));	
 	}
-	
 	public void selectSave(WebDriver driver) throws Exception{
-		driver.findElement(By.id(savebutton)).click();	
+		driver.findElement(By.name(savebutton)).click();	
 		driver.switchTo().alert().accept();	
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();		
 	}
-	
 	public void selectGender(WebDriver driver, String genderType) throws Exception{
 		driver.findElement(By.xpath(gender));
 		driver.findElement(By.xpath(gender)).click();
 	}
-	
 	public void AddUser(WebDriver driver,String userName,String emailAddress,String firstName,String lastName,String password,String timeZone,String locale,String MemberStatus,String SystemRole,String JobRole,String genderType)throws Exception{
 		switchToGeneralTab(driver);
 		enterusername(driver,userName);

@@ -1,21 +1,19 @@
 package com.qsgsoft.Logicbay.pages.Core;
 import static org.junit.Assert.*;
-
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class MembershipAdminPage extends WaitForElement{
 	private static String centerMembership="//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]";
 	private static String organizationMembership="//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]";
-	private static String getItems="//form[@id='mainForm']/table[2]/tbody/tr[2]/td[7]/input[@id='btnGetItems'][@type='button']";
+	private static String getItems="//input[@name='btnGetItems']";
 	private static String selectSrc="//select[@class='cListField'][@name='srcList']";						
 	private static String checkTarget="//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']";
-	private static String moveRight="//form[@id='mainForm']/table[3]/tbody/tr[2]/td[2]/input[@id='move_right'][@type='button']";
+	private static String moveRight="//input[@id='move_right']";
 	private static String selectSubmit="//input[@type='button'][@value='Submit']";
 	private static String selectReturn="//td[@class='cListControlPanel']/a";
 	private static String organizationMemebership="//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]";
@@ -32,12 +30,10 @@ public class MembershipAdminPage extends WaitForElement{
 		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
 	}
 	public void selectgetItems(WebDriver driver)throws Exception{
-		Actions action = new Actions(driver);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.findElement(By.xpath(getItems));
-		driver.findElement(By.xpath(getItems)).click();
-	}
-	
+		driver.findElement(By.xpath(getItems)).click();	
+	}	
 	public void selectorganziationMembership(WebDriver driver)throws Exception{	
 		driver.findElement(By.xpath(organizationMembership)).click();	
 		driver.switchTo().alert().accept();		
@@ -59,13 +55,10 @@ public class MembershipAdminPage extends WaitForElement{
 		assertTrue(strSelectedVal.equals(src));
 	}
 	public void selectMap(WebDriver driver)throws Exception{
-		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath(moveRight));
 		driver.findElement(By.xpath(moveRight)).click();
-		//action.moveToElement(driver.findElement(By.xpath(moveRight))).click().build().perform();
 	}
-	
 	public void selectorganizationMemebership(WebDriver driver,String subType,String src)throws Exception{
 		driver.findElement(By.xpath(organizationMemebership)).click();	
 		driver.switchTo().alert().accept();

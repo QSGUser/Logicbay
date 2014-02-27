@@ -5,14 +5,11 @@ import com.qsgsoft.Logicbay.modules.DashboardFunctions;
 import static org.junit.Assert.*;
 
 public class MyProfilePage extends DashboardFunctions{
-	
 	private static String profileText="//form[@id='regform']/table/tbody/tr[2]";
 	
 	public void verifyUser(WebDriver driver,String userename) throws Exception{
+		//driver.switchTo().frame(driver.findElement(By.name("profile")));
 		String profileName = driver.findElement(By.xpath(profileText)).getText();	
 		assertEquals(profileName, userename);
 	}
-
 }
-
-

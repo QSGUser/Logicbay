@@ -25,13 +25,11 @@ public class AdminPage extends WaitForElement{
 	public void selectAddUser(WebDriver driver) throws Exception{
 		assertTrue(isElementPresent(By.xpath(selectAddUsers),driver));
 		driver.findElement(By.xpath(selectAddUsers)).click();	
-	}
-	
+	}	
 	public void returnToHome(WebDriver driver) throws Exception{
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
 		driver.switchTo().window("");	
 		driver.switchTo().frame(driver.findElement(By.id("contents")));	
 		driver.findElement(By.xpath(selectReturn)).click();
-	}
-		
+	}		
 }

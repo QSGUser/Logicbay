@@ -7,7 +7,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import static org.junit.Assert.*;
 
 public class WaitForElement {
@@ -113,8 +112,7 @@ public class WaitForElement {
 			
 		}
 		return blnFound;
-	}	
-	
+	}		
 	public void waitForLoading(WebDriver driver)
 	{
 		int intCntr=0;
@@ -137,14 +135,12 @@ public class WaitForElement {
 		{
 
 		}	
-	}
-	
+	}	
 	public void waitForPageToLoad(WebDriver driver) throws Exception{
 		boolean blnPageLoaded;
 		do
 		{
 			blnPageLoaded=((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
 		}while(blnPageLoaded=false);
-
 	}
 }

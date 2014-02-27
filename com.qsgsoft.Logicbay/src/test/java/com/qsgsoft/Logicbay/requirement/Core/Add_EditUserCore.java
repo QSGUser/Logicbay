@@ -1,5 +1,4 @@
 package com.qsgsoft.Logicbay.requirement.Core;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class Add_EditUserCore extends Configuration {
 		url="http://lbapp01.logicbay.com/pc800/";
 		strAdminUserName = objTestData.strCoreLoginName;
 		strAdminPassword = objTestData.strCorePassword;
-		//Data for creating a contact
+		//Data for creating a user
 		String strUserName=objTestData.strUsername;
 		String strEmailAddress=objTestData.strEmailAddress;
 		String strFirstName=objTestData.strFirstName;
@@ -68,7 +67,6 @@ public class Add_EditUserCore extends Configuration {
 		objAdminPage.returnToHome(driver);
 		objDashBoardFunctions.logOff(driver);
 		objLoginPage.login(driver, strUserName, strPassword);
-		//objLoginPage.acceptAgreement(driver);
 		objLoginPage.passwordReset(driver,strPassword,strnewPassword);	
 		objDashBoardFunctions.selectMyProfile(driver);
 		objMyProfilePage.verifyUser(driver, strUserName);
