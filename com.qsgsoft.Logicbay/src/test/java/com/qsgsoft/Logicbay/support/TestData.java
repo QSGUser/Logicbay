@@ -7,6 +7,9 @@ public class TestData {
 	//Admin Credentials for Core server
 	public final String strCoreLoginName="qsgadmin@logicbay.com";
 	public final String strCorePassword="qsg@2006";
+	public final String strQucklinkTitle="Qlink"+System.currentTimeMillis();
+	public final String strcontentType="URL";
+	public final String strLinkURL="http://www.gmail.com";
 	//Admin Credentials for Daimler server
 	public final String strDaimlerLoginName="qsgadmin@logicbay.com";
 	public final String strDaimlerPassword="qsg@2006";
