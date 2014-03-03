@@ -15,6 +15,7 @@ public class UserPage extends WaitForElement {
 	private static String confirmUsernamefield = "confirm_username";
 	private static String emailfield = "email";
 	private static String confirmEmailfield = "confirm_email";
+	private static String salutationfield="salutation";
 	private static String firstnamefield = "first_name";
 	private static String middlenamefield = "middle_name";
 	private static String lastnamefield = "last_name";
@@ -103,6 +104,16 @@ public class UserPage extends WaitForElement {
 		driver.findElement(By.id(confirmEmailfield)).sendKeys(emailAddress);
 		assertEquals(emailAddress, driver.findElement(By.id(confirmEmailfield))
 				.getAttribute("value"));
+	}
+	
+	public void selectSalutation(String salutation) throws Exception {
+		assertTrue(isElementPresent(By.name(salutationfield), driver));
+		new Select(driver.findElement(By.name(salutationfield)))
+		.selectByVisibleText(salutation);
+		String strSelectedVal = new Select(
+				driver.findElement(By.name(salutationfield))).getFirstSelectedOption()
+				.getText();
+		assertTrue(strSelectedVal.equals(salutation));
 	}
 
 	public void enterFirstName(String firstName) throws Exception {
@@ -202,6 +213,7 @@ public class UserPage extends WaitForElement {
 
 	public void selectSave() throws Exception {
 		driver.findElement(By.name(savebutton)).click();
+		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
@@ -212,7 +224,7 @@ public class UserPage extends WaitForElement {
 		driver.findElement(By.xpath(gender)).click();
 	}
 
-	public void AddUser(String userName, String emailAddress, String firstName,
+	public void AddUser(String userName, String emailAddress, String salutation,String firstName,String middleName,
 			String lastName, String password, String timeZone, String locale,
 			String MemberStatus, String SystemRole, String JobRole,
 			String genderType) throws Exception {
@@ -221,7 +233,9 @@ public class UserPage extends WaitForElement {
 		enterConfirmUsername(userName);
 		enterEmail(emailAddress);
 		enterConfirmEmail(emailAddress);
+		selectSalutation(salutation);
 		enterFirstName(firstName);
+		enterMiddleName(middleName);
 		enterLastName(lastName);
 		enterPassword(password);
 		enterConfirmPassword(password);

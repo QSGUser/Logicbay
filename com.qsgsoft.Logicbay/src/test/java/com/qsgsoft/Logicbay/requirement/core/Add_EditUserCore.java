@@ -5,7 +5,6 @@ import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;
 import com.qsgsoft.Logicbay.pages.core.MembershipAdminPage;
-import com.qsgsoft.Logicbay.pages.core.MyProfilePage;
 import com.qsgsoft.Logicbay.pages.core.UserPage;
 import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
@@ -25,7 +24,9 @@ public class Add_EditUserCore extends Configuration {
 		// Data for creating a user
 		String strUserName = objTestData.strUsername;
 		String strEmailAddress = objTestData.strEmailAddress;
+		String strSalutation=objTestData.strSalutation;
 		String strFirstName = objTestData.strFirstName;
+		String strMiddleName=objTestData.strMiddleName;
 		String strLastName = objTestData.strLastName;
 		String strPassword = objTestData.strPassword;
 		String strLocale = objTestData.strLocale;
@@ -44,14 +45,13 @@ public class Add_EditUserCore extends Configuration {
 		UserPage objUserPage = new UserPage(driver);
 		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
 				driver);
-		MyProfilePage objMyProfilePage = new MyProfilePage(driver);
-
+	
 		// Calling the functions
 		objLoginPage.openURL();
 		objLoginPage.login(strAdminUserName, strAdminPassword);
 		objHomePage.NavigateToAdmin();
 		objAdminPage.SelectUserAdmin();
-		objUserPage.AddUser(strUserName, strEmailAddress, strFirstName,
+		objUserPage.AddUser(strUserName, strEmailAddress,strSalutation,strFirstName,strMiddleName,
 				strLastName, strPassword, strTimeZone, strLocale,
 				strMemberStatus, strSystemRole, strJobRole, genderType);
 		objMembershipAdminPage.MapToCenterMembership(strcentersubType,
@@ -60,7 +60,6 @@ public class Add_EditUserCore extends Configuration {
 		objHomePage.logOff();
 		objLoginPage.login(strUserName, strPassword);
 		objLoginPage.passwordReset(strPassword, strnewPassword);
-		objHomePage.selectMyProfile();
-		objMyProfilePage.verifyUser(strUserName);
+		objHomePage.selectMyProfile(strUserName);
 	}
 }

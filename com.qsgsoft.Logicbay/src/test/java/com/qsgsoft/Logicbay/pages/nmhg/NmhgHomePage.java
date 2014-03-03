@@ -9,9 +9,8 @@ import com.qsgsoft.Logicbay.pages.core.HomePage;
 public class NmhgHomePage extends HomePage {
 	private static String CenterTab = "_PCMM_TabText_5";
 	private static String Admin = "_PCMM_ID_36_text";
-
 	public static WebDriver driver;
-
+	
 	public NmhgHomePage(WebDriver _driver) {
 		super(driver);
 	}

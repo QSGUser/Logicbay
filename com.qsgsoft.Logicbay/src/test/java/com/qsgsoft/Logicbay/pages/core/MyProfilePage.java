@@ -15,9 +15,8 @@ public class MyProfilePage extends DashboardFunctions {
 	}
 
 	public void verifyUser(String username) throws Exception {
-		driver.switchTo().frame(driver.findElement(By.name("profile")));
-		driver.findElement(By.id(email));	
-		assertEquals(username, driver.findElement(By.name(email))
-				.getAttribute("value"));
+		driver.switchTo().frame(driver.findElement(By.id("profile")));
+		assertEquals(username, driver.findElement(By.id(email))
+				.getAttribute("value"));	
 	}
 }

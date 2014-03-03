@@ -59,7 +59,7 @@ public class Add_EditUserNMHG extends Configuration {
 		objLoginPage.login(strEmailAddress, strPassword);
 		objLoginPage.acceptAgreement();
 		objLoginPage.passwordReset(strPassword, strnewPassword);
-		objHomePage.selectMyProfile();
+		objHomePage.selectMyProfile(strEmailAddress);
 		objMyProfilePage.verifyUser(strEmailAddress);
 	}
 }

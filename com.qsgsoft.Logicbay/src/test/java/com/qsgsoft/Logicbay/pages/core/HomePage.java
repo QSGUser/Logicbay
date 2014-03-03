@@ -1,5 +1,8 @@
 package com.qsgsoft.Logicbay.pages.core;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
@@ -9,11 +12,12 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class HomePage extends WaitForElement {
 	private static String CampusTab = "_PCMM_TabText_4";
-	private static String Admin = "_PCMM_ID_53_text";
+	private static String Admin = "_PCMM_ID_52_text";
 	private static String logoff = "logout_link";
 	private static String myprofile = "profile_link";
 
 	public WebDriver driver;
+	MyProfilePage objMyProfilePage = new MyProfilePage(driver);
 
 	public HomePage(WebDriver _driver) {
 		this.driver = _driver;
@@ -30,7 +34,7 @@ public class HomePage extends WaitForElement {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
 		action.moveToElement(driver.findElement(By.id(CampusTab))).click()
-		.build().perform();
+				.build().perform();
 	}
 
 	public void selectAdmin() throws Exception {
@@ -39,7 +43,7 @@ public class HomePage extends WaitForElement {
 		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
 		driver.switchTo().frame("menuiframe_4");
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
-		.perform();
+				.perform();
 	}
 
 	// Function to logout from application
@@ -49,27 +53,54 @@ public class HomePage extends WaitForElement {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
 		action.moveToElement(driver.findElement(By.id(logoff))).click().build()
-		.perform();
+				.perform();
 	}
 
 	// Function to select my profile
-	public void selectMyProfile() throws Exception {
-		String firstWinHandle;
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	public void selectMyProfile(String username) throws Exception {
 		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
-		driver.findElement((By.id(myprofile)));
+		driver.switchTo().frame(driver.findElement(By.id("topFrame")));
 		driver.findElement(By.id(myprofile)).click();
-		
-		Set handles = driver.getWindowHandles();
-		firstWinHandle = driver.getWindowHandle(); 
-		handles.remove(firstWinHandle);
-		String winHandle=(String) handles.iterator().next();
-		if (winHandle!=firstWinHandle){
-			String secondWinHandle=winHandle; 
-			driver.switchTo().window(secondWinHandle);
+		String mainWindowHandle = driver.getWindowHandle();
+		Thread.sleep(5000);
+		Set<String> a = driver.getWindowHandles();
+		Iterator<String> ite = a.iterator();
+		while (ite.hasNext()) {
+			String popupHandle = ite.next().toString();
+
+			if (!popupHandle.contains(mainWindowHandle)) {
+				driver.switchTo().window(popupHandle);
+
+			}
 		}
+		String assetMenu = driver.getTitle();
+		assertTrue(assetMenu.contains("Edit Profile"));
+		objMyProfilePage.verifyUser(username);
+		driver.switchTo().window(mainWindowHandle);
 	}
 
-	
+	public void selectQuickLink(String linkTitle) throws Exception {
+		Actions action = new Actions(driver);
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
+		action.moveToElement(driver.findElement(By.linkText(linkTitle)))
+				.click().build().perform();
+	}
+
+	public void verifyQuickLink() throws Exception {
+		String mainWindowHandle = driver.getWindowHandle();
+		Thread.sleep(5000);
+		Set<String> a = driver.getWindowHandles();
+		Iterator<String> ite = a.iterator();
+		while (ite.hasNext()) {
+			String popupHandle = ite.next().toString();
+
+			if (!popupHandle.contains(mainWindowHandle)) {
+				driver.switchTo().window(popupHandle);
+
+			}
+		}
+		String quicklinkTitle = driver.getTitle();
+		assertTrue(quicklinkTitle.contains("Google"));
+	}
 }

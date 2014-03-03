@@ -1,15 +1,16 @@
-package com.qsgsoft.Logicbay.requirement.core;
+package com.qsgsoft.Logicbay.requirement.nmhg;
 
 import org.junit.Test;
 import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.AssetsManagementPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;
+import com.qsgsoft.Logicbay.pages.nmhg.NmhgHomePage;
+import com.qsgsoft.Logicbay.pages.nmhg.NmhgLoginPage;
 import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
 
-public class Display_GroupPropertiesCore extends Configuration {
-
+public class Display_GroupPropertiesNmhg extends Configuration{
 	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
 	TestData objTestData = new TestData();
 
@@ -17,22 +18,25 @@ public class Display_GroupPropertiesCore extends Configuration {
 	public void AddQuickLinkToAsset() throws Exception {
 		gstrTO = "Verify that a quicklink can be added by associating to an existing asset";
 		gstrTCID = "132537";
-		url = "http://lbapp01.logicbay.com/pc800/";
-		strAdminUserName = objTestData.strCoreLoginName;
-		strAdminPassword = objTestData.strCorePassword;
+		strAdminUserName = objTestData.strNmhgAdminName;
+		strAdminPassword = objTestData.strNmhgAdminPassword;
 		String strQuicklinkTitle = objTestData.strQucklinkTitle;
 		String strcontentType = objTestData.strcontentType;
 		String strLinkUrl = objTestData.strLinkURL;
+
 		// Creating the objects
 		LoginPage objLoginPage = new LoginPage(this.driver);
+		NmhgLoginPage objNmhgLoginPage = new NmhgLoginPage(driver);
+		NmhgHomePage objNmhgHomePage=new NmhgHomePage(driver);
 		HomePage objHomePage = new HomePage(driver);
 		AdminPage objAdminPage = new AdminPage(driver);
 		AssetsManagementPage objAssetsManagementPage = new AssetsManagementPage(
 				driver);
+
 		// Calling the functions
-		objLoginPage.openURL();
+		objNmhgLoginPage.openURL(driver);
 		objLoginPage.login(strAdminUserName, strAdminPassword);
-		objHomePage.NavigateToAdmin();
+		objNmhgHomePage.NavigateToAdmin();
 		objAdminPage.selectAssetManagement();
 		objAssetsManagementPage.createNewAsset(strQuicklinkTitle,
 				strcontentType, strLinkUrl);

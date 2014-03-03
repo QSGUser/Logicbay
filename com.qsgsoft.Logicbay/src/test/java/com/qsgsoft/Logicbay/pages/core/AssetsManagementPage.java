@@ -2,7 +2,8 @@ package com.qsgsoft.Logicbay.pages.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +18,12 @@ public class AssetsManagementPage extends WaitForElement {
 	private static String contenttype = "assetTypeId";
 	private static String urlfield = "url";
 	private static String savebutton = "save";
-	private static String assetSearchfield="search_criteria_TXT";
-	private static String quicklink="//div[@id='tv']/ul/li/div/span[3]";
-	private static String selectNew="//img[@src='../images/admin/controls/document.gif']";
-	private static String chooseAsset="chooseAsset";
+	private static String quicklink = "//div[@id='tv']/ul/li/div/span[3]";
+	private static String selectNew = "//img[@src='../images/admin/controls/document.gif']";
+	private static String chooseAsset = "div#assetField2>input[name='chooseAsset']";
+	private static String searchfield = "//input[@id='search_criteria_TXT']";
+	private static String gobutton = "search_go";
+	private static String enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
 	public WebDriver driver;
 
 	public AssetsManagementPage(WebDriver _driver) {
@@ -36,6 +39,13 @@ public class AssetsManagementPage extends WaitForElement {
 		selectSave();
 	}
 
+	public void mapLinkToAsset(String linkTitle) throws Exception {
+		selectquicklink();
+		selectnew();
+		chooseAsset(linkTitle);	
+		enableLink(linkTitle);
+	}
+
 	public void selectNewAsset() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -43,7 +53,7 @@ public class AssetsManagementPage extends WaitForElement {
 		driver.switchTo().frame(driver.findElement(By.id("main")));
 		driver.findElement(By.xpath(newAsset));
 		action.moveToElement(driver.findElement(By.xpath(newAsset))).click()
-		.build().perform();
+				.build().perform();
 	}
 
 	public void enterLinkTitle(String linkTitle) throws Exception {
@@ -58,7 +68,7 @@ public class AssetsManagementPage extends WaitForElement {
 	public void selectContentType(String contentType) throws Exception {
 		assertTrue(isElementPresent(By.name(contenttype), driver));
 		new Select(driver.findElement(By.name(contenttype)))
-		.selectByVisibleText(contentType);
+				.selectByVisibleText(contentType);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(contenttype))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(contentType));
@@ -74,33 +84,60 @@ public class AssetsManagementPage extends WaitForElement {
 	public void selectSave() throws Exception {
 		driver.findElement(By.name(savebutton)).click();
 	}
-	
-	public void searchAsset(String linkTitle) throws Exception{
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("main")));
-		driver.findElement(By.name(assetSearchfield)).clear();
-		driver.findElement(By.name(assetSearchfield)).sendKeys(linkTitle);
-	}
-	public void selectquicklink()throws Exception{
+
+	public void selectquicklink() throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id("main")));
 		driver.findElement(By.xpath(quicklink)).click();
 	}
-	public void selectnew()throws Exception{
+
+	public void selectnew() throws Exception {
 		driver.findElement(By.xpath(selectNew)).click();
 	}
-	public void chooseAsset()throws Exception{
+
+	public void chooseAsset(String linkTitle) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id("details")));
-		driver.findElement(By.name(chooseAsset)).click();
+		driver.findElement(By.cssSelector(chooseAsset)).click();
+		String mainWindowHandle = driver.getWindowHandle();
+		Thread.sleep(3000);
+		Set<String> a = driver.getWindowHandles();
+		Iterator<String> ite = a.iterator();
+		while (ite.hasNext()) {
+			String popupHandle = ite.next().toString();
+
+			if (!popupHandle.contains(mainWindowHandle)) {
+				driver.switchTo().window(popupHandle);
+
+			}
+		}
+		String assetMenu = driver.getTitle();
+		assertTrue(assetMenu.contains("Choose Asset"));
+		driver.switchTo().frame(driver.findElement(By.id("main")));
+		driver.findElement(By.xpath(searchfield)).clear();
+		driver.findElement(By.xpath(searchfield)).sendKeys(linkTitle);
+		selectGobutton();
+		selectAssetlink(linkTitle);
+		driver.switchTo().window(mainWindowHandle);
+		driver.switchTo().frame(driver.findElement(By.id("details")));
+		selectSave();
 	}
-	public void mapLinkToAsset()throws Exception{
-		selectquicklink();
-		selectnew();
-		chooseAsset();
-		assetwindow();
+
+	public void selectGobutton() throws Exception {
+		driver.findElement(By.id(gobutton)).click();
 	}
-	public void assetwindow()throws Exception{
-		driver.switchTo().window("Choose Asset");
+
+	public void enableLink(String linkTitle) throws Exception {
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.id("main")));
+		Thread.sleep(1000);
+		driver.findElement(By.xpath(enablebutton)).click();
+		Thread.sleep(1000);
+	}
+
+	public void selectAssetlink(String linkTitle) throws Exception {
+		driver.findElement(
+				By.xpath("//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]"))
+				.click();
 	}
 }

@@ -9,7 +9,7 @@ public class TestData {
 	public final String strCorePassword="qsg@2006";
 	public final String strQucklinkTitle="Qlink"+System.currentTimeMillis();
 	public final String strcontentType="URL";
-	public final String strLinkURL="http://www.gmail.com";
+	public final String strLinkURL="http://www.google.com";
 	//Admin Credentials for Daimler server
 	public final String strDaimlerLoginName="qsgadmin@logicbay.com";
 	public final String strDaimlerPassword="qsg@2006";
@@ -23,6 +23,7 @@ public class TestData {
 	public final String strnewPassword="Logic@2025";
 	public final String strUsername="user1"+System.currentTimeMillis();
 	public final String strEmailAddress=System.currentTimeMillis()+"@logicbay.com";
+	public final String strSalutation="Ms.";
 	public final String strFirstName="test"+System.currentTimeMillis();
 	public final String strMiddleName="MidName"+System.currentTimeMillis();
 	public final String strLastName="user"+System.currentTimeMillis();
@@ -33,7 +34,7 @@ public class TestData {
 	public final String strTimezone="Hawaii";
 	public final String strMemberstatus="Approval Granted";
 	public final String strSystemrole="Default Role";
-	public final String strJobrole="Administration";
+	public final String strJobrole="Administrator";
 	public final String strAssociatedAccount="None";
 	public final String strJobtitle="test";
 	public final String strcenterSubtype="None";
