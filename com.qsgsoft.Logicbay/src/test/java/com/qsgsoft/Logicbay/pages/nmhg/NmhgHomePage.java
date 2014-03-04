@@ -13,6 +13,7 @@ public class NmhgHomePage extends HomePage {
 	
 	public NmhgHomePage(WebDriver _driver) {
 		super(driver);
+		NmhgHomePage.driver = _driver;
 	}
 
 	public void NavigateToAdmin() throws Exception {

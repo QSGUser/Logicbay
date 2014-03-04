@@ -43,7 +43,6 @@ public class UserPage extends WaitForElement {
 
 	public void switchToGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id("main")));
 		driver.findElement(By.id(generalTab));
@@ -213,9 +212,9 @@ public class UserPage extends WaitForElement {
 
 	public void selectSave() throws Exception {
 		driver.findElement(By.name(savebutton)).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
 	}
 

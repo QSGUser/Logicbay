@@ -14,15 +14,16 @@ public class DaimlerUserPage extends UserPage {
 	public static WebDriver driver;
 
 	public DaimlerUserPage(WebDriver _driver) {
-		super(driver);
+		super(_driver);
+		DaimlerUserPage.driver = _driver;
 	}
 
-	public void DaimlerUserCreation(String userName, String emailAddress,
+	public void AddUser(String userName, String emailAddress,
 			String firstName, String middleName, String lastName,
 			String password, String technicalId, String timeZone,
 			String locale, String memberStatus, String systemRole,
 			String jobRole, String associatedAccount) throws Exception {
-		switchToGeneralTab();
+		this.switchToGeneralTab();
 		selectUserName(userName);
 		enterEmail(emailAddress);
 		enterConfirmEmail(emailAddress);

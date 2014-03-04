@@ -10,6 +10,7 @@ public class TestData {
 	public final String strQucklinkTitle="Qlink"+System.currentTimeMillis();
 	public final String strcontentType="URL";
 	public final String strLinkURL="http://www.google.com";
+	public final String strCoreJobRole="Administrator";
 	//Admin Credentials for Daimler server
 	public final String strDaimlerLoginName="qsgadmin@logicbay.com";
 	public final String strDaimlerPassword="qsg@2006";
@@ -18,7 +19,8 @@ public class TestData {
 	public final String strDaimlerAccount="None";
 	//Admin Credentials for NMHG server
 	public final String strNmhgAdminName="qsgadmin@logicbay.com";
-	public final String strNmhgAdminPassword="qsg@2006";	
+	public final String strNmhgAdminPassword="qsg@2006";
+	public final String strNmhgJobrole="Administration";
 	//Data for creating a User	
 	public final String strnewPassword="Logic@2025";
 	public final String strUsername="user1"+System.currentTimeMillis();
@@ -34,7 +36,6 @@ public class TestData {
 	public final String strTimezone="Hawaii";
 	public final String strMemberstatus="Approval Granted";
 	public final String strSystemrole="Default Role";
-	public final String strJobrole="Administrator";
 	public final String strAssociatedAccount="None";
 	public final String strJobtitle="test";
 	public final String strcenterSubtype="None";
@@ -42,4 +43,9 @@ public class TestData {
 	public final String strcenterSrcCore="Performance Center";
 	public final String strcenterSrcDaimler="Aftermarket Resource Center";
 	public final String strgenderType="Male";
+	//Data for creation organization
+	public final String strorgName="org"+System.currentTimeMillis();
+	public final String strorgCode="1234567";
+	public final String strsuborgName="suborg"+System.currentTimeMillis();
+	public final String strsuborgCode="suborgCode"+System.currentTimeMillis();
 }

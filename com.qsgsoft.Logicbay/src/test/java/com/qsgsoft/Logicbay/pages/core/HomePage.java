@@ -1,7 +1,7 @@
 package com.qsgsoft.Logicbay.pages.core;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +15,7 @@ public class HomePage extends WaitForElement {
 	private static String Admin = "_PCMM_ID_52_text";
 	private static String logoff = "logout_link";
 	private static String myprofile = "profile_link";
+	private static String email = "email";
 
 	public WebDriver driver;
 	MyProfilePage objMyProfilePage = new MyProfilePage(driver);
@@ -59,7 +60,7 @@ public class HomePage extends WaitForElement {
 	// Function to select my profile
 	public void selectMyProfile(String username) throws Exception {
 		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("topFrame")));
+		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
 		driver.findElement(By.id(myprofile)).click();
 		String mainWindowHandle = driver.getWindowHandle();
 		Thread.sleep(5000);
@@ -75,7 +76,11 @@ public class HomePage extends WaitForElement {
 		}
 		String assetMenu = driver.getTitle();
 		assertTrue(assetMenu.contains("Edit Profile"));
-		objMyProfilePage.verifyUser(username);
+		driver.switchTo().frame(driver.findElement(By.name("profile")));
+		driver.findElement(By.id(email));
+		String LoginUser=driver.findElement(By.id(email)).getAttribute("Value");
+		assertEquals(username,LoginUser);
+		System.out.println("Created user is logged in");
 		driver.switchTo().window(mainWindowHandle);
 	}
 

@@ -13,8 +13,10 @@ public class AdminPage extends WaitForElement {
 	private static String selectReturn = "//td[@id='adminLink2']";
 	private static String selectAssets = "//img[@id='catBullet2']";
 	private static String selectManageAssets = "//td[@id='adminLink3']";
-	private static String selectDisplayGroups="//img[@id='catBullet3']";
-	private static String selectQuickLinks="//td[@id='adminGoupLink2']";
+	private static String selectDisplayGroups = "//img[@id='catBullet3']";
+	private static String selectQuickLinks = "//td[@id='adminGoupLink2']";
+	private static String selectUserGroups = "//img[@id='catBullet7']";
+	private static String selectManageOrganizations = "//td[@id='manageOrgs']";
 
 	public WebDriver driver;
 
@@ -31,10 +33,15 @@ public class AdminPage extends WaitForElement {
 		selectAssets();
 		selectManageAssets();
 	}
-	
-	public void selectGroups()throws Exception{
+
+	public void selectGroups() throws Exception {
 		selectDisplayGroups();
 		selectQuicklinks();
+	}
+
+	public void selectUserGroupsAdmin() throws Exception {
+		selectUserGroups();
+		selectManageOrganizations();
 	}
 
 	public void selectUser() throws Exception {
@@ -71,20 +78,36 @@ public class AdminPage extends WaitForElement {
 		driver.switchTo().frame(driver.findElement(By.id("contents")));
 		driver.findElement(By.xpath(selectReturn)).click();
 	}
-	
-	public void selectDisplayGroups()throws Exception{
+
+	public void selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id("contents")));
-		action.moveToElement(driver.findElement(By.xpath(selectDisplayGroups))).click()
-		.build().perform();
+		action.moveToElement(driver.findElement(By.xpath(selectDisplayGroups)))
+		.click().build().perform();
 	}
-	public void selectQuicklinks()throws Exception{
+
+	public void selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(selectQuickLinks), driver));
-		//driver.findElement(By.xpath(selectQuickLinks)).click();	
-		action.moveToElement(driver.findElement(By.xpath(selectQuickLinks))).click()
-		.build().perform();
+		// driver.findElement(By.xpath(selectQuickLinks)).click();
+		action.moveToElement(driver.findElement(By.xpath(selectQuickLinks)))
+		.click().build().perform();
 	}
+
+	public void selectUserGroups() throws Exception {
+		Actions action = new Actions(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		action.moveToElement(driver.findElement(By.xpath(selectUserGroups)))
+		.click().build().perform();
+	}
+
+	public void selectManageOrganizations() throws Exception {
+		assertTrue(isElementPresent(By.xpath(selectManageOrganizations), driver));
+		driver.findElement(By.xpath(selectManageOrganizations)).click();
+	}
+
 }

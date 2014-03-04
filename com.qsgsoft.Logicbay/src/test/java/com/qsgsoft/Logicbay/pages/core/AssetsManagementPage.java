@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class AssetsManagementPage extends WaitForElement {

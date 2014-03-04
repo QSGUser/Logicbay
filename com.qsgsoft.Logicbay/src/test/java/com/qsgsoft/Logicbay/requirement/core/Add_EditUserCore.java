@@ -18,7 +18,6 @@ public class Add_EditUserCore extends Configuration {
 	public void AddUserToCoreServer() throws Exception {
 		gstrTO = "Verify that a user can be added in Performance Center";
 		gstrTCID = "132534";
-		url = "http://lbapp01.logicbay.com/pc800/";
 		strAdminUserName = objTestData.strCoreLoginName;
 		strAdminPassword = objTestData.strCorePassword;
 		// Data for creating a user
@@ -33,7 +32,7 @@ public class Add_EditUserCore extends Configuration {
 		String strTimeZone = objTestData.strTimezone;
 		String strMemberStatus = objTestData.strMemberstatus;
 		String strSystemRole = objTestData.strSystemrole;
-		String strJobRole = objTestData.strJobrole;
+		String strJobRole = objTestData.strCoreJobRole;
 		String strcentersubType = objTestData.strcenterSubtype;
 		String strcenterSrc = objTestData.strcenterSrcCore;
 		String genderType = objTestData.strgenderType;

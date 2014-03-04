@@ -27,7 +27,6 @@ public class MembershipAdminPage extends WaitForElement {
 
 	public void selectcenterMembership(String subType, String src)
 			throws Exception {
-
 		driver.findElement(By.xpath(centerMembership)).click();
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
@@ -101,6 +100,14 @@ public class MembershipAdminPage extends WaitForElement {
 	public void MapToCenterMembership(String strcentersubType,
 			String strcenterSrc) throws Exception {
 		selectcenterMembership(strcentersubType, strcenterSrc);
+		selectSubmitOnMapping();
+		selectReturnOnMapping();
+	}
+	
+	public void NmhgUserMapping(String strcentersubType, String strcenterSrc)
+			throws Exception {
+		selectcenterMembership(strcentersubType,
+				strcenterSrc);
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
 	}

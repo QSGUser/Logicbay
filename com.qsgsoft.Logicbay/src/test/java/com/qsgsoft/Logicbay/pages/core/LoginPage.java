@@ -54,7 +54,7 @@ public class LoginPage extends WaitForElement implements URLInterface {
 	}
 
 	public void acceptAgreement() throws Exception {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		driver.findElement(By.xpath(accept));
 		driver.findElement(By.xpath(accept)).click();
 	}
