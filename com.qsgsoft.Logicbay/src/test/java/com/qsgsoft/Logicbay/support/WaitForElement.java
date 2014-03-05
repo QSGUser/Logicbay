@@ -1,4 +1,5 @@
 package com.qsgsoft.Logicbay.support;
+
 import java.lang.reflect.InvocationTargetException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidElementStateException;
@@ -12,8 +13,9 @@ import static org.junit.Assert.*;
 public class WaitForElement {
 	public static String pageLoad = "90000";
 	public static String pageLoadNotWorks = "60000";
-	
-	public void waitForElement(WebDriver driver, String strElement) throws Exception {
+
+	public void waitForElement(WebDriver driver, String strElement)
+			throws Exception {
 		int intCnt = 0;
 		do {
 			try {
@@ -22,19 +24,19 @@ public class WaitForElement {
 			} catch (InvalidElementStateException e) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch (StaleElementReferenceException SE) {
+			} catch (StaleElementReferenceException SE) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch (NoSuchElementException SE) {
+			} catch (NoSuchElementException SE) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch(Exception e){
+			} catch (Exception e) {
 				intCnt++;
 				Thread.sleep(1000);
 			}
 		} while (intCnt < 20);
 	}
-	
+
 	public void waitForElementBycssSelector(WebDriver driver, String strElement)
 			throws Exception {
 		int intCnt = 0;
@@ -45,25 +47,26 @@ public class WaitForElement {
 			} catch (InvalidElementStateException e) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch (StaleElementReferenceException SE) {
+			} catch (StaleElementReferenceException SE) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch (NoSuchElementException SE) {
+			} catch (NoSuchElementException SE) {
 				intCnt++;
 				Thread.sleep(1000);
-			}catch(Exception e){
+			} catch (Exception e) {
 				intCnt++;
 				Thread.sleep(1000);
 			}
 		} while (intCnt < 20);
 	}
-	
-	public void waitForText(WebDriver driver, String strElementID, String strText)
-			throws Exception {
+
+	public void waitForText(WebDriver driver, String strElementID,
+			String strText) throws Exception {
 		int intCnt = 0;
 		do {
 			try {
-				assertTrue(driver.findElement(By.xpath(strElementID)).getText().contains(strText));
+				assertTrue(driver.findElement(By.xpath(strElementID)).getText()
+						.contains(strText));
 				break;
 			} catch (AssertionError e) {
 				intCnt++;
@@ -71,13 +74,14 @@ public class WaitForElement {
 			}
 		} while (intCnt < 20);
 	}
-	
-	public void waitForTextByCssSelector(WebDriver driver, String strElementID, String strText)
-			throws Exception {
+
+	public void waitForTextByCssSelector(WebDriver driver, String strElementID,
+			String strText) throws Exception {
 		int intCnt = 0;
 		do {
 			try {
-				assertTrue(driver.findElement(By.cssSelector(strElementID)).getText().contains(strText));
+				assertTrue(driver.findElement(By.cssSelector(strElementID))
+						.getText().contains(strText));
 				break;
 			} catch (AssertionError e) {
 				intCnt++;
@@ -85,62 +89,62 @@ public class WaitForElement {
 			}
 		} while (intCnt < 20);
 	}
-	
-	public boolean isElementPresent(By by,WebDriver driver) throws InvocationTargetException{
-		int intCnt=0;
-		boolean blnFound=false;
-		try{				
-			try {				
-				driver.findElement(by);					
-				blnFound =true;
-				
-			} catch (NoSuchElementException e) {				
-				intCnt++;
-				Thread.sleep(1000);			
-				blnFound=false;
-				
-			} catch (StaleElementReferenceException e){
+
+	public boolean isElementPresent(By by, WebDriver driver)
+			throws InvocationTargetException {
+		int intCnt = 0;
+		boolean blnFound = false;
+		try {
+			try {
+				driver.findElement(by);
+				blnFound = true;
+
+			} catch (NoSuchElementException e) {
 				intCnt++;
 				Thread.sleep(1000);
-				blnFound=false;	
-			} catch (InvalidElementStateException e){
+				blnFound = false;
+
+			} catch (StaleElementReferenceException e) {
 				intCnt++;
 				Thread.sleep(1000);
-				blnFound=false;
-			}	
-		}catch(Exception E){
-			
+				blnFound = false;
+			} catch (InvalidElementStateException e) {
+				intCnt++;
+				Thread.sleep(1000);
+				blnFound = false;
+			}
+		} catch (Exception E) {
 		}
 		return blnFound;
-	}		
-	public void waitForLoading(WebDriver driver)
-	{
-		int intCntr=0;
-		try{
-			WebElement btn=driver.findElement((By.xpath("//div[@id='WaitMessage']")));
-			while (intCntr<=200) 
-			{
-				try{
+	}
+
+	public void waitForLoading(WebDriver driver) {
+		int intCntr = 0;
+		try {
+			WebElement btn = driver.findElement((By
+					.xpath("//div[@id='WaitMessage']")));
+			while (intCntr <= 200) {
+				try {
 					btn.isEnabled();
 					btn.isDisplayed();
 					intCntr++;
 					Thread.sleep(1000);
-				}catch(Exception e){
+				} catch (Exception e) {
 					waitForPageToLoad(driver);
 					Thread.sleep(3000);
-					break; 
-				}    
+					break;
+				}
 			}
-		}catch(Exception e)
-		{
+		} catch (Exception e) {
 
-		}	
-	}	
-	public void waitForPageToLoad(WebDriver driver) throws Exception{
+		}
+	}
+
+	public void waitForPageToLoad(WebDriver driver) throws Exception {
 		boolean blnPageLoaded;
-		do
-		{
-			blnPageLoaded=((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-		}while(blnPageLoaded=false);
+		do {
+			blnPageLoaded = ((JavascriptExecutor) driver).executeScript(
+					"return document.readyState").equals("complete");
+		} while (blnPageLoaded = false);
 	}
 }

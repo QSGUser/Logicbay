@@ -20,7 +20,7 @@ public class Display_GroupPropertiesNmhg extends Configuration{
 		gstrTCID = "132537";
 		strAdminUserName = objTestData.strNmhgAdminName;
 		strAdminPassword = objTestData.strNmhgAdminPassword;
-		String strQuicklinkTitle = objTestData.strQucklinkTitle;
+		String strQuicklinkTitle = objTestData.strQuicklinkTitle;
 		String strcontentType = objTestData.strcontentType;
 		String strLinkUrl = objTestData.strLinkURL;
 

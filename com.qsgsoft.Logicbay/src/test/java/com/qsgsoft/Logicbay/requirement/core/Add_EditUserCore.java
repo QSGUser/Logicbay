@@ -10,7 +10,6 @@ import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
 
 public class Add_EditUserCore extends Configuration {
-
 	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
 	TestData objTestData = new TestData();
 
@@ -23,9 +22,9 @@ public class Add_EditUserCore extends Configuration {
 		// Data for creating a user
 		String strUserName = objTestData.strUsername;
 		String strEmailAddress = objTestData.strEmailAddress;
-		String strSalutation=objTestData.strSalutation;
+		String strSalutation = objTestData.strSalutation;
 		String strFirstName = objTestData.strFirstName;
-		String strMiddleName=objTestData.strMiddleName;
+		String strMiddleName = objTestData.strMiddleName;
 		String strLastName = objTestData.strLastName;
 		String strPassword = objTestData.strPassword;
 		String strLocale = objTestData.strLocale;
@@ -44,21 +43,21 @@ public class Add_EditUserCore extends Configuration {
 		UserPage objUserPage = new UserPage(driver);
 		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
 				driver);
-	
 		// Calling the functions
 		objLoginPage.openURL();
 		objLoginPage.login(strAdminUserName, strAdminPassword);
 		objHomePage.NavigateToAdmin();
 		objAdminPage.SelectUserAdmin();
-		objUserPage.AddUser(strUserName, strEmailAddress,strSalutation,strFirstName,strMiddleName,
-				strLastName, strPassword, strTimeZone, strLocale,
-				strMemberStatus, strSystemRole, strJobRole, genderType);
+		objUserPage.AddUser(strUserName, strEmailAddress, strSalutation,
+				strFirstName, strMiddleName, strLastName, strPassword,
+				strTimeZone, strLocale, strMemberStatus, strSystemRole,
+				strJobRole, genderType);
 		objMembershipAdminPage.MapToCenterMembership(strcentersubType,
 				strcenterSrc);
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
 		objLoginPage.login(strUserName, strPassword);
 		objLoginPage.passwordReset(strPassword, strnewPassword);
-		objHomePage.selectMyProfile(strUserName);
+		objHomePage.selectMyProfile(strEmailAddress);
 	}
 }

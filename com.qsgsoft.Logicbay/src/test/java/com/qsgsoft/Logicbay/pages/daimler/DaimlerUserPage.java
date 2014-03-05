@@ -10,7 +10,6 @@ public class DaimlerUserPage extends UserPage {
 
 	private static String usernamefield = "usernameMode";
 	private static String accountfield = "accountUsed";
-
 	public static WebDriver driver;
 
 	public DaimlerUserPage(WebDriver _driver) {

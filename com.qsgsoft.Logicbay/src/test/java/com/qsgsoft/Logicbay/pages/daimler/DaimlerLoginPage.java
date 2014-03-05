@@ -13,7 +13,6 @@ public class DaimlerLoginPage extends LoginPage {
 	private static String loginArrowfield="//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']";
 	private static String agreefield="agree";
 	private static String okfield="okbutton";
-	
 	public static WebDriver driver;
 
 	public DaimlerLoginPage(WebDriver _driver) {

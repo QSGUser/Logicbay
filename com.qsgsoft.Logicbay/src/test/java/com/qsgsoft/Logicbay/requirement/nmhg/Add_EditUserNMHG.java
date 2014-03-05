@@ -12,7 +12,6 @@ import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
 
 public class Add_EditUserNMHG extends Configuration {
-
 	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
 	TestData objTestData = new TestData();
 
@@ -20,14 +19,14 @@ public class Add_EditUserNMHG extends Configuration {
 	public void AddUserToNmhgServer() throws Exception {
 		gstrTO = "Verify that a user can be added in Performance Center";
 		gstrTCID = "132534";
-	
+
 		strAdminUserName = objTestData.strNmhgAdminName;
 		strAdminPassword = objTestData.strNmhgAdminPassword;
 		// Data for creating a contact
 		String strEmailAddress = objTestData.strEmailAddress;
-		String strSalutation=objTestData.strSalutation;
+		String strSalutation = objTestData.strSalutation;
 		String strFirstName = objTestData.strFirstName;
-		String strMiddleName=objTestData.strMiddleName;
+		String strMiddleName = objTestData.strMiddleName;
 		String strLastName = objTestData.strLastName;
 		String strPassword = objTestData.strPassword;
 		String strLocale = objTestData.strLocale;
@@ -46,15 +45,17 @@ public class Add_EditUserNMHG extends Configuration {
 		NmhgHomePage objNmhgHomePage = new NmhgHomePage(driver);
 		AdminPage objAdminPage = new AdminPage(driver);
 		NmhgUserPage objNmhgUserPage = new NmhgUserPage(driver);
-		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(driver);
+		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
+				driver);
 		// Calling the functions
 		objNmhgLoginPage.openURL(driver);
 		objLoginPage.login(strAdminUserName, strAdminPassword);
 		objNmhgHomePage.NavigateToAdmin();
 		objAdminPage.SelectUserAdmin();
-		objNmhgUserPage.AddUser(strEmailAddress, strSalutation,strFirstName,strMiddleName,
-				strLastName, strPassword, strTimeZone, strLocale,
-				strMemberStatus, strSystemRole, strJobRole, strJobTitle);
+		objNmhgUserPage.AddUser(strEmailAddress, strSalutation, strFirstName,
+				strMiddleName, strLastName, strPassword, strTimeZone,
+				strLocale, strMemberStatus, strSystemRole, strJobRole,
+				strJobTitle);
 		objMembershipAdminPage.NmhgUserMapping(strcentersubType, strcenterSrc);
 		objAdminPage.returnToHome();
 		objHomePage.logOff();

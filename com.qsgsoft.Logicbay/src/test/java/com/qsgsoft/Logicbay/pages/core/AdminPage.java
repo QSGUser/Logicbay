@@ -38,12 +38,12 @@ public class AdminPage extends WaitForElement {
 		selectDisplayGroups();
 		selectQuicklinks();
 	}
-
+	
 	public void selectUserGroupsAdmin() throws Exception {
 		selectUserGroups();
 		selectManageOrganizations();
 	}
-
+	//Function to select users option on admin page
 	public void selectUser() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -52,12 +52,12 @@ public class AdminPage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.xpath(selectUsers))).click()
 		.build().perform();
 	}
-
+	//Function to select Add Users option
 	public void selectAddUser() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectAddUsers), driver));
 		driver.findElement(By.xpath(selectAddUsers)).click();
 	}
-
+	//Function to select Assets on admin page
 	public void selectAssets() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -66,19 +66,19 @@ public class AdminPage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.xpath(selectAssets)))
 		.click().build().perform();
 	}
-
+	//Function to select Manage Assets option
 	public void selectManageAssets() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectManageAssets), driver));
 		driver.findElement(By.xpath(selectManageAssets)).click();
 	}
-
+	//Function to return to home from admin Page
 	public void returnToHome() throws Exception {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id("contents")));
 		driver.findElement(By.xpath(selectReturn)).click();
 	}
-
+	//Function to select Display Groups option
 	public void selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -87,7 +87,7 @@ public class AdminPage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.xpath(selectDisplayGroups)))
 		.click().build().perform();
 	}
-
+	//Function to select Quick link option
 	public void selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(selectQuickLinks), driver));
@@ -95,7 +95,7 @@ public class AdminPage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.xpath(selectQuickLinks)))
 		.click().build().perform();
 	}
-
+	//Function to select User groups option
 	public void selectUserGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -104,10 +104,9 @@ public class AdminPage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.xpath(selectUserGroups)))
 		.click().build().perform();
 	}
-
+	//Function to select Manage organizations
 	public void selectManageOrganizations() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectManageOrganizations), driver));
 		driver.findElement(By.xpath(selectManageOrganizations)).click();
 	}
-
 }

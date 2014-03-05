@@ -22,6 +22,7 @@ public class AssetsManagementPage extends WaitForElement {
 	private static String chooseAsset = "div#assetField2>input[name='chooseAsset']";
 	private static String searchfield = "//input[@id='search_criteria_TXT']";
 	private static String gobutton = "search_go";
+	private static String selectAssetLink="//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]";
 	private static String enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
 	public WebDriver driver;
 
@@ -135,8 +136,6 @@ public class AssetsManagementPage extends WaitForElement {
 	}
 
 	public void selectAssetlink(String linkTitle) throws Exception {
-		driver.findElement(
-				By.xpath("//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]"))
-				.click();
+		driver.findElement(By.xpath(selectAssetLink)).click();
 	}
 }

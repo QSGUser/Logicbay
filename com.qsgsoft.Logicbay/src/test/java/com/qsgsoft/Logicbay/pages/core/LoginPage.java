@@ -3,7 +3,6 @@ package com.qsgsoft.Logicbay.pages.core;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import com.qsgsoft.Logicbay.support.URLInterface;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 import static org.junit.Assert.*;
@@ -71,9 +70,7 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		driver.findElement(By.name(confirmnewpassword)).clear();
 		driver.findElement(By.name(confirmnewpassword)).sendKeys(
 				strconfirmPassword);
-		assertEquals(
-				strconfirmPassword,
-				driver.findElement(By.name(confirmnewpassword)).getAttribute(
+		assertEquals(strconfirmPassword,driver.findElement(By.name(confirmnewpassword)).getAttribute(
 						"value"));
 	}
 

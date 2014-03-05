@@ -9,7 +9,6 @@ import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.support.TestData;
 
 public class Display_GroupPropertiesCore extends Configuration {
-
 	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
 	TestData objTestData = new TestData();
 
@@ -17,10 +16,9 @@ public class Display_GroupPropertiesCore extends Configuration {
 	public void AddQuickLinkToAsset() throws Exception {
 		gstrTO = "Verify that a quicklink can be added by associating to an existing asset";
 		gstrTCID = "132537";
-		url = "http://lbapp01.logicbay.com/pc800/";
 		strAdminUserName = objTestData.strCoreLoginName;
 		strAdminPassword = objTestData.strCorePassword;
-		String strQuicklinkTitle = objTestData.strQucklinkTitle;
+		String strQuicklinkTitle = objTestData.strQuicklinkTitle;
 		String strcontentType = objTestData.strcontentType;
 		String strLinkUrl = objTestData.strLinkURL;
 		// Creating the objects

@@ -46,7 +46,6 @@ public class HomePage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 				.perform();
 	}
-
 	// Function to logout from application
 	public void logOff() throws Exception {
 		Actions action = new Actions(driver);
@@ -56,7 +55,6 @@ public class HomePage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.id(logoff))).click().build()
 				.perform();
 	}
-
 	// Function to select my profile
 	public void selectMyProfile(String username) throws Exception {
 		driver.switchTo().window("");

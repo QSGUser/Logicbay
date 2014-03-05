@@ -2,7 +2,6 @@ package com.qsgsoft.Logicbay.pages.daimler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -45,30 +44,31 @@ public class DaimlerHomePage extends HomePage {
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 				.perform();
 	}
-	
+
 	// Function to select my profile
-		public void selectMyProfile(String username) throws Exception {
-			driver.switchTo().window("");
-			driver.switchTo().frame(driver.findElement(By.name("topFrame")));
-			driver.findElement(By.id(myprofile)).click();
-			String mainWindowHandle = driver.getWindowHandle();
-			Thread.sleep(5000);
-			Set<String> a = driver.getWindowHandles();
-			Iterator<String> ite = a.iterator();
-			while (ite.hasNext()) {
-				String popupHandle = ite.next().toString();
+	public void selectMyProfile(String username) throws Exception {
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		driver.findElement(By.id(myprofile)).click();
+		String mainWindowHandle = driver.getWindowHandle();
+		Thread.sleep(5000);
+		Set<String> a = driver.getWindowHandles();
+		Iterator<String> ite = a.iterator();
+		while (ite.hasNext()) {
+			String popupHandle = ite.next().toString();
 
-				if (!popupHandle.contains(mainWindowHandle)) {
-					driver.switchTo().window(popupHandle);
+			if (!popupHandle.contains(mainWindowHandle)) {
+				driver.switchTo().window(popupHandle);
 
-				}
 			}
-			String assetMenu = driver.getTitle();
-			assertTrue(assetMenu.contains("Edit Profile"));
-			driver.findElement(By.id(email));
-			String LoginUser=driver.findElement(By.id(email)).getAttribute("Value");
-			assertEquals(username,LoginUser);
-			System.out.println("Created user is logged in");
-			driver.switchTo().window(mainWindowHandle);
 		}
+		String assetMenu = driver.getTitle();
+		assertTrue(assetMenu.contains("Edit Profile"));
+		driver.findElement(By.id(email));
+		String LoginUser = driver.findElement(By.id(email)).getAttribute(
+				"Value");
+		assertEquals(username, LoginUser);
+		System.out.println("Created user is logged in");
+		driver.switchTo().window(mainWindowHandle);
+	}
 }
