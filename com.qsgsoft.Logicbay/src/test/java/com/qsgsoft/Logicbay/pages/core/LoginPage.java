@@ -88,5 +88,6 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		enterNewPassword(strnewPassword);
 		enterConfirmPassword(strnewPassword);
 		selectSubmit();
+		Thread.sleep(2000);
 	}
 }

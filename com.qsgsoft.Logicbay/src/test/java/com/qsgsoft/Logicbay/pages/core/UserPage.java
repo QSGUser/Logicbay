@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.support.TestData;
+import com.qsgsoft.Logicbay.dataobject.*;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class UserPage extends WaitForElement {
@@ -40,11 +40,15 @@ public class UserPage extends WaitForElement {
 	public UserPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
-
+	
+	public void switchToFrame(String FrameName)throws Exception{
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
+	}
+	
 	public void switchToGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("main")));
+		switchToFrame("main");
 		driver.findElement(By.id(generalTab));
 		action.moveToElement(driver.findElement(By.id(generalTab))).click()
 		.build().perform();

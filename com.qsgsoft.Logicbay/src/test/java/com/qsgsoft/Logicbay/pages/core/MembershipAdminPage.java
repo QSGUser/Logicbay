@@ -24,6 +24,11 @@ public class MembershipAdminPage extends WaitForElement {
 	public MembershipAdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
+	
+	public void switchToFrame(String FrameName)throws Exception{
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
+	}
 
 	public void selectcenterMembership(String subType, String src)
 			throws Exception {
@@ -104,11 +109,5 @@ public class MembershipAdminPage extends WaitForElement {
 		selectReturnOnMapping();
 	}
 	
-	public void NmhgUserMapping(String strcentersubType, String strcenterSrc)
-			throws Exception {
-		selectcenterMembership(strcentersubType,
-				strcenterSrc);
-		selectSubmitOnMapping();
-		selectReturnOnMapping();
-	}
+	
 }

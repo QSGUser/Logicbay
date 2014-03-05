@@ -8,38 +8,35 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import com.qsgsoft.Logicbay.pages.core.HomePage;
 
-public class DaimlerHomePage extends HomePage {
+public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 	private static String CenterTab = "_PCMM_TabText_5";
 	private static String Admin = "_PCMM_ID_50_text";
 	private static String myprofile = "profile_link";
 	private static String email = "email";
 	public static WebDriver driver;
 
-	public DaimlerHomePage(WebDriver _driver) {
-		super(driver);
-		DaimlerHomePage.driver = _driver;
+	public HomePage(WebDriver _driver) {
+		super(_driver);
+		HomePage.driver = _driver;
 	}
 
-	public void NavigateToAdmin(WebDriver driver) throws Exception {
-		selectCampusTab(driver);
-		selectAdmin(driver);
+	public void NavigateToAdmin() throws Exception {
+		selectCampusTab();
+		selectAdmin();
 	}
 
-	public void selectCampusTab(WebDriver driver) throws Exception {
+	public void selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.id(CenterTab))).click()
 				.build().perform();
 	}
 
-	public void selectAdmin(WebDriver driver) throws Exception {
+	public void selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
+		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_5");
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 				.perform();
@@ -47,8 +44,7 @@ public class DaimlerHomePage extends HomePage {
 
 	// Function to select my profile
 	public void selectMyProfile(String username) throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		driver.findElement(By.id(myprofile)).click();
 		String mainWindowHandle = driver.getWindowHandle();
 		Thread.sleep(5000);

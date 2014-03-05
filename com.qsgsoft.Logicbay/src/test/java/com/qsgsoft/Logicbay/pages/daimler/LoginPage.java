@@ -4,10 +4,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import com.qsgsoft.Logicbay.pages.core.LoginPage;
 import org.openqa.selenium.interactions.Actions;
 
-public class DaimlerLoginPage extends LoginPage {
+public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 	private static String loginbutton = "submitImg";
 	private static String password ="password";
 	private static String loginArrowfield="//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']";
@@ -15,12 +14,12 @@ public class DaimlerLoginPage extends LoginPage {
 	private static String okfield="okbutton";
 	public static WebDriver driver;
 
-	public DaimlerLoginPage(WebDriver _driver) {
+	public LoginPage(WebDriver _driver) {
 		super(_driver);
-		DaimlerLoginPage.driver = _driver;
+		LoginPage.driver = _driver;
 	}
 
-	public void openURL(WebDriver driver) throws Exception {
+	public void openURL() throws Exception {
 		driver.get("http://lbapp10.logicbay.com/daimler_preprod/login/login.jsp");
 	}
 

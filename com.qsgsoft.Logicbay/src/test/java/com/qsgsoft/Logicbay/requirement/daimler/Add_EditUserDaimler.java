@@ -1,69 +1,69 @@
 package com.qsgsoft.Logicbay.requirement.daimler;
 
 import org.junit.Test;
-import com.qsgsoft.Logicbay.pages.core.AdminPage;
-import com.qsgsoft.Logicbay.pages.core.HomePage;
-import com.qsgsoft.Logicbay.pages.core.LoginPage;
-import com.qsgsoft.Logicbay.pages.core.MembershipAdminPage;
-import com.qsgsoft.Logicbay.pages.daimler.DaimlerHomePage;
-import com.qsgsoft.Logicbay.pages.daimler.DaimlerLoginPage;
-import com.qsgsoft.Logicbay.pages.daimler.DaimlerUserPage;
+import com.qsgsoft.Logicbay.pages.daimler.AdminPage;
+import com.qsgsoft.Logicbay.pages.daimler.MembershipAdminPage;
+import com.qsgsoft.Logicbay.pages.daimler.HomePage;
+import com.qsgsoft.Logicbay.pages.daimler.LoginPage;
+import com.qsgsoft.Logicbay.pages.daimler.UserPage;
 import com.qsgsoft.Logicbay.support.Configuration;
-import com.qsgsoft.Logicbay.support.TestData;
+import com.qsgsoft.Logicbay.dataobject.daimler.*;
 
 public class Add_EditUserDaimler extends Configuration {
 
-	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
-	TestData objTestData = new TestData();
+	String gstrTO, gstrTCID, url, adminUserName, adminPassword;
+	TestData objData = new TestData();
 
 	@Test
 	public void AddUserToDaimlerServer() throws Exception {
 		gstrTO = "Verify that a user can be added in Performance Center";
 		gstrTCID = "132534";
-		strAdminUserName = objTestData.strDaimlerLoginName;
-		strAdminPassword = objTestData.strDaimlerPassword;
+		adminUserName = objData.adminUserName;
+		adminPassword = objData.adminPassword;
 		// Data for creating a user
-		String strUserName = objTestData.strDaimlerUserName;
-		String strEmailAddress = objTestData.strEmailAddress;
-		String strFirstName = objTestData.strFirstName;
-		String strMiddleName = objTestData.strMiddleName;
-		String strLastName = objTestData.strLastName;
-		String strPassword = objTestData.strPassword;
-		String strTechnicalId = objTestData.strTecnicalId;
-		String strTimeZone = objTestData.strTimezone;
-		String strLocale = objTestData.strLocale;
-		String strMemberStatus = objTestData.strMemberstatus;
-		String strSystemRole = objTestData.strSystemrole;
-		String strJobRole = objTestData.strDaimlerJobRole;
-		String strAssociatedAccount = objTestData.strDaimlerAccount;
-		String strcentersubType = objTestData.strcenterSubtype;
-		String strcenterSrc = objTestData.strcenterSrcDaimler;
-		String strnewPassword = objTestData.strnewPassword;
-		// Creating the objects
-		HomePage objHomePage = new HomePage(driver);
+		String UserName = objData.UserName;
+		String EmailAddress = objData.EmailAddress;
+		String FirstName = objData.FirstName;
+		String MiddleName = objData.MiddleName;
+		String LastName = objData.LastName;
+		String Password = objData.Password;
+		String TechnicalId = objData.TecnicalId;
+		String TimeZone = objData.TimeZone;
+		String Locale = objData.Locale;
+		String MemberStatus = objData.MemberStatus;
+		String SystemRole = objData.SystemRole;
+		String JobRole = objData.JobRole;
+		String AssociatedAccount = objData.AssociatedAccount;
+		String CentersubType = objData.CenterSubtype;
+		String CenterSrc = objData.CenterSrc;
+		String NewPassword = objData.NewPassword;
+		//Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		DaimlerLoginPage objDaimlerLoginPage = new DaimlerLoginPage(driver);
-		DaimlerHomePage objDaimlerHomePage = new DaimlerHomePage(driver);
-		DaimlerUserPage objDaimlerUserPage = new DaimlerUserPage(driver);
-		AdminPage objAdminPage = new AdminPage(driver);
-		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
-				driver);
-		// Calling the functions
-		objDaimlerLoginPage.openURL(driver);
-		objDaimlerLoginPage.loginToDaimler(strAdminUserName, strAdminPassword);
-		objDaimlerHomePage.NavigateToAdmin(driver);
+		objLoginPage.openURL();
+		objLoginPage.loginToDaimler(adminUserName, adminPassword);
+
+		HomePage objHomePage = new HomePage(this.driver);
+		objHomePage.NavigateToAdmin();
+
+		AdminPage objAdminPage = new AdminPage(this.driver);
 		objAdminPage.SelectUserAdmin();
-		objDaimlerUserPage.AddUser(strUserName, strEmailAddress,
-				strFirstName, strMiddleName, strLastName, strPassword,
-				strTechnicalId, strTimeZone, strLocale, strMemberStatus,
-				strSystemRole, strJobRole, strAssociatedAccount);
-		objMembershipAdminPage.MapToCenterMembership(strcentersubType,
-				strcenterSrc);
+
+		UserPage objUserPage = new UserPage(this.driver);
+		objUserPage.AddUser(UserName, EmailAddress, FirstName,
+				MiddleName, LastName, Password, TechnicalId,
+				TimeZone, Locale, MemberStatus,SystemRole,
+				JobRole, AssociatedAccount);
+
+		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
+				this.driver);
+		objMembershipAdminPage.MapToCenterMembership(CentersubType,
+				CenterSrc);
+
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objDaimlerLoginPage.loginAsMember(strEmailAddress, strPassword);
-		objDaimlerLoginPage.acceptAgreement();
-		objLoginPage.passwordReset(strPassword, strnewPassword);
-		objDaimlerHomePage.selectMyProfile(strEmailAddress);
+		objLoginPage.loginAsMember(EmailAddress, Password);
+		objLoginPage.acceptAgreement();
+		objLoginPage.passwordReset(Password, NewPassword);
+		objHomePage.selectMyProfile(EmailAddress);
 	}
 }

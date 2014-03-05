@@ -22,12 +22,17 @@ public class AssetsManagementPage extends WaitForElement {
 	private static String chooseAsset = "div#assetField2>input[name='chooseAsset']";
 	private static String searchfield = "//input[@id='search_criteria_TXT']";
 	private static String gobutton = "search_go";
-	private static String selectAssetLink="//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]";
+	private static String selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]";
 	private static String enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
 	public WebDriver driver;
 
 	public AssetsManagementPage(WebDriver _driver) {
 		this.driver = _driver;
+	}
+
+	public void switchToFrame(String FrameName) throws Exception {
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
 	}
 
 	public void createNewAsset(String linkTitle, String contentType, String url)
@@ -42,23 +47,21 @@ public class AssetsManagementPage extends WaitForElement {
 	public void mapLinkToAsset(String linkTitle) throws Exception {
 		selectquicklink();
 		selectnew();
-		chooseAsset(linkTitle);	
+		chooseAsset(linkTitle);
 		enableLink(linkTitle);
 	}
 
 	public void selectNewAsset() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("main")));
+		switchToFrame("main");
 		driver.findElement(By.xpath(newAsset));
 		action.moveToElement(driver.findElement(By.xpath(newAsset))).click()
 				.build().perform();
 	}
 
 	public void enterLinkTitle(String linkTitle) throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("details")));
+		switchToFrame("details");
 		driver.findElement(By.name(title)).clear();
 		driver.findElement(By.name(title)).sendKeys(linkTitle);
 		assertEquals(linkTitle, driver.findElement(By.name(title))
@@ -86,8 +89,7 @@ public class AssetsManagementPage extends WaitForElement {
 	}
 
 	public void selectquicklink() throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("main")));
+		switchToFrame("main");
 		driver.findElement(By.xpath(quicklink)).click();
 	}
 
@@ -96,8 +98,7 @@ public class AssetsManagementPage extends WaitForElement {
 	}
 
 	public void chooseAsset(String linkTitle) throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("details")));
+		switchToFrame("details");
 		driver.findElement(By.cssSelector(chooseAsset)).click();
 		String mainWindowHandle = driver.getWindowHandle();
 		Thread.sleep(3000);
@@ -118,8 +119,7 @@ public class AssetsManagementPage extends WaitForElement {
 		driver.findElement(By.xpath(searchfield)).sendKeys(linkTitle);
 		selectGobutton();
 		selectAssetlink(linkTitle);
-		driver.switchTo().window(mainWindowHandle);
-		driver.switchTo().frame(driver.findElement(By.id("details")));
+		switchToFrame("details");
 		selectSave();
 	}
 
@@ -128,8 +128,7 @@ public class AssetsManagementPage extends WaitForElement {
 	}
 
 	public void enableLink(String linkTitle) throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("main")));
+		switchToFrame("main");
 		Thread.sleep(1000);
 		driver.findElement(By.xpath(enablebutton)).click();
 		Thread.sleep(1000);

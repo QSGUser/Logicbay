@@ -24,6 +24,10 @@ public class HomePage extends WaitForElement {
 		this.driver = _driver;
 	}
 
+	public void switchToFrame(String FrameName)throws Exception{
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
+	}
 	public void NavigateToAdmin() throws Exception {
 		selectCampusTab();
 		selectAdmin();
@@ -32,16 +36,14 @@ public class HomePage extends WaitForElement {
 	public void selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.id(CampusTab))).click()
 				.build().perform();
 	}
 
 	public void selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
+		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_4");
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 				.perform();
@@ -50,15 +52,13 @@ public class HomePage extends WaitForElement {
 	public void logOff() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.id(logoff))).click().build()
 				.perform();
 	}
 	// Function to select my profile
 	public void selectMyProfile(String username) throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		driver.findElement(By.id(myprofile)).click();
 		String mainWindowHandle = driver.getWindowHandle();
 		Thread.sleep(5000);
@@ -84,8 +84,7 @@ public class HomePage extends WaitForElement {
 
 	public void selectQuickLink(String linkTitle) throws Exception {
 		Actions action = new Actions(driver);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
+		switchToFrame("mainFrame");
 		action.moveToElement(driver.findElement(By.linkText(linkTitle)))
 				.click().build().perform();
 	}
@@ -105,5 +104,6 @@ public class HomePage extends WaitForElement {
 		}
 		String quicklinkTitle = driver.getTitle();
 		assertTrue(quicklinkTitle.contains("Google"));
+		System.out.println("Link is created");
 	}
 }

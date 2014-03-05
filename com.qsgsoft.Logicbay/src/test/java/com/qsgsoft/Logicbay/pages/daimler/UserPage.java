@@ -4,17 +4,16 @@ import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.pages.core.UserPage;
 
-public class DaimlerUserPage extends UserPage {
+public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 
 	private static String usernamefield = "usernameMode";
 	private static String accountfield = "accountUsed";
 	public static WebDriver driver;
 
-	public DaimlerUserPage(WebDriver _driver) {
+	public UserPage(WebDriver _driver) {
 		super(_driver);
-		DaimlerUserPage.driver = _driver;
+		UserPage.driver = _driver;
 	}
 
 	public void AddUser(String userName, String emailAddress,
@@ -23,25 +22,25 @@ public class DaimlerUserPage extends UserPage {
 			String locale, String memberStatus, String systemRole,
 			String jobRole, String associatedAccount) throws Exception {
 		this.switchToGeneralTab();
-		selectUserName(userName);
-		enterEmail(emailAddress);
-		enterConfirmEmail(emailAddress);
-		enterFirstName(firstName);
-		enterMiddleName(middleName);
-		enterLastName(lastName);
-		enterPassword(password);
-		enterConfirmPassword(password);
-		enterTechOrEmpID(technicalId);
-		selectTimeZone(timeZone);
-		selectLocale(locale);
-		switchToStatusTab();
-		selectMemberStatus(memberStatus);
-		switchToSettingsTab();
-		selectSystemRole(systemRole);
-		selectJobRole(jobRole);
-		selectAccount(associatedAccount);
-		selectSave();
-		switchToAffiliationsTab();
+		this.selectUserName(userName);
+		this.enterEmail(emailAddress);
+		this.enterConfirmEmail(emailAddress);
+		this.enterFirstName(firstName);
+		this.enterMiddleName(middleName);
+		this.enterLastName(lastName);
+		this.enterPassword(password);
+		this.enterConfirmPassword(password);
+		this.enterTechOrEmpID(technicalId);
+		this.selectTimeZone(timeZone);
+		this.selectLocale(locale);
+		this.switchToStatusTab();
+		this.selectMemberStatus(memberStatus);
+		this.switchToSettingsTab();
+		this.selectSystemRole(systemRole);
+		this.selectJobRole(jobRole);
+		this.selectAccount(associatedAccount);
+		this.selectSave();
+		this.switchToAffiliationsTab();
 	}
 
 	public void selectUserName(String UserName) throws Exception {

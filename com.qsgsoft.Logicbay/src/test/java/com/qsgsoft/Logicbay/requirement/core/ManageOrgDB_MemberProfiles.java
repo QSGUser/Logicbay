@@ -5,56 +5,68 @@ import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;
 import com.qsgsoft.Logicbay.pages.core.ManageOrganizationsPage;
+import com.qsgsoft.Logicbay.pages.core.MembershipAdminPage;
+import com.qsgsoft.Logicbay.pages.core.UserPage;
 import com.qsgsoft.Logicbay.support.Configuration;
-import com.qsgsoft.Logicbay.support.TestData;
+import com.qsgsoft.Logicbay.dataobject.*;
 
 public class ManageOrgDB_MemberProfiles extends Configuration {
-	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
-	TestData objTestData = new TestData();
+	String gstrTO, gstrTCID, url, AdminUserName, AdminPassword;
+	TestData objData = new TestData();
 
 	@Test
 	public void ManageOrganizationDashborad() throws Exception {
 		gstrTO = "Verify that Member Profiles of Organization and Sub-Organization can be edited in Manage Org Dashboard";
 		gstrTCID = "132536";
-		strAdminUserName = objTestData.strCoreLoginName;
-		strAdminPassword = objTestData.strCorePassword;
-
-		/*
-		 * // Data for creating a user String strUserName =
-		 * objTestData.strUsername; String strEmailAddress =
-		 * objTestData.strEmailAddress; String strSalutation =
-		 * objTestData.strSalutation; String strFirstName =
-		 * objTestData.strFirstName; String strMiddleName =
-		 * objTestData.strMiddleName; String strLastName =
-		 * objTestData.strLastName; String strPassword =
-		 * objTestData.strPassword; String strLocale = objTestData.strLocale;
-		 * String strTimeZone = objTestData.strTimezone; String strMemberStatus
-		 * = objTestData.strMemberstatus; String strSystemRole =
-		 * objTestData.strSystemrole; String strJobRole =
-		 * objTestData.strCoreJobRole; String strcentersubType =
-		 * objTestData.strcenterSubtype; String strcenterSrc =
-		 * objTestData.strcenterSrcCore; String genderType =
-		 * objTestData.strgenderType; String strnewPassword =
-		 * objTestData.strnewPassword; //Data for creating organization and sub
-		 * organization
-		 */String strOrgName = objTestData.strorgName;
-		String strOrgCode = objTestData.strorgCode;
-		String strSuborgName = objTestData.strsuborgName;
-		String strSuborgCode = objTestData.strsuborgCode;
+		AdminUserName = objData.adminUserName;
+		AdminPassword = objData.adminPassword;
+		
+		String UserName = objData.UserName;
+		String EmailAddress = objData.EmailAddress;
+		String Salutation = objData.Salutation;
+		String FirstName = objData.FirstName;
+		String MiddleName = objData.MiddleName;
+		String LastName = objData.LastName;
+		String Password = objData.Password;
+		String Locale = objData.Locale;
+		String TimeZone = objData.TimeZone;
+		String GenderType = objData.Gender;
+		String MemberStatus = objData.MemberStatus;
+		String SystemRole = objData.SystemRole;
+		String JobRole = objData.JobRole;
+		String CentersubType = objData.CenterSubtype;
+		String CenterSrc = objData.CenterSrc;
+		String OrgName = objData.OrgName;
+		String OrgCode = objData.OrgCode;
+		String SuborgName = objData.SuborgName;
+		String SuborgCode = objData.SuborgCode;
 		// Creating objects
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		HomePage objHomePage = new HomePage(driver);
-		AdminPage objAdminPage = new AdminPage(driver);
-		ManageOrganizationsPage objManageOrganizationsPage = new ManageOrganizationsPage(
-				driver);
-
-		// Calling the functions
 		objLoginPage.openURL();
-		objLoginPage.login(strAdminUserName, strAdminPassword);
+		objLoginPage.login(AdminUserName, AdminPassword);
+		
+		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
+		
+		AdminPage objAdminPage = new AdminPage(this.driver);
 		objAdminPage.selectUserGroupsAdmin();
-		objManageOrganizationsPage.createOrg(strOrgName, strOrgCode);
-		objManageOrganizationsPage.selectCreatedOrg(strOrgName);
-		objManageOrganizationsPage.createSubOrg(strSuborgName, strSuborgCode);
+		
+		ManageOrganizationsPage objManageOrganizationsPage = new ManageOrganizationsPage(
+				this.driver);		
+		objManageOrganizationsPage.createOrg(OrgName,OrgCode);
+		objManageOrganizationsPage.selectCreatedOrg(OrgName);
+		objManageOrganizationsPage.createSubOrg(SuborgName,SuborgCode);
+	
+		objAdminPage.SelectUserAdmin();
+		UserPage objUserPage = new UserPage(this.driver);
+		objUserPage.AddUser(UserName, EmailAddress, Salutation,
+				FirstName,MiddleName,LastName, Password,
+				TimeZone, Locale, MemberStatus, SystemRole,
+				JobRole, GenderType);
+		
+		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
+				this.driver);
+		objMembershipAdminPage.MapToCenterMembership(CentersubType,
+				CenterSrc);			
 	}
 }

@@ -4,16 +4,15 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import com.qsgsoft.Logicbay.pages.core.HomePage;
 
-public class NmhgHomePage extends HomePage {
+public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 	private static String CenterTab = "_PCMM_TabText_5";
 	private static String Admin = "_PCMM_ID_36_text";
 	public static WebDriver driver;
 	
-	public NmhgHomePage(WebDriver _driver) {
-		super(driver);
-		NmhgHomePage.driver = _driver;
+	public HomePage(WebDriver _driver) {
+		super(_driver);
+		HomePage.driver = _driver;
 	}
 
 	public void NavigateToAdmin() throws Exception {
@@ -24,16 +23,14 @@ public class NmhgHomePage extends HomePage {
 	public void selectCenterTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("topFrame")));
+		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.id(CenterTab))).click()
 		.build().perform();
 	}
 
 	public void selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name("mainFrame")));
+		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_5");
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 		.perform();

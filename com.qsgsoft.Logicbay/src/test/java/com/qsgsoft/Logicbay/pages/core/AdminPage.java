@@ -22,6 +22,11 @@ public class AdminPage extends WaitForElement {
 	public AdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
+	
+	public void switchToFrame(String FrameName)throws Exception{
+		driver.switchTo().window("");
+		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
+	}
 
 	public void SelectUserAdmin() throws Exception {
 		selectUser();
@@ -46,8 +51,7 @@ public class AdminPage extends WaitForElement {
 	public void selectUser() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectUsers))).click()
 		.build().perform();
 	}
@@ -60,8 +64,7 @@ public class AdminPage extends WaitForElement {
 	public void selectAssets() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectAssets)))
 		.click().build().perform();
 	}
@@ -73,16 +76,14 @@ public class AdminPage extends WaitForElement {
 	//Function to return to home from admin Page
 	public void returnToHome() throws Exception {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		switchToFrame("contents");
 		driver.findElement(By.xpath(selectReturn)).click();
 	}
 	//Function to select Display Groups option
 	public void selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectDisplayGroups)))
 		.click().build().perform();
 	}
@@ -98,8 +99,7 @@ public class AdminPage extends WaitForElement {
 	public void selectUserGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("contents")));
+		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectUserGroups)))
 		.click().build().perform();
 	}

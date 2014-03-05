@@ -6,38 +6,41 @@ import com.qsgsoft.Logicbay.pages.core.AssetsManagementPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;
 import com.qsgsoft.Logicbay.support.Configuration;
-import com.qsgsoft.Logicbay.support.TestData;
+import com.qsgsoft.Logicbay.dataobject.*;
 
 public class Display_GroupPropertiesCore extends Configuration {
-	String gstrTO, gstrTCID, url, strAdminUserName, strAdminPassword;
-	TestData objTestData = new TestData();
+	String gstrTO, gstrTCID, url, adminUserName, adminPassword;
+	TestData objData = new TestData();
 
 	@Test
 	public void AddQuickLinkToAsset() throws Exception {
 		gstrTO = "Verify that a quicklink can be added by associating to an existing asset";
 		gstrTCID = "132537";
-		strAdminUserName = objTestData.strCoreLoginName;
-		strAdminPassword = objTestData.strCorePassword;
-		String strQuicklinkTitle = objTestData.strQuicklinkTitle;
-		String strcontentType = objTestData.strcontentType;
-		String strLinkUrl = objTestData.strLinkURL;
-		// Creating the objects
+		adminUserName = objData.adminUserName;
+		adminPassword = objData.adminPassword;
+		String QuicklinkTitle = objData.QuicklinkTitle;
+		String ContentType = objData.ContentType;
+		String LinkUrl = objData.LinkURL;
+		// Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		HomePage objHomePage = new HomePage(driver);
-		AdminPage objAdminPage = new AdminPage(driver);
-		AssetsManagementPage objAssetsManagementPage = new AssetsManagementPage(
-				driver);
-		// Calling the functions
 		objLoginPage.openURL();
-		objLoginPage.login(strAdminUserName, strAdminPassword);
+		objLoginPage.login(adminUserName, adminPassword);
+
+		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
+
+		AdminPage objAdminPage = new AdminPage(this.driver);
 		objAdminPage.selectAssetManagement();
-		objAssetsManagementPage.createNewAsset(strQuicklinkTitle,
-				strcontentType, strLinkUrl);
+
+		AssetsManagementPage objAssetsManagementPage = new AssetsManagementPage(
+				this.driver);
+		objAssetsManagementPage.createNewAsset(QuicklinkTitle,
+				ContentType,LinkUrl);
+
 		objAdminPage.selectGroups();
-		objAssetsManagementPage.mapLinkToAsset(strQuicklinkTitle);
+		objAssetsManagementPage.mapLinkToAsset(QuicklinkTitle);
 		objAdminPage.returnToHome();
-		objHomePage.selectQuickLink(strQuicklinkTitle);
+		objHomePage.selectQuickLink(QuicklinkTitle);
 		objHomePage.verifyQuickLink();
 	}
 }
