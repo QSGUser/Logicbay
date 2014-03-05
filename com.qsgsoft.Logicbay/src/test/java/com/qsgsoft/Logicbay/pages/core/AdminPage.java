@@ -17,9 +17,8 @@ public class AdminPage extends WaitForElement {
 	private static String selectQuickLinks = "//td[@id='adminGoupLink2']";
 	private static String selectUserGroups = "//img[@id='catBullet7']";
 	private static String selectManageOrganizations = "//td[@id='manageOrgs']";
-
 	public WebDriver driver;
-
+	
 	public AdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
