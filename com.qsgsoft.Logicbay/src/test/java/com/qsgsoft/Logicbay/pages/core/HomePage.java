@@ -11,11 +11,11 @@ import org.openqa.selenium.interactions.Actions;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class HomePage extends WaitForElement {
-	private static String CampusTab = "_PCMM_TabText_4";
-	private static String Admin = "_PCMM_ID_52_text";
-	private static String logoff = "logout_link";
-	private static String myprofile = "profile_link";
-	private static String email = "email";
+	private String CampusTab = "_PCMM_TabText_4";
+	private String Admin = "_PCMM_ID_52_text";
+	private String logoff = "logout_link";
+	private String myprofile = "profile_link";
+	private String email = "email";
 
 	public WebDriver driver;
 	MyProfilePage objMyProfilePage = new MyProfilePage(driver);
@@ -24,10 +24,11 @@ public class HomePage extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String FrameName)throws Exception{
+	public void switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
 	}
+
 	public void NavigateToAdmin() throws Exception {
 		selectCampusTab();
 		selectAdmin();
@@ -48,6 +49,7 @@ public class HomePage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
 				.perform();
 	}
+
 	// Function to logout from application
 	public void logOff() throws Exception {
 		Actions action = new Actions(driver);
@@ -56,6 +58,7 @@ public class HomePage extends WaitForElement {
 		action.moveToElement(driver.findElement(By.id(logoff))).click().build()
 				.perform();
 	}
+
 	// Function to select my profile
 	public void selectMyProfile(String username) throws Exception {
 		switchToFrame("topFrame");
@@ -76,8 +79,9 @@ public class HomePage extends WaitForElement {
 		assertTrue(assetMenu.contains("Edit Profile"));
 		driver.switchTo().frame(driver.findElement(By.name("profile")));
 		driver.findElement(By.id(email));
-		String LoginUser=driver.findElement(By.id(email)).getAttribute("Value");
-		assertEquals(username,LoginUser);
+		String LoginUser = driver.findElement(By.id(email)).getAttribute(
+				"Value");
+		assertEquals(username, LoginUser);
 		System.out.println("Created user is logged in");
 		driver.switchTo().window(mainWindowHandle);
 	}

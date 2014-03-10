@@ -7,20 +7,23 @@ import com.qsgsoft.Logicbay.pages.core.LoginPage;
 import com.qsgsoft.Logicbay.pages.core.MembershipAdminPage;
 import com.qsgsoft.Logicbay.pages.core.UserPage;
 import com.qsgsoft.Logicbay.support.Configuration;
-import com.qsgsoft.Logicbay.dataobject.*;
+import com.qsgsoft.Logicbay.dataobject.core.*;
 
 public class Add_EditUserCore extends Configuration {
 	@Test
 	public void AddUserToCoreServer() throws Exception {
+		@SuppressWarnings("unused")
 		String gstrTO, gstrTCID;
 		
 		gstrTO = "Verify that a user can be added in Performance Center";
 		gstrTCID = "132534";
 		
+		LoginPageData objLoginPageData=new LoginPageData();
+		UserCreationData objUserCreationData=new UserCreationData();
 		// Creating objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL();
-		objLoginPage.login(TestData.adminUserName,TestData.adminPassword);
+		objLoginPage.login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
@@ -29,20 +32,20 @@ public class Add_EditUserCore extends Configuration {
 		objAdminPage.SelectUserAdmin();
 
 		UserPage objUserPage = new UserPage(this.driver);
-		objUserPage.AddUser(TestData.UserName,TestData.EmailAddress,TestData.Salutation,
-				TestData.FirstName,TestData.MiddleName,TestData.LastName, TestData.Password,
-				TestData.TimeZone, TestData.Locale, TestData.MemberStatus, TestData.SystemRole,
-				TestData.JobRole, TestData.Gender);
+		objUserPage.AddUser(objUserCreationData.UserName,objUserCreationData.EmailAddress,objUserCreationData.Salutation,
+				objUserCreationData.FirstName,objUserCreationData.MiddleName,objUserCreationData.LastName, objUserCreationData.Password,
+				objUserCreationData.TimeZone, objUserCreationData.Locale, objUserCreationData.MemberStatus, objUserCreationData.SystemRole,
+				objUserCreationData.JobRole, objUserCreationData.Gender);
 		
 		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
 				this.driver);
-		objMembershipAdminPage.MapToCenterMembership(TestData.CenterSubtype,
-				TestData.CenterSrc);
+		objMembershipAdminPage.MapToCenterMembership(objUserCreationData.CenterSubtype,
+				objUserCreationData.CenterSrc);
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.login(TestData.UserName, TestData.Password);
-		objLoginPage.passwordReset(TestData.Password,TestData.NewPassword);
-		objHomePage.selectMyProfile(TestData.EmailAddress);
+		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password);
+		objLoginPage.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
+		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }

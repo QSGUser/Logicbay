@@ -1,17 +1,17 @@
 package com.qsgsoft.Logicbay.pages.daimler;
 
-import static org.junit.Assert.assertEquals;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+
 public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
-	private static String loginbutton = "submitImg";
-	private static String password ="password";
-	private static String loginArrowfield="//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']";
-	private static String agreefield="agree";
-	private static String okfield="okbutton";
+	private String loginbutton = "submitImg";
+	private String password = "passwordText";
+	private String loginArrowfield = "//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']";
+	private String agreefield = "agree";
+	private String okfield = "okbutton";
 	public static WebDriver driver;
 
 	public LoginPage(WebDriver _driver) {
@@ -23,17 +23,18 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		driver.get("http://lbapp10.logicbay.com/daimler_preprod/login/login.jsp");
 	}
 
-	public void loginToDaimler(String strUsername, String strPassword)
+	public void login(String strUsername, String strPassword)
 			throws Exception {
 		this.enterUsername(strUsername);
 		enterPassword(strPassword);
 		clickLoginButton();
 	}
-	
-	public void loginAsMember(String emailAddress,String Password)throws Exception{
-		switchToWindow();
+
+	public void loginAsMember(String emailAddress, String Password)
+			throws Exception {
+		switchToWindow("mainFrame");
 		enterUsername(emailAddress);
-		enterNewPassword(Password);
+		enterMemberPassword(Password);
 		clickMemberLogin();
 	}
 
@@ -42,25 +43,23 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 	}
 
-	public void enterNewPassword(String strPassword) throws Exception {
-		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.name(password))).click().perform();
-	/*	driver.findElement(By.name(password)).clear();*/
-		driver.findElement(By.name(password)).sendKeys(strPassword);
-		assertEquals(strPassword, driver.findElement(By.name(password))
-				.getAttribute("value"));
+	public void enterMemberPassword(String Password) throws Exception {
+		Actions action=new Actions(driver);
+		action.moveToElement(driver.findElement(By.id(password))).build().perform();
+		driver.findElement(By.id(password)).click();
+		driver.findElement(By.id(password)).sendKeys(Password);
 	}
 
-	public void switchToWindow() throws Exception {
+	public void switchToWindow(String frameName) throws Exception {
 		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id("mainFrame")));
+		driver.switchTo().frame(driver.findElement(By.id(frameName)));
 	}
-	
-	public void clickMemberLogin()throws Exception{
+
+	public void clickMemberLogin() throws Exception {
 		driver.findElement(By.xpath(loginArrowfield)).click();
 	}
-	
-	public void acceptAgreement()throws Exception{
+
+	public void acceptAgreement() throws Exception {
 		driver.findElement(By.name(agreefield)).click();
 		driver.findElement(By.name(okfield)).click();
 	}

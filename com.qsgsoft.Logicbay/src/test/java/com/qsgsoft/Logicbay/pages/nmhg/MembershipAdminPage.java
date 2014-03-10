@@ -13,7 +13,7 @@ public class MembershipAdminPage extends com.qsgsoft.Logicbay.pages.core.Members
 			throws Exception {
 		this.selectcenterMembership(strcentersubType,
 				strcenterSrc);
-		this.selectSubmitOnMapping();
-		this.selectReturnOnMapping();
+		selectSubmitOnMapping();
+		selectReturnOnMapping();
 	}
 }

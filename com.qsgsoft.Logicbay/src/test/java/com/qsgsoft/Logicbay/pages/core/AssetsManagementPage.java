@@ -24,10 +24,11 @@ public class AssetsManagementPage extends WaitForElement {
 	private static String gobutton = "search_go";
 	private static String selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]";
 	private static String enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
-	public WebDriver driver;
+	
+	public static WebDriver driver;
 
 	public AssetsManagementPage(WebDriver _driver) {
-		this.driver = _driver;
+		AssetsManagementPage.driver = _driver;
 	}
 
 	public void switchToFrame(String FrameName) throws Exception {

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 
-	private static String usernamefield = "usernameMode";
-	private static String accountfield = "accountUsed";
+	private String usernamefield = "usernameMode";
+	private String accountfield = "accountUsed";
 	public static WebDriver driver;
 
 	public UserPage(WebDriver _driver) {
@@ -16,31 +16,31 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 		UserPage.driver = _driver;
 	}
 
-	public void AddUser(String userName, String emailAddress,
-			String firstName, String middleName, String lastName,
-			String password, String technicalId, String timeZone,
-			String locale, String memberStatus, String systemRole,
-			String jobRole, String associatedAccount) throws Exception {
+	public void AddUser(String userName, String emailAddress, String firstName,
+			String middleName, String lastName, String password,
+			String technicalId, String timeZone, String locale,
+			String memberStatus, String systemRole, String jobRole,
+			String associatedAccount) throws Exception {
 		this.switchToGeneralTab();
-		this.selectUserName(userName);
-		this.enterEmail(emailAddress);
-		this.enterConfirmEmail(emailAddress);
-		this.enterFirstName(firstName);
-		this.enterMiddleName(middleName);
-		this.enterLastName(lastName);
-		this.enterPassword(password);
-		this.enterConfirmPassword(password);
-		this.enterTechOrEmpID(technicalId);
-		this.selectTimeZone(timeZone);
-		this.selectLocale(locale);
-		this.switchToStatusTab();
-		this.selectMemberStatus(memberStatus);
-		this.switchToSettingsTab();
-		this.selectSystemRole(systemRole);
-		this.selectJobRole(jobRole);
-		this.selectAccount(associatedAccount);
-		this.selectSave();
-		this.switchToAffiliationsTab();
+		selectUserName(userName);
+		enterEmail(emailAddress);
+		enterConfirmEmail(emailAddress);
+		enterFirstName(firstName);
+		enterMiddleName(middleName);
+		enterLastName(lastName);
+		enterPassword(password);
+		enterConfirmPassword(password);
+		enterTechOrEmpID(technicalId);
+		selectTimeZone(timeZone);
+		selectLocale(locale);
+		switchToStatusTab();
+		selectMemberStatus(memberStatus);
+		switchToSettingsTab();
+		selectSystemRole(systemRole);
+		selectJobRole(jobRole);
+		selectAccount(associatedAccount);
+		selectSave();
+		switchToAffiliationsTab();
 	}
 
 	public void selectUserName(String UserName) throws Exception {

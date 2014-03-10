@@ -8,22 +8,22 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 import static org.junit.Assert.*;
 
 public class AdminPage extends WaitForElement {
-	private static String selectUsers = "//img[@id='catBullet6']";
-	private static String selectAddUsers = "//td[@id='addLTUser']";
-	private static String selectReturn = "//td[@id='adminLink2']";
-	private static String selectAssets = "//img[@id='catBullet2']";
-	private static String selectManageAssets = "//td[@id='adminLink3']";
-	private static String selectDisplayGroups = "//img[@id='catBullet3']";
-	private static String selectQuickLinks = "//td[@id='adminGoupLink2']";
-	private static String selectUserGroups = "//img[@id='catBullet7']";
-	private static String selectManageOrganizations = "//td[@id='manageOrgs']";
+	private String selectUsers = "//img[@id='catBullet6']";
+	private String selectAddUsers = "//td[@id='addLTUser']";
+	private String selectReturn = "//td[@id='adminLink2']";
+	private String selectAssets = "//img[@id='catBullet2']";
+	private String selectManageAssets = "//td[@id='adminLink3']";
+	private String selectDisplayGroups = "//img[@id='catBullet3']";
+	private String selectQuickLinks = "//td[@id='adminGoupLink2']";
+	private String selectUserGroups = "//img[@id='catBullet7']";
+	private String selectManageOrganizations = "//td[@id='manageOrgs']";
 	public WebDriver driver;
-	
+
 	public AdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
-	
-	public void switchToFrame(String FrameName)throws Exception{
+
+	public void switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
 	}
@@ -33,7 +33,7 @@ public class AdminPage extends WaitForElement {
 		selectAddUser();
 	}
 
-	public void selectAssetManagement() throws Exception {
+	public void selectAssetOption() throws Exception {
 		selectAssets();
 		selectManageAssets();
 	}
@@ -42,68 +42,77 @@ public class AdminPage extends WaitForElement {
 		selectDisplayGroups();
 		selectQuicklinks();
 	}
-	
+
 	public void selectUserGroupsAdmin() throws Exception {
 		selectUserGroups();
 		selectManageOrganizations();
 	}
-	//Function to select users option on admin page
+
+	// Function to select users option on admin page
 	public void selectUser() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectUsers))).click()
-		.build().perform();
+				.build().perform();
 	}
-	//Function to select Add Users option
+
+	// Function to select Add Users option
 	public void selectAddUser() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectAddUsers), driver));
 		driver.findElement(By.xpath(selectAddUsers)).click();
 	}
-	//Function to select Assets on admin page
+
+	// Function to select Assets on admin page
 	public void selectAssets() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectAssets)))
-		.click().build().perform();
+				.click().build().perform();
 	}
-	//Function to select Manage Assets option
+
+	// Function to select Manage Assets option
 	public void selectManageAssets() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectManageAssets), driver));
 		driver.findElement(By.xpath(selectManageAssets)).click();
 	}
-	//Function to return to home from admin Page
+
+	// Function to return to home from admin Page
 	public void returnToHome() throws Exception {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		driver.findElement(By.xpath(selectReturn)).click();
 	}
-	//Function to select Display Groups option
+
+	// Function to select Display Groups option
 	public void selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectDisplayGroups)))
-		.click().build().perform();
+				.click().build().perform();
 	}
-	//Function to select Quick link option
+
+	// Function to select Quick link option
 	public void selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(selectQuickLinks), driver));
 		// driver.findElement(By.xpath(selectQuickLinks)).click();
 		action.moveToElement(driver.findElement(By.xpath(selectQuickLinks)))
-		.click().build().perform();
+				.click().build().perform();
 	}
-	//Function to select User groups option
+
+	// Function to select User groups option
 	public void selectUserGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(selectUserGroups)))
-		.click().build().perform();
+				.click().build().perform();
 	}
-	//Function to select Manage organizations
+
+	// Function to select Manage organizations
 	public void selectManageOrganizations() throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectManageOrganizations), driver));
 		driver.findElement(By.xpath(selectManageOrganizations)).click();

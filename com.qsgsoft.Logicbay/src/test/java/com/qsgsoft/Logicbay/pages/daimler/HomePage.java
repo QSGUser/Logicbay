@@ -10,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
-	private static String CenterTab = "_PCMM_TabText_5";
-	private static String Admin = "_PCMM_ID_50_text";
-	private static String myprofile = "profile_link";
-	private static String email = "email";
+	private String CenterTab = "_PCMM_TabText_5";
+	private String Admin = "_PCMM_ID_50_text";
+	private String myprofile = "profile_link";
+	private String email = "email";
 	public static WebDriver driver;
 
 	public HomePage(WebDriver _driver) {

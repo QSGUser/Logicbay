@@ -8,5 +8,4 @@ public class MembershipAdminPage extends com.qsgsoft.Logicbay.pages.core.Members
 		super(_driver);
 		this.driver=_driver;
 	}
-
 }
