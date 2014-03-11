@@ -1,6 +1,7 @@
 package com.qsgsoft.Logicbay.pages.core;
 
 import static org.junit.Assert.*;
+
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,6 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class MembershipAdminPage extends WaitForElement {
 	private String centerMembership = "//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]",
-			organizationMembership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]",
 			getItems = "//input[@name='btnGetItems']",
 			selectSrc = "//select[@class='cListField'][@name='srcList']",
 			checkTarget = "//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']",
@@ -18,6 +18,7 @@ public class MembershipAdminPage extends WaitForElement {
 			selectSubmit = "//input[@type='button'][@value='Submit']",
 			selectReturn = "//td[@class='cListControlPanel']/a",
 			organizationMemebership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]",
+			keywordField="keyword",
 			selectsubType = "srctype";
 	public WebDriver driver;
 
@@ -52,11 +53,6 @@ public class MembershipAdminPage extends WaitForElement {
 		driver.findElement(By.xpath(getItems)).click();
 	}
 
-	public void selectorganziationMembership() throws Exception {
-		driver.findElement(By.xpath(organizationMembership)).click();
-		driver.switchTo().alert().accept();
-	}
-
 	public void selectSubmitOnMapping() throws Exception {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(selectSubmit));
@@ -86,15 +82,24 @@ public class MembershipAdminPage extends WaitForElement {
 		driver.findElement(By.xpath(moveRight)).click();
 	}
 
-	public void selectorganizationMemebership(String subType, String src)
+	public void selectorganizationMemebership(String subType, String src,String key)
 			throws Exception {
+		Thread.sleep(2000);
 		driver.findElement(By.xpath(organizationMemebership)).click();
 		driver.switchTo().alert().accept();
 		selectsubType(subType);
+		enterKeyword(key);
 		selectgetItems();
 		selectsrcToMap(src);
 		selectMap();
-		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
+		verifyTarget();
+	}
+	
+	public void enterKeyword(String key)throws Exception{
+		driver.findElement(By.name(keywordField)).clear();
+		driver.findElement(By.name(keywordField)).sendKeys(key);
+		assertEquals(key, driver.findElement(By.name(keywordField))
+				.getAttribute("value"));
 	}
 
 	public void selectsubType(String subType) throws Exception {
@@ -109,6 +114,11 @@ public class MembershipAdminPage extends WaitForElement {
 	public void MapToCenterMembership(String strcentersubType,
 			String strcenterSrc) throws Exception {
 		selectcenterMembership(strcentersubType, strcenterSrc);
+		selectSubmitOnMapping();
+		selectReturnOnMapping();
+	}
+	public void MapToOrgMembership(String subType, String src,String key)throws Exception{
+		selectorganizationMemebership(subType,src,key);
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
 	}

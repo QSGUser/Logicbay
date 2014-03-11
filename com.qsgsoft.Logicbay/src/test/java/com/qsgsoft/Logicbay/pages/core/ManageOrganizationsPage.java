@@ -12,8 +12,8 @@ public class ManageOrganizationsPage extends WaitForElement {
 			orgNamefield = "orgName",
 			orgCodefield = "orgCode",
 			savebutton = "save",
-			selectNew = "//td[@id='tdNewMenuItem']/div/a/img[@src='../perfCtr/campus/images/admin/controls/document.gif']",
-			selectOrg = "//i";
+			selectNew = "//div[@id='dNewMenuItem']",
+			selectOrg = "//div[@id='dResultTable']/table[1]";
 	public WebDriver driver;
 
 	public ManageOrganizationsPage(WebDriver _driver) {
@@ -50,9 +50,6 @@ public class ManageOrganizationsPage extends WaitForElement {
 		assertTrue(isElementPresent(By.name(selectDivisionfield), driver));
 		new Select(driver.findElement(By.name(selectDivisionfield)))
 				.selectByVisibleText(Division);
-		String strSelectedVal = new Select(driver.findElement(By
-				.name(selectDivisionfield))).getFirstSelectedOption().getText();
-		assertTrue(strSelectedVal.equals(Division));
 	}
 
 	public void enterOrgName(String orgName) throws Exception {
@@ -61,7 +58,6 @@ public class ManageOrganizationsPage extends WaitForElement {
 		driver.findElement(By.name(orgNamefield)).sendKeys(orgName);
 		assertEquals(orgName, driver.findElement(By.name(orgNamefield))
 				.getAttribute("value"));
-
 	}
 
 	public void enterCode(String orgCode) throws Exception {
@@ -81,6 +77,7 @@ public class ManageOrganizationsPage extends WaitForElement {
 	}
 
 	public void selectNew() throws Exception {
+		Thread.sleep(2000);
 		driver.findElement(By.xpath(selectNew)).click();
 	}
 }
