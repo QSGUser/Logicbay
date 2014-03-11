@@ -87,6 +87,7 @@ public class WaitForElement {
 	}
 	
 	public boolean isElementPresent(By by,WebDriver driver) throws InvocationTargetException{
+		@SuppressWarnings("unused")
 		int intCnt=0;
 		boolean blnFound=false;
 		try{				
@@ -137,6 +138,7 @@ public class WaitForElement {
 		}	
 	}	
 	public void waitForPageToLoad(WebDriver driver) throws Exception{
+		@SuppressWarnings("unused")
 		boolean blnPageLoaded;
 		do
 		{

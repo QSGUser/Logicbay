@@ -100,9 +100,9 @@ public class AssetsManagementPage extends WaitForElement {
 
 	public void chooseAsset(String linkTitle) throws Exception {
 		switchToFrame("details");
-		driver.findElement(By.cssSelector(chooseAsset)).click();
 		String mainWindowHandle = driver.getWindowHandle();
-		Thread.sleep(3000);
+		driver.findElement(By.cssSelector(chooseAsset)).click();
+		Thread.sleep(5000);
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
 		while (ite.hasNext()) {

@@ -8,26 +8,20 @@ import org.openqa.selenium.support.ui.Select;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class ManageOrganizationsPage extends WaitForElement {
-	private static String selectDivisionfield = "selRootOrgId";
-	private static String orgNamefield = "orgName";
-	private static String orgCodefield = "orgCode";
-	private static String savebutton = "save";
-	private static String selectNew = "//td[@id='tdNewMenuItem']/div/a/img[@src='../perfCtr/campus/images/admin/controls/document.gif']";
-	private static String selectOrg = "//i";
+	private String selectDivisionfield = "selRootOrgId";
+	private String orgNamefield = "orgName";
+	private String orgCodefield = "orgCode";
+	private String savebutton = "save";
+	private String selectNew = "//td[@id='tdNewMenuItem']/div/a/img[@src='../perfCtr/campus/images/admin/controls/document.gif']";
+	private String selectOrg="//i";
 	public WebDriver driver;
 
 	public ManageOrganizationsPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
 
-	public void createOrg(String orgName, String orgCode) throws Exception {
-		selectDivision("*** Create New Division ***");
-		enterOrgName(orgName);
-		enterCode(orgCode);
-		selectSave();
-	}
-
-	public void createSubOrg(String orgName, String orgCode) throws Exception {
+	public void createOrg(String newOrg,String orgName, String orgCode) throws Exception {
+		selectDivision(newOrg);
 		enterOrgName(orgName);
 		enterCode(orgCode);
 		selectSave();
@@ -37,6 +31,12 @@ public class ManageOrganizationsPage extends WaitForElement {
 		selectDivision(orgName);
 		selectOrg();
 		selectNew();
+	}
+
+	public void createSubOrg(String orgName, String orgCode) throws Exception {
+		enterOrgName(orgName);
+		enterCode(orgCode);
+		selectSave();
 	}
 
 	public void switchToFrame(String frameName) throws Exception {

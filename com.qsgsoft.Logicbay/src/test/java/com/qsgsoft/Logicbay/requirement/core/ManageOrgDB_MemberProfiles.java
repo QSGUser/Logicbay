@@ -37,7 +37,7 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 
 		ManageOrganizationsPage objManageOrganizationsPage = new ManageOrganizationsPage(
 				this.driver);
-		objManageOrganizationsPage.createOrg(objUserGroupsData.OrgName,
+		objManageOrganizationsPage.createOrg(objUserGroupsData.newOrg,objUserGroupsData.OrgName,
 				objUserGroupsData.OrgCode);
 		objManageOrganizationsPage.selectCreatedOrg(objUserGroupsData.OrgName);
 		objManageOrganizationsPage.createSubOrg(objUserGroupsData.SuborgName,

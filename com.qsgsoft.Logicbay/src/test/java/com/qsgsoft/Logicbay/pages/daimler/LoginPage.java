@@ -47,7 +47,7 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		Actions action=new Actions(driver);
 		action.moveToElement(driver.findElement(By.id(password))).build().perform();
 		driver.findElement(By.id(password)).click();
-		driver.findElement(By.id(password)).sendKeys(Password);
+		driver.findElement(By.id("password")).sendKeys(Password);
 	}
 
 	public void switchToWindow(String frameName) throws Exception {

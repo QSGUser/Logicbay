@@ -27,17 +27,17 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		assertTrue(isElementPresent(By.name(username), driver));
 	}
 
-	public void enterUsername(String strUsername) throws Exception {
+	public void enterUsername(String Username) throws Exception {
 		driver.findElement(By.name(username)).clear();
-		driver.findElement(By.name(username)).sendKeys(strUsername);
-		assertEquals(strUsername, driver.findElement(By.name(username))
+		driver.findElement(By.name(username)).sendKeys(Username);
+		assertEquals(Username, driver.findElement(By.name(username))
 				.getAttribute("value"));
 	}
 
-	public void enterPassword(String strPassword) throws Exception {
+	public void enterPassword(String Password) throws Exception {
 		driver.findElement(By.name(password)).clear();
-		driver.findElement(By.name(password)).sendKeys(strPassword);
-		assertEquals(strPassword, driver.findElement(By.name(password))
+		driver.findElement(By.name(password)).sendKeys(Password);
+		assertEquals(Password, driver.findElement(By.name(password))
 				.getAttribute("value"));
 	}
 
@@ -58,20 +58,20 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		driver.findElement(By.xpath(accept)).click();
 	}
 
-	public void enterNewPassword(String strnewPassword) throws Exception {
+	public void enterNewPassword(String newPassword) throws Exception {
 		driver.findElement(By.name(newpassword)).clear();
-		driver.findElement(By.name(newpassword)).sendKeys(strnewPassword);
-		assertEquals(strnewPassword, driver.findElement(By.name(newpassword))
+		driver.findElement(By.name(newpassword)).sendKeys(newPassword);
+		assertEquals(newPassword, driver.findElement(By.name(newpassword))
 				.getAttribute("value"));
 	}
 
-	public void enterConfirmPassword(String strconfirmPassword)
+	public void enterConfirmPassword(String confirmPassword)
 			throws Exception {
 		driver.findElement(By.name(confirmnewpassword)).clear();
 		driver.findElement(By.name(confirmnewpassword)).sendKeys(
-				strconfirmPassword);
+				confirmPassword);
 		assertEquals(
-				strconfirmPassword,
+				confirmPassword,
 				driver.findElement(By.name(confirmnewpassword)).getAttribute(
 						"value"));
 	}
@@ -79,16 +79,16 @@ public class LoginPage extends WaitForElement implements URLInterface {
 	public void selectSubmit() throws Exception {
 		driver.findElement(By.id(submitbutton));
 		driver.findElement(By.id(submitbutton)).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
 	}
 
-	public void passwordReset(String strPassword, String strnewPassword)
+	public void passwordReset(String Password, String newPassword)
 			throws Exception {
 		Thread.sleep(2000);
-		enterPassword(strPassword);
-		enterNewPassword(strnewPassword);
-		enterConfirmPassword(strnewPassword);
+		enterPassword(Password);
+		enterNewPassword(newPassword);
+		enterConfirmPassword(newPassword);
 		selectSubmit();
 		Thread.sleep(2000);
 	}
