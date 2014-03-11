@@ -8,24 +8,24 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 import static org.junit.Assert.*;
 
 public class AdminPage extends WaitForElement {
-	private String selectUsers = "//img[@id='catBullet6']";
-	private String selectAddUsers = "//td[@id='addLTUser']";
-	private String selectReturn = "//td[@id='adminLink2']";
-	private String selectAssets = "//img[@id='catBullet2']";
-	private String selectManageAssets = "//td[@id='adminLink3']";
-	private String selectDisplayGroups = "//img[@id='catBullet3']";
-	private String selectQuickLinks = "//td[@id='adminGoupLink2']";
-	private String selectUserGroups = "//img[@id='catBullet7']";
-	private String selectManageOrganizations = "//td[@id='manageOrgs']";
+	private String selectUsers = "//img[@id='catBullet6']",
+			selectAddUsers = "//td[@id='addLTUser']",
+			selectReturn = "//td[@id='adminLink2']",
+			selectAssets = "//img[@id='catBullet2']",
+			selectManageAssets = "//td[@id='adminLink3']",
+			selectDisplayGroups = "//img[@id='catBullet3']",
+			selectQuickLinks = "//td[@id='adminGoupLink2']",
+			selectUserGroups = "//img[@id='catBullet7']",
+			selectManageOrganizations = "//td[@id='manageOrgs']";
 	public WebDriver driver;
 
 	public AdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String FrameName) throws Exception {
+	public void switchToFrame(String frameName) throws Exception {
 		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
+		driver.switchTo().frame(driver.findElement(By.name(frameName)));
 	}
 
 	public void SelectUserAdmin() throws Exception {
@@ -98,7 +98,6 @@ public class AdminPage extends WaitForElement {
 	public void selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(selectQuickLinks), driver));
-		// driver.findElement(By.xpath(selectQuickLinks)).click();
 		action.moveToElement(driver.findElement(By.xpath(selectQuickLinks)))
 				.click().build().perform();
 	}

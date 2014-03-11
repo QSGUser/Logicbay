@@ -6,52 +6,41 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.dataobject.core.LoginPageData;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class UserPage extends WaitForElement {
-	LoginPageData objTestData = new LoginPageData();
-	private  String usernamefield = "username";
-	private  String confirmUsernamefield = "confirm_username";
-	private  String emailfield = "email";
-	private  String confirmEmailfield = "confirm_email";
-	private  String salutationfield="salutation";
-	private  String firstnamefield = "first_name";
-	private  String middlenamefield = "middle_name";
-	private  String lastnamefield = "last_name";
-	private  String passwordfield = "new_password";
-	private  String confirmpasswordfield = "confirm_new_password";
-	private  String employeeIdfield = "employee_id";
-	private  String localefield = "localeFK";
-	private  String timezone = "timezone";
-	private  String generalTab = "tab_1";
-	private  String statusTab = "tab_2";
-	private  String settingsTab = "tab_3";
-	private  String AffiliationsTab = "tab_6";
-	private  String memberStatus = "approvalStatus";
-	private  String systemRole = "role";
-	private  String jobRole = "job";
-	private  String jobtitle = "empType";
-	private  String savebutton = "saveGroup";
-	private  String gender = "//input[@type='radio']";
+
+	private String usernamefield = "username",
+			confirmUsernamefield = "confirm_username", emailfield = "email",
+			confirmEmailfield = "confirm_email",
+			salutationfield = "salutation", firstnamefield = "first_name",
+			middlenamefield = "middle_name", lastnamefield = "last_name",
+			passwordfield = "new_password",
+			confirmpasswordfield = "confirm_new_password",
+			employeeIdfield = "employee_id", localefield = "localeFK",
+			timezone = "timezone", generalTab = "tab_1", statusTab = "tab_2",
+			settingsTab = "tab_3", AffiliationsTab = "tab_6",
+			memberStatus = "approvalStatus", systemRole = "role",
+			jobRole = "job", jobtitle = "empType", savebutton = "saveGroup",
+			gender = "//input[@type='radio']";
 
 	public WebDriver driver;
 
 	public UserPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
-	
-	public void switchToFrame(String FrameName)throws Exception{
+
+	public void switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
 	}
-	
+
 	public void switchToGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("main");
 		driver.findElement(By.id(generalTab));
 		action.moveToElement(driver.findElement(By.id(generalTab))).click()
-		.build().perform();
+				.build().perform();
 	}
 
 	public void switchToStatusTab() throws Exception {
@@ -59,7 +48,7 @@ public class UserPage extends WaitForElement {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(statusTab));
 		action.moveToElement(driver.findElement(By.id(statusTab))).click()
-		.build().perform();
+				.build().perform();
 	}
 
 	public void switchToSettingsTab() throws Exception {
@@ -67,7 +56,7 @@ public class UserPage extends WaitForElement {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(settingsTab));
 		action.moveToElement(driver.findElement(By.id(settingsTab))).click()
-		.build().perform();
+				.build().perform();
 	}
 
 	public void switchToAffiliationsTab() throws Exception {
@@ -75,7 +64,7 @@ public class UserPage extends WaitForElement {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(AffiliationsTab)).click();
 		action.moveToElement(driver.findElement(By.id(AffiliationsTab)))
-		.click().build().perform();
+				.click().build().perform();
 	}
 
 	public void enterusername(String username) throws Exception {
@@ -108,14 +97,13 @@ public class UserPage extends WaitForElement {
 		assertEquals(emailAddress, driver.findElement(By.id(confirmEmailfield))
 				.getAttribute("value"));
 	}
-	
+
 	public void selectSalutation(String salutation) throws Exception {
 		assertTrue(isElementPresent(By.name(salutationfield), driver));
 		new Select(driver.findElement(By.name(salutationfield)))
-		.selectByVisibleText(salutation);
-		String strSelectedVal = new Select(
-				driver.findElement(By.name(salutationfield))).getFirstSelectedOption()
-				.getText();
+				.selectByVisibleText(salutation);
+		String strSelectedVal = new Select(driver.findElement(By
+				.name(salutationfield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(salutation));
 	}
 
@@ -164,7 +152,7 @@ public class UserPage extends WaitForElement {
 	public void selectTimeZone(String TimeZone) throws Exception {
 		assertTrue(isElementPresent(By.name(timezone), driver));
 		new Select(driver.findElement(By.name(timezone)))
-		.selectByVisibleText(TimeZone);
+				.selectByVisibleText(TimeZone);
 		String strSelectedVal = new Select(
 				driver.findElement(By.name(timezone))).getFirstSelectedOption()
 				.getText();
@@ -174,7 +162,7 @@ public class UserPage extends WaitForElement {
 	public void selectLocale(String Locale) throws Exception {
 		assertTrue(isElementPresent(By.name(localefield), driver));
 		new Select(driver.findElement(By.name(localefield)))
-		.selectByVisibleText(Locale);
+				.selectByVisibleText(Locale);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(localefield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(Locale));
@@ -183,7 +171,7 @@ public class UserPage extends WaitForElement {
 	public void selectMemberStatus(String MemberStatus) throws Exception {
 		assertTrue(isElementPresent(By.name(memberStatus), driver));
 		new Select(driver.findElement(By.name(memberStatus)))
-		.selectByVisibleText(MemberStatus);
+				.selectByVisibleText(MemberStatus);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(memberStatus))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(MemberStatus));
@@ -192,7 +180,7 @@ public class UserPage extends WaitForElement {
 	public void selectSystemRole(String SystemRole) throws Exception {
 		assertTrue(isElementPresent(By.name(systemRole), driver));
 		new Select(driver.findElement(By.name(systemRole)))
-		.selectByVisibleText(SystemRole);
+				.selectByVisibleText(SystemRole);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(systemRole))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(SystemRole));
@@ -201,9 +189,9 @@ public class UserPage extends WaitForElement {
 	public void selectJobRole(String JobRole) throws Exception {
 		assertTrue(isElementPresent(By.name(jobRole), driver));
 		new Select(driver.findElement(By.name(jobRole)))
-		.selectByVisibleText(JobRole);
+				.selectByVisibleText(JobRole);
 		String strSelectedVal = new Select(driver.findElement(By.name(jobRole)))
-		.getFirstSelectedOption().getText();
+				.getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(JobRole));
 	}
 
@@ -227,7 +215,8 @@ public class UserPage extends WaitForElement {
 		driver.findElement(By.xpath(gender)).click();
 	}
 
-	public void AddUser(String userName, String emailAddress, String salutation,String firstName,String middleName,
+	public void AddUser(String userName, String emailAddress,
+			String salutation, String firstName, String middleName,
 			String lastName, String password, String timeZone, String locale,
 			String MemberStatus, String SystemRole, String JobRole,
 			String genderType) throws Exception {

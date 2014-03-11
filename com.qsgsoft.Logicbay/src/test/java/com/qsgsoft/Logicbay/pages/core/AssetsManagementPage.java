@@ -12,19 +12,18 @@ import org.openqa.selenium.support.ui.Select;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class AssetsManagementPage extends WaitForElement {
-	private static String newAsset = "//img[@src='../images/admin/controls/document.gif']";
-	private static String title = "title";
-	private static String contenttype = "assetTypeId";
-	private static String urlfield = "url";
-	private static String savebutton = "save";
-	private static String quicklink = "//div[@id='tv']/ul/li/div/span[3]";
-	private static String selectNew = "//img[@src='../images/admin/controls/document.gif']";
-	private static String chooseAsset = "div#assetField2>input[name='chooseAsset']";
-	private static String searchfield = "//input[@id='search_criteria_TXT']";
-	private static String gobutton = "search_go";
-	private static String selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]";
-	private static String enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
-	
+	private String newAsset = "//img[@src='../images/admin/controls/document.gif']",
+			title = "title",
+			contenttype = "assetTypeId",
+			urlfield = "url",
+			savebutton = "save",
+			quicklink = "//div[@id='tv']/ul/li/div/span[3]",
+			selectNew = "//img[@src='../images/admin/controls/document.gif']",
+			chooseAsset = "div#assetField2>input[name='chooseAsset']",
+			searchfield = "//input[@id='search_criteria_TXT']",
+			gobutton = "search_go",
+			selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]",
+			enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
 	public static WebDriver driver;
 
 	public AssetsManagementPage(WebDriver _driver) {

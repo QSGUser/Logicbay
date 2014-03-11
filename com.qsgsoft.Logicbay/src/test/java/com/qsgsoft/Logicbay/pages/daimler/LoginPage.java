@@ -5,13 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
-
 public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
-	private String loginbutton = "submitImg";
-	private String password = "passwordText";
-	private String loginArrowfield = "//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']";
-	private String agreefield = "agree";
-	private String okfield = "okbutton";
+	private String loginbutton = "submitImg",
+			password = "passwordText",
+			loginArrowfield = "//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']",
+			agreefield = "agree", okfield = "okbutton";
 	public static WebDriver driver;
 
 	public LoginPage(WebDriver _driver) {
@@ -23,8 +21,7 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		driver.get("http://lbapp10.logicbay.com/daimler_preprod/login/login.jsp");
 	}
 
-	public void login(String strUsername, String strPassword)
-			throws Exception {
+	public void login(String strUsername, String strPassword) throws Exception {
 		this.enterUsername(strUsername);
 		enterPassword(strPassword);
 		clickLoginButton();
@@ -44,8 +41,9 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 	}
 
 	public void enterMemberPassword(String Password) throws Exception {
-		Actions action=new Actions(driver);
-		action.moveToElement(driver.findElement(By.id(password))).build().perform();
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.id(password))).build()
+				.perform();
 		driver.findElement(By.id(password)).click();
 		driver.findElement(By.id("password")).sendKeys(Password);
 	}

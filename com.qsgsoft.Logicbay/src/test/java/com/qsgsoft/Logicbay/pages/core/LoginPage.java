@@ -8,14 +8,11 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 import static org.junit.Assert.*;
 
 public class LoginPage extends WaitForElement implements URLInterface {
-	private String username = "username";
-	private String password = "password";
-	private String loginbutton = "cmdLogin";
-	private String accept = "//input[@name='okbutton']";
-	private String newpassword = "new_password";
-	private String confirmnewpassword = "confirm_new_password";
-	private String submitbutton = "iSubmit";
-
+	private String username = "username", password = "password",
+			loginbutton = "cmdLogin", accept = "//input[@name='okbutton']",
+			newpassword = "new_password",
+			confirmnewpassword = "confirm_new_password",
+			submitbutton = "iSubmit";
 	public WebDriver driver;
 
 	public LoginPage(WebDriver _driver) {
@@ -65,8 +62,7 @@ public class LoginPage extends WaitForElement implements URLInterface {
 				.getAttribute("value"));
 	}
 
-	public void enterConfirmPassword(String confirmPassword)
-			throws Exception {
+	public void enterConfirmPassword(String confirmPassword) throws Exception {
 		driver.findElement(By.name(confirmnewpassword)).clear();
 		driver.findElement(By.name(confirmnewpassword)).sendKeys(
 				confirmPassword);

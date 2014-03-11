@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 
-	private String usernamefield = "usernameMode";
-	private String accountfield = "accountUsed";
+	private String usernamefield = "usernameMode",
+				   accountfield = "accountUsed";
 	public static WebDriver driver;
 
 	public UserPage(WebDriver _driver) {

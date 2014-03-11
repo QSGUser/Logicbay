@@ -10,10 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
-	private String CenterTab = "_PCMM_TabText_5";
-	private String Admin="//*[contains(text(), 'Admin')]";
-	private String myprofile = "profile_link";
-	private String email = "email";
+	private String CenterTab = "//*[contains(text(),'Centers')]",
+			Admin = "//*[contains(text(), 'Admin')]",
+			myprofile = "profile_link", email = "email";
 	public static WebDriver driver;
 
 	public HomePage(WebDriver _driver) {
@@ -30,15 +29,16 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
-		action.moveToElement(driver.findElement(By.id(CenterTab))).click()
-				.build().perform();
+		action.moveToElement(driver.findElement(By.xpath(CenterTab))).click()
+		.build().perform();
 	}
 
 	public void selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_5");
-		action.moveToElement(driver.findElement(By.xpath(Admin))).click().build().perform();	
+		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
+		.build().perform();
 	}
 
 	// Function to select my profile

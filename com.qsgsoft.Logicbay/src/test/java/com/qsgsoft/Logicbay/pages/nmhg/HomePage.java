@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
-	private String CenterTab = "_PCMM_TabText_7";
-	private String Admin = "_PCMM_ID_155_text";
+	private String CenterTab = "//*[contains(text(),'Center')]",
+			Admin = "//*[contains(text(), 'Admin')]";
 	public static WebDriver driver;
 
 	public HomePage(WebDriver _driver) {
@@ -24,7 +24,7 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
-		action.moveToElement(driver.findElement(By.id(CenterTab))).click()
+		action.moveToElement(driver.findElement(By.xpath(CenterTab))).click()
 				.build().perform();
 	}
 
@@ -32,7 +32,7 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_7");
-		action.moveToElement(driver.findElement(By.id(Admin))).click().build()
-				.perform();
+		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
+				.build().perform();
 	}
 }

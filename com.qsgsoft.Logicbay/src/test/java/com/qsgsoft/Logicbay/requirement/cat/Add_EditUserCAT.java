@@ -51,4 +51,3 @@ public class Add_EditUserCAT extends Configuration {
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }
-

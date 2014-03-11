@@ -18,8 +18,8 @@ public class Add_EditUserNMHG extends Configuration {
 
 		gstrTO = "Verify that a user can be added in Performance Center";
 		gstrTCID = "132534";
-		LoginPageData objLoginPageData=new LoginPageData();
-		UserCreationData objUserCreationData=new UserCreationData();
+		LoginPageData objLoginPageData = new LoginPageData();
+		UserCreationData objUserCreationData = new UserCreationData();
 		// Creating objects
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL();
@@ -40,10 +40,11 @@ public class Add_EditUserNMHG extends Configuration {
 				objUserCreationData.Locale, objUserCreationData.MemberStatus,
 				objUserCreationData.SystemRole, objUserCreationData.JobRole,
 				objUserCreationData.JobTitle);
-		
+
 		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
 				this.driver);
-		objMembershipAdminPage.NmhgUserMapping(objUserCreationData.CenterSubtype,
+		objMembershipAdminPage.NmhgUserMapping(
+				objUserCreationData.CenterSubtype,
 				objUserCreationData.CenterSrc);
 
 		objAdminPage.returnToHome();

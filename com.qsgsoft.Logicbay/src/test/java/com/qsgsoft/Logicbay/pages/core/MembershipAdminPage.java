@@ -9,23 +9,23 @@ import org.openqa.selenium.support.ui.Select;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class MembershipAdminPage extends WaitForElement {
-	private static String centerMembership = "//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]";
-	private static String organizationMembership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]";
-	private static String getItems = "//input[@name='btnGetItems']";
-	private static String selectSrc = "//select[@class='cListField'][@name='srcList']";
-	private static String checkTarget = "//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']";
-	private static String moveRight = "//input[@id='move_right']";
-	private static String selectSubmit = "//input[@type='button'][@value='Submit']";
-	private static String selectReturn = "//td[@class='cListControlPanel']/a";
-	private static String organizationMemebership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]";
-	private static String selectsubType = "srctype";
+	private String centerMembership = "//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]",
+			organizationMembership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]",
+			getItems = "//input[@name='btnGetItems']",
+			selectSrc = "//select[@class='cListField'][@name='srcList']",
+			checkTarget = "//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']",
+			moveRight = "//input[@id='move_right']",
+			selectSubmit = "//input[@type='button'][@value='Submit']",
+			selectReturn = "//td[@class='cListControlPanel']/a",
+			organizationMemebership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]",
+			selectsubType = "srctype";
 	public WebDriver driver;
 
 	public MembershipAdminPage(WebDriver _driver) {
 		this.driver = _driver;
 	}
-	
-	public void switchToFrame(String FrameName)throws Exception{
+
+	public void switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
 	}
@@ -39,6 +39,10 @@ public class MembershipAdminPage extends WaitForElement {
 		selectgetItems();
 		selectsrcToMap(src);
 		selectMap();
+		verifyTarget();
+	}
+
+	public void verifyTarget() throws Exception {
 		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
 	}
 
@@ -57,20 +61,20 @@ public class MembershipAdminPage extends WaitForElement {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(selectSubmit));
 		action.moveToElement(driver.findElement(By.xpath(selectSubmit)))
-		.click().build().perform();
+				.click().build().perform();
 	}
 
 	public void selectReturnOnMapping() throws Exception {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(selectReturn));
 		action.moveToElement(driver.findElement(By.xpath(selectReturn)))
-		.click().build().perform();
+				.click().build().perform();
 	}
 
 	public void selectsrcToMap(String src) throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectSrc), driver));
 		new Select(driver.findElement(By.xpath(selectSrc)))
-		.selectByVisibleText(src);
+				.selectByVisibleText(src);
 		String strSelectedVal = new Select(driver.findElement(By
 				.xpath(selectSrc))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(src));
@@ -96,7 +100,7 @@ public class MembershipAdminPage extends WaitForElement {
 	public void selectsubType(String subType) throws Exception {
 		assertTrue(isElementPresent(By.id(selectsubType), driver));
 		new Select(driver.findElement(By.id(selectsubType)))
-		.selectByVisibleText(subType);
+				.selectByVisibleText(subType);
 		String strSelectedVal = new Select(driver.findElement(By
 				.id(selectsubType))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(subType));
@@ -108,6 +112,5 @@ public class MembershipAdminPage extends WaitForElement {
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
 	}
-	
-	
+
 }

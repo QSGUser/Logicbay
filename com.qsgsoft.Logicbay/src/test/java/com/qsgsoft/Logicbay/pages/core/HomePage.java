@@ -11,11 +11,9 @@ import org.openqa.selenium.interactions.Actions;
 import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class HomePage extends WaitForElement {
-	private String CampusTab = "//*[contains(text(),'Campus')]";
-	private String Admin = "//*[contains(text(), 'Admin')]";
-	private String logoff = "logout_link";
-	private String myprofile = "profile_link";
-	private String email = "email";
+	private String CampusTab = "//*[contains(text(),'Campus')]",
+			Admin = "//*[contains(text(), 'Admin')]", logoff = "logout_link",
+			myprofile = "profile_link", email = "email";
 	public WebDriver driver;
 
 	public HomePage(WebDriver _driver) {
@@ -44,8 +42,8 @@ public class HomePage extends WaitForElement {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_4");
-		action.moveToElement(driver.findElement(By.xpath(Admin))).click().build()
-				.perform();
+		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
+				.build().perform();
 	}
 
 	// Function to logout from application
