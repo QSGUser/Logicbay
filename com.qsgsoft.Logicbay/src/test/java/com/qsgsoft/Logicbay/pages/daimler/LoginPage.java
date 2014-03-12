@@ -30,38 +30,44 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		return this;
 	}
 
-	public void loginAsMember(String emailAddress, String Password)
+	public LoginPage loginAsMember(String emailAddress, String Password)
 			throws Exception {
 		switchToWindow("mainFrame");
 		enterUsername(emailAddress);
 		enterMemberPassword(Password);
 		clickMemberLogin();
+		return this;
 	}
 
-	public void clickLoginButton() throws Exception {
+	public LoginPage clickLoginButton() throws Exception {
 		driver.findElement(By.name(loginbutton)).click();
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+		return this;
 	}
 
-	public void enterMemberPassword(String Password) throws Exception {
+	public LoginPage enterMemberPassword(String Password) throws Exception {
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(By.id(password))).build()
 				.perform();
 		driver.findElement(By.id(password)).click();
 		driver.findElement(By.id(enterpassword)).sendKeys(Password);
+		return this;
 	}
 
-	public void switchToWindow(String frameName) throws Exception {
+	public LoginPage switchToWindow(String frameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(frameName)));
+		return this;
 	}
 
-	public void clickMemberLogin() throws Exception {
+	public LoginPage clickMemberLogin() throws Exception {
 		driver.findElement(By.xpath(loginArrowfield)).click();
+		return this;
 	}
 
-	public void acceptAgreement() throws Exception {
+	public LoginPage acceptAgreement() throws Exception {
 		driver.findElement(By.name(agreefield)).click();
 		driver.findElement(By.name(okfield)).click();
+		return this;
 	}
 }

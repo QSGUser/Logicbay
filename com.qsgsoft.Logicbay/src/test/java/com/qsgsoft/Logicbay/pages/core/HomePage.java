@@ -22,45 +22,50 @@ public class HomePage extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String FrameName) throws Exception {
+	public HomePage switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name(FrameName)));
+		return this;
 	}
 
-	public void NavigateToAdmin() throws Exception {
+	public HomePage NavigateToAdmin() throws Exception {
 		selectCampusTab();
 		selectAdmin();
+		return this;
 	}
 
 	// Function to select campus tab on home page
-	public void selectCampusTab() throws Exception {
+	public HomePage selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.xpath(CampusTab))).click()
 				.build().perform();
+		return this;
 	}
 
 	// Function to select 'admin' option in campus tab
-	public void selectAdmin() throws Exception {
+	public HomePage selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_4");
 		action.moveToElement(driver.findElement(By.xpath(admin))).click()
 				.build().perform();
+		return this;
 	}
 
 	// Function to logout from application
-	public void logOff() throws Exception {
+	public HomePage logOff() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.id(logoff))).click().build()
 				.perform();
+		return this;
 	}
 
 	// Function to select my profile
-	public void selectMyProfile(String username) throws Exception {
+	public HomePage selectMyProfile(String username) throws Exception {
 		switchToFrame("topFrame");
 		String mainWindowHandle = driver.getWindowHandle();
 		driver.findElement(By.id(myprofile)).click();
@@ -84,17 +89,19 @@ public class HomePage extends WaitForElement {
 		assertEquals(username, LoginUser);
 		System.out.println("Created user is logged in");
 		driver.switchTo().window(mainWindowHandle);
+		return this;
 	}
 
 	// Function to click new quick link on home homepage
-	public void selectQuickLink(String linkTitle) throws Exception {
+	public HomePage selectQuickLink(String linkTitle) throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		action.moveToElement(driver.findElement(By.linkText(linkTitle)))
 				.click().build().perform();
+		return this;
 	}
 
-	public void verifyQuickLink() throws Exception {
+	public HomePage verifyQuickLink() throws Exception {
 		String mainWindowHandle = driver.getWindowHandle();
 		Thread.sleep(5000);
 		Set<String> a = driver.getWindowHandles();
@@ -110,5 +117,6 @@ public class HomePage extends WaitForElement {
 		String quicklinkTitle = driver.getTitle();
 		assertTrue(quicklinkTitle.contains("Google"));
 		System.out.println("Link is created");
+		return this;
 	}
 }

@@ -16,7 +16,7 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 		UserPage.driver = _driver;
 	}
 
-	public void AddUser(String userName, String emailAddress, String firstName,
+	public UserPage AddUser(String userName, String emailAddress, String firstName,
 			String middleName, String lastName, String password,
 			String technicalId, String timeZone, String locale,
 			String memberStatus, String systemRole, String jobRole,
@@ -41,23 +41,26 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 		selectAccount(associatedAccount);
 		selectSave();
 		switchToAffiliationsTab();
+		return this;
 	}
 
-	public void selectUserName(String UserName) throws Exception {
+	public UserPage selectUserName(String UserName) throws Exception {
 		assertTrue(isElementPresent(By.id(usernamefield), driver));
 		new Select(driver.findElement(By.id(usernamefield)))
 				.selectByVisibleText(UserName);
 		String strSelectedVal = new Select(driver.findElement(By
 				.id(usernamefield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(UserName));
+		return this;
 	}
 
-	public void selectAccount(String associatedAccount) throws Exception {
+	public UserPage selectAccount(String associatedAccount) throws Exception {
 		assertTrue(isElementPresent(By.id(accountfield), driver));
 		new Select(driver.findElement(By.id(accountfield)))
 				.selectByVisibleText(associatedAccount);
 		String strSelectedVal = new Select(driver.findElement(By
 				.id(accountfield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(associatedAccount));
+		return this;
 	}
 }

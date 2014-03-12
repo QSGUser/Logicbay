@@ -14,13 +14,13 @@ public class Display_GroupPropertiesNmhg extends Configuration {
 	
 	@Test
 	public void AddQuickLinkToAsset() throws Exception {
-	
 		@SuppressWarnings("unused")
 		String gstrTO = "Verify that a quicklink can be added by associating to an existing asset",
 			   gstrTCID = "132537";
+		
 		LoginPageData objLoginPageData=new LoginPageData();
 		UserGroupsData objUserGroupsData=new UserGroupsData();
-		// Creating the objects
+		// Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL();
 		objLoginPage.login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
@@ -38,8 +38,9 @@ public class Display_GroupPropertiesNmhg extends Configuration {
 
 		objAdminPage.selectGroups();
 		objAssetsManagementPage.mapLinkToAsset(objUserGroupsData.QuicklinkTitle);
+		
 		objAdminPage.returnToHome();
-		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle);
-		objHomePage.verifyQuickLink();
+		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle)
+					.verifyQuickLink();
 	}
 }

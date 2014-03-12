@@ -24,8 +24,8 @@ public class Add_EditUserCAT extends Configuration {
 		UserCreationData objUserCreationData=new UserCreationData();
 		// Creating objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
+		objLoginPage.openURL()
+					.login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
@@ -46,8 +46,8 @@ public class Add_EditUserCAT extends Configuration {
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password);
-		objLoginPage.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
+		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password)
+		.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }

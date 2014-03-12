@@ -20,29 +20,32 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		HomePage.driver = _driver;
 	}
 
-	public void NavigateToAdmin() throws Exception {
+	public HomePage NavigateToAdmin() throws Exception {
 		selectCampusTab();
 		selectAdmin();
+		return this;
 	}
 
-	public void selectCampusTab() throws Exception {
+	public HomePage selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.xpath(CenterTab))).click()
 		.build().perform();
+		return this;
 	}
 
-	public void selectAdmin() throws Exception {
+	public HomePage selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_5");
 		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
 		.build().perform();
+		return this;
 	}
 
 	// Function to select my profile
-	public void selectMyProfile(String username) throws Exception {
+	public HomePage selectMyProfile(String username) throws Exception {
 		switchToFrame("topFrame");
 		String mainWindowHandle = driver.getWindowHandle();
 		driver.findElement(By.id(myprofile)).click();
@@ -65,5 +68,6 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		assertEquals(username, LoginUser);
 		System.out.println("Created user is logged in");
 		driver.switchTo().window(mainWindowHandle);
+		return this;
 	}
 }

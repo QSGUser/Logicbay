@@ -20,37 +20,18 @@
 		</resources>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>SmokeTest</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.9</version>
-						<configuration>
-							<includes>
-								<include>**/*SmokeTest.*</include>
-							</includes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>net.sourceforge.jexcelapi</groupId>
-			<artifactId>jxl</artifactId>
-			<version>2.6</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.1.1</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -58,9 +39,6 @@
 			<artifactId>selenium-java</artifactId>
 			<version>2.38.0</version>
 		</dependency>
-
-		<!-- <dependency> <groupId>com.opera</groupId> <artifactId>operadriver</artifactId> 
-			</dependency> -->
 
 		<dependency>
 			<groupId>org.seleniumhq.selenium.server</groupId>
@@ -73,15 +51,8 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.opera</groupId>
-				<artifactId>operadriver</artifactId>
-				<version>1.1</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.seleniumhq.selenium</groupId>
-						<artifactId>selenium-remote-driver</artifactId>
-					</exclusion>
-				</exclusions>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-remote-driver</artifactId>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

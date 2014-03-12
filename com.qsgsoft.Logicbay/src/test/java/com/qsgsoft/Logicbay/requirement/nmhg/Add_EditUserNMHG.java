@@ -23,8 +23,7 @@ public class Add_EditUserNMHG extends Configuration {
 		UserCreationData objUserCreationData = new UserCreationData();
 		// Creating objects
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName,
+		objLoginPage.openURL().login(objLoginPageData.adminUserName,
 				objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
@@ -44,17 +43,19 @@ public class Add_EditUserNMHG extends Configuration {
 
 		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
 				this.driver);
-		objMembershipAdminPage.NmhgUserMapping(
+		objMembershipAdminPage.MapToCenterMembership(
 				objUserCreationData.CenterSubtype,
 				objUserCreationData.CenterSrc);
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.login(objUserCreationData.EmailAddress,
-				objUserCreationData.Password);
-		objLoginPage.acceptAgreement();
-		objLoginPage.passwordReset(objUserCreationData.Password,
-				objUserCreationData.NewPassword);
+		objLoginPage
+				.login(objUserCreationData.EmailAddress,
+						objUserCreationData.Password)
+				.acceptAgreement()
+				.passwordReset(objUserCreationData.Password,
+						objUserCreationData.NewPassword);
+
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }

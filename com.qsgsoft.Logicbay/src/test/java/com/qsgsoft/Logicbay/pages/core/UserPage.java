@@ -30,51 +30,57 @@ public class UserPage extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String FrameName) throws Exception {
+	public UserPage switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
+		return this;
 	}
 
-	public void switchToGeneralTab() throws Exception {
+	public UserPage switchToGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("main");
 		driver.findElement(By.id(generalTab));
 		action.moveToElement(driver.findElement(By.id(generalTab))).click()
 				.build().perform();
+		return this;
 	}
 
-	public void switchToStatusTab() throws Exception {
+	public UserPage switchToStatusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(statusTab));
 		action.moveToElement(driver.findElement(By.id(statusTab))).click()
 				.build().perform();
+		return this;
 	}
 
-	public void switchToSettingsTab() throws Exception {
+	public UserPage switchToSettingsTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(settingsTab));
 		action.moveToElement(driver.findElement(By.id(settingsTab))).click()
 				.build().perform();
+		return this;
 	}
 
-	public void switchToAffiliationsTab() throws Exception {
+	public UserPage switchToAffiliationsTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.id(AffiliationsTab)).click();
 		action.moveToElement(driver.findElement(By.id(AffiliationsTab)))
 				.click().build().perform();
+		return this;
 	}
 
-	public void enterusername(String username) throws Exception {
+	public UserPage enterusername(String username) throws Exception {
 		driver.findElement(By.id(usernamefield)).clear();
 		driver.findElement(By.id(usernamefield)).sendKeys(username);
 		assertEquals(username, driver.findElement(By.id(usernamefield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterConfirmUsername(String confirmUsername) throws Exception {
+	public UserPage enterConfirmUsername(String confirmUsername) throws Exception {
 		driver.findElement(By.id(confirmUsernamefield)).clear();
 		driver.findElement(By.id(confirmUsernamefield)).sendKeys(
 				confirmUsername);
@@ -82,74 +88,84 @@ public class UserPage extends WaitForElement {
 				confirmUsername,
 				driver.findElement(By.id(confirmUsernamefield)).getAttribute(
 						"value"));
+		return this;
 	}
 
-	public void enterEmail(String emailAddress) throws Exception {
+	public UserPage enterEmail(String emailAddress) throws Exception {
 		driver.findElement(By.id(emailfield)).clear();
 		driver.findElement(By.id(emailfield)).sendKeys(emailAddress);
 		assertEquals(emailAddress, driver.findElement(By.id(emailfield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterConfirmEmail(String emailAddress) throws Exception {
+	public UserPage enterConfirmEmail(String emailAddress) throws Exception {
 		driver.findElement(By.id(confirmEmailfield)).clear();
 		driver.findElement(By.id(confirmEmailfield)).sendKeys(emailAddress);
 		assertEquals(emailAddress, driver.findElement(By.id(confirmEmailfield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void selectSalutation(String salutation) throws Exception {
+	public UserPage selectSalutation(String salutation) throws Exception {
 		assertTrue(isElementPresent(By.name(salutationfield), driver));
 		new Select(driver.findElement(By.name(salutationfield)))
 				.selectByVisibleText(salutation);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(salutationfield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(salutation));
+		return this;
 	}
 
-	public void enterFirstName(String firstName) throws Exception {
+	public UserPage enterFirstName(String firstName) throws Exception {
 		driver.findElement(By.id(firstnamefield)).clear();
 		driver.findElement(By.id(firstnamefield)).sendKeys(firstName);
 		assertEquals(firstName, driver.findElement(By.id(firstnamefield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterMiddleName(String middleName) throws Exception {
+	public UserPage enterMiddleName(String middleName) throws Exception {
 		driver.findElement(By.id(middlenamefield)).clear();
 		driver.findElement(By.id(middlenamefield)).sendKeys(middleName);
 		assertEquals(middleName, driver.findElement(By.id(middlenamefield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterLastName(String lastName) throws Exception {
+	public UserPage enterLastName(String lastName) throws Exception {
 		driver.findElement(By.id(lastnamefield)).clear();
 		driver.findElement(By.id(lastnamefield)).sendKeys(lastName);
 		assertEquals(lastName, driver.findElement(By.id(lastnamefield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterPassword(String password) throws Exception {
+	public UserPage enterPassword(String password) throws Exception {
 		driver.findElement(By.id(passwordfield)).clear();
 		driver.findElement(By.id(passwordfield)).sendKeys(password);
 		assertEquals(password, driver.findElement(By.id(passwordfield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterConfirmPassword(String password) throws Exception {
+	public UserPage enterConfirmPassword(String password) throws Exception {
 		driver.findElement(By.id(confirmpasswordfield)).clear();
 		driver.findElement(By.id(confirmpasswordfield)).sendKeys(password);
 		assertEquals(password, driver.findElement(By.id(confirmpasswordfield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void enterTechOrEmpID(String ID) throws Exception {
+	public UserPage enterTechOrEmpID(String ID) throws Exception {
 		driver.findElement(By.id(employeeIdfield)).clear();
 		driver.findElement(By.id(employeeIdfield)).sendKeys(ID);
 		assertEquals(ID, driver.findElement(By.id(employeeIdfield))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void selectTimeZone(String TimeZone) throws Exception {
+	public UserPage selectTimeZone(String TimeZone) throws Exception {
 		assertTrue(isElementPresent(By.name(timezone), driver));
 		new Select(driver.findElement(By.name(timezone)))
 				.selectByVisibleText(TimeZone);
@@ -157,65 +173,73 @@ public class UserPage extends WaitForElement {
 				driver.findElement(By.name(timezone))).getFirstSelectedOption()
 				.getText();
 		assertTrue(strSelectedVal.equals(TimeZone));
+		return this;
 	}
 
-	public void selectLocale(String Locale) throws Exception {
+	public UserPage selectLocale(String Locale) throws Exception {
 		assertTrue(isElementPresent(By.name(localefield), driver));
 		new Select(driver.findElement(By.name(localefield)))
 				.selectByVisibleText(Locale);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(localefield))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(Locale));
+		return this;
 	}
 
-	public void selectMemberStatus(String MemberStatus) throws Exception {
+	public UserPage selectMemberStatus(String MemberStatus) throws Exception {
 		assertTrue(isElementPresent(By.name(memberStatus), driver));
 		new Select(driver.findElement(By.name(memberStatus)))
 				.selectByVisibleText(MemberStatus);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(memberStatus))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(MemberStatus));
+		return this;
 	}
 
-	public void selectSystemRole(String SystemRole) throws Exception {
+	public UserPage selectSystemRole(String SystemRole) throws Exception {
 		assertTrue(isElementPresent(By.name(systemRole), driver));
 		new Select(driver.findElement(By.name(systemRole)))
 				.selectByVisibleText(SystemRole);
 		String strSelectedVal = new Select(driver.findElement(By
 				.name(systemRole))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(SystemRole));
+		return this;
 	}
 
-	public void selectJobRole(String JobRole) throws Exception {
+	public UserPage selectJobRole(String JobRole) throws Exception {
 		assertTrue(isElementPresent(By.name(jobRole), driver));
 		new Select(driver.findElement(By.name(jobRole)))
 				.selectByVisibleText(JobRole);
 		String strSelectedVal = new Select(driver.findElement(By.name(jobRole)))
 				.getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(JobRole));
+		return this;
 	}
 
-	public void enterJobTitle(String JobTitle) throws Exception {
+	public UserPage enterJobTitle(String JobTitle) throws Exception {
 		driver.findElement(By.id(jobtitle)).clear();
 		driver.findElement(By.id(jobtitle)).sendKeys(JobTitle);
 		assertEquals(JobTitle, driver.findElement(By.id(jobtitle))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void selectSave() throws Exception {
+	public UserPage selectSave() throws Exception {
 		driver.findElement(By.name(savebutton)).click();
 		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
 		Thread.sleep(2000);
 		driver.switchTo().alert().accept();
+		return this;
 	}
 
-	public void selectGender(String genderType) throws Exception {
+	public UserPage selectGender(String genderType) throws Exception {
 		driver.findElement(By.xpath(gender));
 		driver.findElement(By.xpath(gender)).click();
+		return this;
 	}
 
-	public void AddUser(String userName, String emailAddress,
+	public UserPage AddUser(String userName, String emailAddress,
 			String salutation, String firstName, String middleName,
 			String lastName, String password, String timeZone, String locale,
 			String MemberStatus, String SystemRole, String JobRole,
@@ -241,5 +265,6 @@ public class UserPage extends WaitForElement {
 		selectJobRole(JobRole);
 		selectSave();
 		switchToAffiliationsTab();
+		return this;
 	}
 }

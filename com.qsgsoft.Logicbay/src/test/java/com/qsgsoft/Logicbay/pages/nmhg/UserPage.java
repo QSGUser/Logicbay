@@ -10,7 +10,7 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 		UserPage.driver = _driver;
 	}
 
-	public void AddUser(String emailAddress, String salutation,
+	public UserPage AddUser(String emailAddress, String salutation,
 			String firstName, String middleName, String lastName,
 			String Password, String TimeZone, String Locale,
 			String MemberStatus, String SystemRole, String JobRole,
@@ -34,5 +34,6 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 		enterJobTitle(JobTitle);
 		selectSave();
 		switchToAffiliationsTab();
+		return this;
 	}
 }

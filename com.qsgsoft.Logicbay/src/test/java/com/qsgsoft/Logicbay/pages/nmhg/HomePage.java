@@ -15,24 +15,27 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 		HomePage.driver = _driver;
 	}
 
-	public void NavigateToAdmin() throws Exception {
+	public HomePage NavigateToAdmin() throws Exception {
 		selectCenterTab();
 		selectAdmin();
+		return this;
 	}
 
-	public void selectCenterTab() throws Exception {
+	public HomePage selectCenterTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("topFrame");
 		action.moveToElement(driver.findElement(By.xpath(CenterTab))).click()
 				.build().perform();
+		return this;
 	}
 
-	public void selectAdmin() throws Exception {
+	public HomePage selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_7");
 		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
 				.build().perform();
+		return this;
 	}
 }

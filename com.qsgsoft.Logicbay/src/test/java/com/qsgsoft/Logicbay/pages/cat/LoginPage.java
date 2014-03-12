@@ -18,9 +18,10 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage{
 		return this;
 	}
 	
-	public void clickLoginButton() throws Exception {
+	public LoginPage clickLoginButton() throws Exception {
 		driver.findElement(By.xpath(loginbutton)).click();
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+		return this;
 	}
 	
 	public LoginPage login(String Username,String Password)throws Exception{

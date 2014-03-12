@@ -23,9 +23,10 @@ public class AdminPage extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String frameName) throws Exception {
+	public AdminPage switchToFrame(String frameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.name(frameName)));
+		return this;
 	}
 
 	public AdminPage SelectUserAdmin() throws Exception {
@@ -34,19 +35,22 @@ public class AdminPage extends WaitForElement {
 		return this;
 	}
 
-	public void selectAssetOption() throws Exception {
+	public AdminPage selectAssetOption() throws Exception {
 		selectAssets();
 		selectManageAssets();
+		return this;
 	}
 
-	public void selectGroups() throws Exception {
+	public AdminPage selectGroups() throws Exception {
 		selectDisplayGroups();
 		selectQuicklinks();
+		return this;
 	}
 
-	public void selectUserGroupsAdmin() throws Exception {
+	public AdminPage selectUserGroupsAdmin() throws Exception {
 		selectUserGroups();
 		selectManageOrganizations();
+		return this;
 	}
 
 	// Function to select users option on admin page
@@ -59,24 +63,27 @@ public class AdminPage extends WaitForElement {
 	}
 
 	// Function to select Add Users option
-	public void selectAddUser() throws Exception {
+	public AdminPage selectAddUser() throws Exception {
 		assertTrue(isElementPresent(By.xpath(addusers), driver));
 		driver.findElement(By.xpath(addusers)).click();
+		return this;
 	}
 
 	// Function to select Assets on admin page
-	public void selectAssets() throws Exception {
+	public AdminPage selectAssets() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
-		action.moveToElement(driver.findElement(By.xpath(assets)))
-				.click().build().perform();
+		action.moveToElement(driver.findElement(By.xpath(assets))).click()
+				.build().perform();
+		return this;
 	}
 
 	// Function to select Manage Assets option
-	public void selectManageAssets() throws Exception {
+	public AdminPage selectManageAssets() throws Exception {
 		assertTrue(isElementPresent(By.xpath(manageAssets), driver));
 		driver.findElement(By.xpath(manageAssets)).click();
+		return this;
 	}
 
 	// Function to return to home from admin Page
@@ -88,34 +95,38 @@ public class AdminPage extends WaitForElement {
 	}
 
 	// Function to select Display Groups option
-	public void selectDisplayGroups() throws Exception {
+	public AdminPage selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		action.moveToElement(driver.findElement(By.xpath(displayGroups)))
 				.click().build().perform();
+		return this;
 	}
 
 	// Function to select Quick link option
-	public void selectQuicklinks() throws Exception {
+	public AdminPage selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(quickLinks), driver));
-		action.moveToElement(driver.findElement(By.xpath(quickLinks)))
-				.click().build().perform();
+		action.moveToElement(driver.findElement(By.xpath(quickLinks))).click()
+				.build().perform();
+		return this;
 	}
 
 	// Function to select User groups option
-	public void selectUserGroups() throws Exception {
+	public AdminPage selectUserGroups() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
-		action.moveToElement(driver.findElement(By.xpath(userGroups)))
-				.click().build().perform();
+		action.moveToElement(driver.findElement(By.xpath(userGroups))).click()
+				.build().perform();
+		return this;
 	}
 
 	// Function to select Manage organizations
-	public void selectManageOrganizations() throws Exception {
+	public AdminPage selectManageOrganizations() throws Exception {
 		assertTrue(isElementPresent(By.xpath(manageOrganizations), driver));
 		driver.findElement(By.xpath(manageOrganizations)).click();
+		return this;
 	}
 }

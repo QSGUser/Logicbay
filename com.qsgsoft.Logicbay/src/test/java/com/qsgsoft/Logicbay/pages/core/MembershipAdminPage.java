@@ -28,58 +28,66 @@ public class MembershipAdminPage extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public void switchToFrame(String FrameName) throws Exception {
+	public MembershipAdminPage switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
+		return this;
 	}
 
-	public void selectcenterMembership()
+	public MembershipAdminPage selectcenterMembership()
 			throws Exception {
 		driver.findElement(By.xpath(centerMembership)).click();
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
+		return this;
 	}
 		
-	public void verifyTarget() throws Exception {
+	public MembershipAdminPage verifyTarget() throws Exception {
 		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
+		return this;
 	}
 
-	public void selectgetItems() throws Exception {
+	public MembershipAdminPage selectgetItems() throws Exception {
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		driver.findElement(By.xpath(getItems));
 		driver.findElement(By.xpath(getItems)).click();
+		return this;
 	}
 
-	public void selectSubmitOnMapping() throws Exception {
+	public MembershipAdminPage selectSubmitOnMapping() throws Exception {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(selectSubmit));
 		action.moveToElement(driver.findElement(By.xpath(selectSubmit)))
 				.click().build().perform();
+		return this;
 	}
 
-	public void selectReturnOnMapping() throws Exception {
+	public MembershipAdminPage selectReturnOnMapping() throws Exception {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(selectReturn));
 		action.moveToElement(driver.findElement(By.xpath(selectReturn)))
 				.click().build().perform();
+		return this;
 	}
 
-	public void selectsrcToMap(String src) throws Exception {
+	public MembershipAdminPage selectsrcToMap(String src) throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectSrc), driver));
 		new Select(driver.findElement(By.xpath(selectSrc)))
 				.selectByVisibleText(src);
 		String strSelectedVal = new Select(driver.findElement(By
 				.xpath(selectSrc))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(src));
+		return this;
 	}
 
-	public void selectMap() throws Exception {
+	public MembershipAdminPage selectMap() throws Exception {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath(moveRight));
 		driver.findElement(By.xpath(moveRight)).click();
+		return this;
 	}
 
-	public void selectorganizationMemebership(String subType, String src,String key)
+	public MembershipAdminPage selectorganizationMemebership(String subType, String src,String key)
 			throws Exception {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath(organizationMemebership)).click();
@@ -90,38 +98,43 @@ public class MembershipAdminPage extends WaitForElement {
 		selectsrcToMap(src);
 		selectMap();
 		verifyTarget();
+		return this;
 	}
 	
-	public void enterKeyword(String key)throws Exception{
+	public MembershipAdminPage enterKeyword(String key)throws Exception{
 		driver.findElement(By.name(keywordField)).clear();
 		driver.findElement(By.name(keywordField)).sendKeys(key);
 		assertEquals(key, driver.findElement(By.name(keywordField))
 				.getAttribute("value"));
+		return this;
 	}
 
-	public void selectsubType(String subType) throws Exception {
+	public MembershipAdminPage selectsubType(String subType) throws Exception {
 		assertTrue(isElementPresent(By.id(selectsubType), driver));
 		new Select(driver.findElement(By.id(selectsubType)))
 				.selectByVisibleText(subType);
 		String strSelectedVal = new Select(driver.findElement(By
 				.id(selectsubType))).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(subType));
+		return this;
 	}
 
-	public void selectAllowInheritance()throws Exception{
+	public MembershipAdminPage selectAllowInheritance()throws Exception{
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(allowInheritance));
 		action.moveToElement(driver.findElement(By.xpath(allowInheritance)))
 				.click().build().perform();	
+		return this;
 	}
 
-	public void administeredMembership()throws Exception{
+	public MembershipAdminPage administeredMembership()throws Exception{
 		Thread.sleep(2000);
 		driver.findElement(By.xpath(administeredMembership)).click();
 		driver.switchTo().alert().accept();
+		return this;
 	}
 	
-	public void MapToadministeredMembership(String subType, String src,String key)throws Exception{
+	public MembershipAdminPage MapToadministeredMembership(String subType, String src,String key)throws Exception{
 		administeredMembership();
 		selectsubType(subType);
 		enterKeyword(key);
@@ -131,7 +144,8 @@ public class MembershipAdminPage extends WaitForElement {
 		verifyTarget();
 		selectAllowInheritance();
 		selectSubmitOnMapping();
-		selectReturnOnMapping();	
+		selectReturnOnMapping();
+		return this;
 	}
 	public MembershipAdminPage MapToCenterMembership(String subType, String src) throws Exception {
 		selectcenterMembership();
@@ -144,10 +158,11 @@ public class MembershipAdminPage extends WaitForElement {
 		selectReturnOnMapping();
 		return this;
 	}
-	public void MapToOrgMembership(String subType, String src,String key)throws Exception{
+	public MembershipAdminPage MapToOrgMembership(String subType, String src,String key)throws Exception{
 		selectorganizationMemebership(subType,src,key);
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
+		return this;
 	}
 	
 }

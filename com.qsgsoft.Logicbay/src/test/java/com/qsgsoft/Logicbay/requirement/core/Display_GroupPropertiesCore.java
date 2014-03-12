@@ -23,8 +23,8 @@ public class Display_GroupPropertiesCore extends Configuration {
 		
 		// Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
+		objLoginPage.openURL().
+		login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
@@ -40,10 +40,9 @@ public class Display_GroupPropertiesCore extends Configuration {
 		objAdminPage.selectGroups();
 		objAssetsManagementPage.mapLinkToAsset(objUserGroupsData.QuicklinkTitle);
 		
-		objAdminPage.returnToHome()
-		            .selectDisplayGroups();
+		objAdminPage.returnToHome();
 		
-		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle);
-		objHomePage.verifyQuickLink();
+		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle).
+		verifyQuickLink();
 	}
 }

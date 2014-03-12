@@ -14,7 +14,6 @@ public class Add_EditUserDaimler extends Configuration {
 	@Test
 	public void AddUserToDaimlerServer() throws Exception {
 		@SuppressWarnings("unused")
-	
 		String gstrTO = "Verify that a user can be added in Performance Center",
 		gstrTCID = "132534";
 	
@@ -22,8 +21,8 @@ public class Add_EditUserDaimler extends Configuration {
 		UserCreationData objUserCreationData=new UserCreationData();
 		//Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
+		objLoginPage.openURL().
+		login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
@@ -44,9 +43,11 @@ public class Add_EditUserDaimler extends Configuration {
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.loginAsMember(objUserCreationData.EmailAddress, objUserCreationData.Password);
-		objLoginPage.acceptAgreement();
-		objLoginPage.passwordReset(objUserCreationData.Password, objUserCreationData.NewPassword);
+		
+		objLoginPage.loginAsMember(objUserCreationData.EmailAddress, objUserCreationData.Password)
+					.acceptAgreement()
+					.passwordReset(objUserCreationData.Password, objUserCreationData.NewPassword);
+		
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }
