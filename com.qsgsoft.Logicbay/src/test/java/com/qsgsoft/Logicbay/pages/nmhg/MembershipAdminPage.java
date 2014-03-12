@@ -11,9 +11,7 @@ public class MembershipAdminPage extends com.qsgsoft.Logicbay.pages.core.Members
 	
 	public void NmhgUserMapping(String strcentersubType, String strcenterSrc)
 			throws Exception {
-		this.selectcenterMembership(strcentersubType,
+		this.MapToCenterMembership(strcentersubType,
 				strcenterSrc);
-		selectSubmitOnMapping();
-		selectReturnOnMapping();
 	}
 }

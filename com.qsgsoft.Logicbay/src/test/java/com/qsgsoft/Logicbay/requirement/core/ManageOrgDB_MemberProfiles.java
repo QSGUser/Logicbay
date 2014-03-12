@@ -37,14 +37,14 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 
 		ManageOrganizationsPage objManageOrganizationsPage = new ManageOrganizationsPage(
 				this.driver);
-		objManageOrganizationsPage.createOrg(objUserGroupsData.newOrg,objUserGroupsData.OrgName,
-				objUserGroupsData.OrgCode);
+		objManageOrganizationsPage.createOrg(objUserGroupsData.newOrg,
+				objUserGroupsData.OrgName, objUserGroupsData.OrgCode);
 		objManageOrganizationsPage.selectCreatedOrg(objUserGroupsData.OrgName);
 		objManageOrganizationsPage.createSubOrg(objUserGroupsData.SuborgName,
 				objUserGroupsData.SuborgCode);
 
 		objAdminPage.SelectUserAdmin();
-		
+
 		UserPage objUserPage = new UserPage(this.driver);
 		objUserPage.AddUser(objUserCreationData.UserName,
 				objUserCreationData.EmailAddress,
@@ -61,7 +61,7 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 				objUserCreationData.CenterSubtype,
 				objUserCreationData.CenterSrc);
 	}
-	
+
 	@Test
 	public void ManageOrganizationDashboard1() throws Exception {
 		@SuppressWarnings("unused")
@@ -70,6 +70,9 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 		LoginPageData objLoginPageData = new LoginPageData();
 		UserCreationData objUserCreationData = new UserCreationData();
 		UserGroupsData objUserGroupsData = new UserGroupsData();
+
+		String seconduser = "SU" + objUserCreationData.UserName;
+		String seconduserEmail = "SUE" + objUserCreationData.EmailAddress;
 
 		// Creating objects
 		LoginPage objLoginPage = new LoginPage(this.driver);
@@ -85,13 +88,11 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 
 		ManageOrganizationsPage objManageOrganizationsPage = new ManageOrganizationsPage(
 				this.driver);
-		
+
 		objManageOrganizationsPage.selectCreatedOrg(objUserGroupsData.org1);
 		objManageOrganizationsPage.createSubOrg(objUserGroupsData.SuborgName,
 				objUserGroupsData.SuborgCode);
-
 		objAdminPage.SelectUserAdmin();
-		
 		UserPage objUserPage = new UserPage(this.driver);
 		objUserPage.AddUser(objUserCreationData.UserName,
 				objUserCreationData.EmailAddress,
@@ -107,15 +108,37 @@ public class ManageOrgDB_MemberProfiles extends Configuration {
 		objMembershipAdminPage.MapToCenterMembership(
 				objUserCreationData.CenterSubtype,
 				objUserCreationData.CenterSrc);
-		objMembershipAdminPage.MapToOrgMembership(objUserGroupsData.subType,objUserGroupsData.orgSrc,objUserGroupsData.org1);
-		objAdminPage.SelectUserAdmin();
-		objUserPage.AddUser(objUserCreationData.UserName,
-				objUserCreationData.EmailAddress,
+		objMembershipAdminPage.MapToOrgMembership(objUserGroupsData.subType,
+				objUserGroupsData.orgSrc, objUserGroupsData.org1);
+		objAdminPage.switchToFrame("contents");
+		objAdminPage.selectAddUser();
+		objUserPage.AddUser(seconduser, seconduserEmail,
 				objUserCreationData.Salutation, objUserCreationData.FirstName,
 				objUserCreationData.MiddleName, objUserCreationData.LastName,
 				objUserCreationData.Password, objUserCreationData.TimeZone,
 				objUserCreationData.Locale, objUserCreationData.MemberStatus,
 				objUserCreationData.SystemRole, objUserCreationData.JobRole,
 				objUserCreationData.Gender);
+		objMembershipAdminPage.MapToCenterMembership(
+				objUserCreationData.CenterSubtype,
+				objUserCreationData.CenterSrc);
+		objMembershipAdminPage.MapToOrgMembership(objUserGroupsData.subType,
+				objUserGroupsData.suborgSrc, objUserGroupsData.SuborgName);
+		objAdminPage.switchToFrame("contents");
+		objAdminPage.selectAddUser();
+		objUserPage.AddUser(seconduser, seconduserEmail,
+				objUserCreationData.Salutation, objUserCreationData.FirstName,
+				objUserCreationData.MiddleName, objUserCreationData.LastName,
+				objUserCreationData.Password, objUserCreationData.TimeZone,
+				objUserCreationData.Locale, objUserCreationData.MemberStatus,
+				objUserCreationData.SystemRole, objUserCreationData.JobRole,
+				objUserCreationData.Gender);
+		objMembershipAdminPage.MapToCenterMembership(
+				objUserCreationData.CenterSubtype,
+				objUserCreationData.CenterSrc);
+		objMembershipAdminPage.MapToadministeredMembership(
+				objUserGroupsData.subType, objUserGroupsData.orgSrc,
+				objUserGroupsData.org1);
+
 	}
 }

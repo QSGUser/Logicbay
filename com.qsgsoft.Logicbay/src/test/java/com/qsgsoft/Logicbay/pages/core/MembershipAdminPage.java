@@ -16,8 +16,10 @@ public class MembershipAdminPage extends WaitForElement {
 			checkTarget = "//form/table[3]/tbody/tr[2]/td[3]/select[@name='trgtList']",
 			moveRight = "//input[@id='move_right']",
 			selectSubmit = "//input[@type='button'][@value='Submit']",
+			allowInheritance="//input[@id='setAsInheritable'][@class='cInheritButton']",
 			selectReturn = "//td[@class='cListControlPanel']/a",
 			organizationMemebership = "//div[@id='tab_data_6']/table/tbody/tr[4]/td[1]",
+			administeredMembership="//div[@id='tab_data_6']/table/tbody/tr[10]/td[1]",
 			keywordField="keyword",
 			selectsubType = "srctype";
 	public WebDriver driver;
@@ -31,18 +33,13 @@ public class MembershipAdminPage extends WaitForElement {
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
 	}
 
-	public void selectcenterMembership(String subType, String src)
+	public void selectcenterMembership()
 			throws Exception {
 		driver.findElement(By.xpath(centerMembership)).click();
 		Thread.sleep(1000);
 		driver.switchTo().alert().accept();
-		selectsubType(subType);
-		selectgetItems();
-		selectsrcToMap(src);
-		selectMap();
-		verifyTarget();
 	}
-
+		
 	public void verifyTarget() throws Exception {
 		assertTrue(isElementPresent(By.xpath(checkTarget), driver));
 	}
@@ -111,9 +108,38 @@ public class MembershipAdminPage extends WaitForElement {
 		assertTrue(strSelectedVal.equals(subType));
 	}
 
-	public void MapToCenterMembership(String strcentersubType,
-			String strcenterSrc) throws Exception {
-		selectcenterMembership(strcentersubType, strcenterSrc);
+	public void selectAllowInheritance()throws Exception{
+		Actions action = new Actions(driver);
+		driver.findElement(By.xpath(allowInheritance));
+		action.moveToElement(driver.findElement(By.xpath(allowInheritance)))
+				.click().build().perform();	
+	}
+
+	public void administeredMembership()throws Exception{
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(administeredMembership)).click();
+		driver.switchTo().alert().accept();
+	}
+	
+	public void MapToadministeredMembership(String subType, String src,String key)throws Exception{
+		administeredMembership();
+		selectsubType(subType);
+		enterKeyword(key);
+		selectgetItems();
+		selectsrcToMap(src);
+		selectMap();
+		verifyTarget();
+		selectAllowInheritance();
+		selectSubmitOnMapping();
+		selectReturnOnMapping();	
+	}
+	public void MapToCenterMembership(String subType, String src) throws Exception {
+		selectcenterMembership();
+		selectsubType(subType);
+		selectgetItems();
+		selectsrcToMap(src);
+		selectMap();
+		verifyTarget();
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
 	}
@@ -122,5 +148,5 @@ public class MembershipAdminPage extends WaitForElement {
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
 	}
-
+	
 }

@@ -29,12 +29,13 @@ public class AssetsManagementPage extends WaitForElement {
 	public AssetsManagementPage(WebDriver _driver) {
 		AssetsManagementPage.driver = _driver;
 	}
-
+	//Function to switch to other frames on the page
 	public void switchToFrame(String FrameName) throws Exception {
 		driver.switchTo().window("");
 		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
 	}
 
+	// Function to create new asset
 	public void createNewAsset(String linkTitle, String contentType, String url)
 			throws Exception {
 		selectNewAsset();
@@ -44,6 +45,7 @@ public class AssetsManagementPage extends WaitForElement {
 		selectSave();
 	}
 
+	// Function to map quick link to assets
 	public void mapLinkToAsset(String linkTitle) throws Exception {
 		selectquicklink();
 		selectnew();
@@ -51,6 +53,7 @@ public class AssetsManagementPage extends WaitForElement {
 		enableLink(linkTitle);
 	}
 
+	// Function to select new asset option
 	public void selectNewAsset() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -60,6 +63,7 @@ public class AssetsManagementPage extends WaitForElement {
 				.build().perform();
 	}
 
+	// Function to enter quick link title
 	public void enterLinkTitle(String linkTitle) throws Exception {
 		switchToFrame("details");
 		driver.findElement(By.name(title)).clear();
@@ -68,6 +72,7 @@ public class AssetsManagementPage extends WaitForElement {
 				.getAttribute("value"));
 	}
 
+	// Function to select content type for quick link
 	public void selectContentType(String contentType) throws Exception {
 		assertTrue(isElementPresent(By.name(contenttype), driver));
 		new Select(driver.findElement(By.name(contenttype)))
@@ -77,6 +82,7 @@ public class AssetsManagementPage extends WaitForElement {
 		assertTrue(strSelectedVal.equals(contentType));
 	}
 
+	// Function to enter quicklink URL
 	public void enterURL(String url) throws Exception {
 		driver.findElement(By.name(urlfield)).clear();
 		driver.findElement(By.name(urlfield)).sendKeys(url);
@@ -84,19 +90,23 @@ public class AssetsManagementPage extends WaitForElement {
 				driver.findElement(By.name(urlfield)).getAttribute("value"));
 	}
 
+	// Function to save the changes
 	public void selectSave() throws Exception {
 		driver.findElement(By.name(savebutton)).click();
 	}
 
+	// Function to select quick links option on Quick links page
 	public void selectquicklink() throws Exception {
 		switchToFrame("main");
 		driver.findElement(By.xpath(quicklink)).click();
 	}
 
+	// Function to select new option to craeet quicklink
 	public void selectnew() throws Exception {
 		driver.findElement(By.xpath(selectNew)).click();
 	}
 
+	// Function to choose asset
 	public void chooseAsset(String linkTitle) throws Exception {
 		switchToFrame("details");
 		String mainWindowHandle = driver.getWindowHandle();
@@ -123,10 +133,12 @@ public class AssetsManagementPage extends WaitForElement {
 		selectSave();
 	}
 
+	// Function to select 'go' button on chosse asset page
 	public void selectGobutton() throws Exception {
 		driver.findElement(By.id(gobutton)).click();
 	}
 
+	// Function to enable created quick link
 	public void enableLink(String linkTitle) throws Exception {
 		switchToFrame("main");
 		Thread.sleep(1000);
@@ -134,6 +146,7 @@ public class AssetsManagementPage extends WaitForElement {
 		Thread.sleep(1000);
 	}
 
+	// Function to select quicklink from choose asset page
 	public void selectAssetlink(String linkTitle) throws Exception {
 		driver.findElement(By.xpath(selectAssetLink)).click();
 	}

@@ -11,5 +11,6 @@ public class UserGroupsData {
 	SuborgCode = "9090909",
 	newOrg="*** Create New Division ***",
 	subType="All",
-	orgSrc= OrgCode+"-"+org1;
+	orgSrc= OrgCode+"-"+org1,
+	suborgSrc=SuborgCode+"-"+SuborgName;
 }														

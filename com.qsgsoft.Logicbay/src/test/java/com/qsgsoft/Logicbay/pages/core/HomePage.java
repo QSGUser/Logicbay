@@ -12,8 +12,10 @@ import com.qsgsoft.Logicbay.support.WaitForElement;
 
 public class HomePage extends WaitForElement {
 	private String CampusTab = "//*[contains(text(),'Campus')]",
-			Admin = "//*[contains(text(), 'Admin')]", logoff = "logout_link",
-			myprofile = "profile_link", email = "email";
+			admin = "//*[contains(text(), 'Admin')]", 
+			logoff = "logout_link",
+			myprofile = "profile_link", 
+			email = "email";
 	public WebDriver driver;
 
 	public HomePage(WebDriver _driver) {
@@ -30,6 +32,7 @@ public class HomePage extends WaitForElement {
 		selectAdmin();
 	}
 
+	// Function to select campus tab on home page
 	public void selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -38,11 +41,12 @@ public class HomePage extends WaitForElement {
 				.build().perform();
 	}
 
+	// Function to select 'admin' option in campus tab
 	public void selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");
 		driver.switchTo().frame("menuiframe_4");
-		action.moveToElement(driver.findElement(By.xpath(Admin))).click()
+		action.moveToElement(driver.findElement(By.xpath(admin))).click()
 				.build().perform();
 	}
 
@@ -82,6 +86,7 @@ public class HomePage extends WaitForElement {
 		driver.switchTo().window(mainWindowHandle);
 	}
 
+	// Function to click new quick link on home homepage
 	public void selectQuickLink(String linkTitle) throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame("mainFrame");

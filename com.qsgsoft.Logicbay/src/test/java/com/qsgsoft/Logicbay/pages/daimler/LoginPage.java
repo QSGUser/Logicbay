@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 	private String loginbutton = "submitImg",
 			password = "passwordText",
+			enterpassword="password",
 			loginArrowfield = "//input[@src='/daimler_preprod/content/documents/campus_8/pc_html_images/login_btn.png']",
 			agreefield = "agree", okfield = "okbutton";
 	public static WebDriver driver;
@@ -45,7 +46,7 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		action.moveToElement(driver.findElement(By.id(password))).build()
 				.perform();
 		driver.findElement(By.id(password)).click();
-		driver.findElement(By.id("password")).sendKeys(Password);
+		driver.findElement(By.id(enterpassword)).sendKeys(Password);
 	}
 
 	public void switchToWindow(String frameName) throws Exception {
