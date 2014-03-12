@@ -133,7 +133,7 @@ public class MembershipAdminPage extends WaitForElement {
 		selectSubmitOnMapping();
 		selectReturnOnMapping();	
 	}
-	public void MapToCenterMembership(String subType, String src) throws Exception {
+	public MembershipAdminPage MapToCenterMembership(String subType, String src) throws Exception {
 		selectcenterMembership();
 		selectsubType(subType);
 		selectgetItems();
@@ -142,6 +142,7 @@ public class MembershipAdminPage extends WaitForElement {
 		verifyTarget();
 		selectSubmitOnMapping();
 		selectReturnOnMapping();
+		return this;
 	}
 	public void MapToOrgMembership(String subType, String src,String key)throws Exception{
 		selectorganizationMemebership(subType,src,key);

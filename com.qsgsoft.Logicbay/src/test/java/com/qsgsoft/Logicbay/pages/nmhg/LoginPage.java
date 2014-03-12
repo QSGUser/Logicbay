@@ -10,7 +10,8 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		super(_driver);
 		LoginPage.driver=_driver;
 	}
-	public void openURL() throws Exception {
+	public LoginPage openURL() throws Exception {
 		driver.get("https://test.materialshandlingcentral.com/nmhgstg/login/login.jsp");
+		return this;
 	}
 }

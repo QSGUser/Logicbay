@@ -13,8 +13,9 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage{
 		super(_driver);
 		LoginPage.driver=_driver;
 	}
-	public void openURL() throws Exception {
+	public LoginPage openURL() throws Exception {
 		driver.get("https://dpcstage.logicbay.com/dlms/login/landing.jsp?backdoor=yes");
+		return this;
 	}
 	
 	public void clickLoginButton() throws Exception {
@@ -22,9 +23,10 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage{
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 	}
 	
-	public void login(String Username,String Password)throws Exception{
+	public LoginPage login(String Username,String Password)throws Exception{
 		this.enterUsername(Username);
 		enterPassword(Password);
 		clickLoginButton();
+		return this;
 	}
 }

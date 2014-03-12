@@ -1,11 +1,12 @@
 package com.qsgsoft.Logicbay.requirement.nmhg;
 
+import org.testng.annotations.Test;
+
 import com.qsgsoft.Logicbay.pages.nmhg.AdminPage;
 import com.qsgsoft.Logicbay.pages.nmhg.MembershipAdminPage;
 import com.qsgsoft.Logicbay.pages.nmhg.HomePage;
 import com.qsgsoft.Logicbay.pages.nmhg.LoginPage;
 import com.qsgsoft.Logicbay.pages.nmhg.UserPage;
-import org.junit.Test;
 import com.qsgsoft.Logicbay.support.Configuration;
 import com.qsgsoft.Logicbay.dataobject.nmhg.*;
 

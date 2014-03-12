@@ -1,6 +1,6 @@
 package com.qsgsoft.Logicbay.requirement.core;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;

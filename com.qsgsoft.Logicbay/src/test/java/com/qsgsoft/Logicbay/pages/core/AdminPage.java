@@ -28,9 +28,10 @@ public class AdminPage extends WaitForElement {
 		driver.switchTo().frame(driver.findElement(By.name(frameName)));
 	}
 
-	public void SelectUserAdmin() throws Exception {
+	public AdminPage SelectUserAdmin() throws Exception {
 		selectUser();
 		selectAddUser();
+		return this;
 	}
 
 	public void selectAssetOption() throws Exception {
@@ -79,10 +80,11 @@ public class AdminPage extends WaitForElement {
 	}
 
 	// Function to return to home from admin Page
-	public void returnToHome() throws Exception {
+	public AdminPage returnToHome() throws Exception {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame("contents");
 		driver.findElement(By.xpath(returnTohome)).click();
+		return this;
 	}
 
 	// Function to select Display Groups option

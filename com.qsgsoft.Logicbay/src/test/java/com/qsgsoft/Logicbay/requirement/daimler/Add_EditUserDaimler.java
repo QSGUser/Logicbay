@@ -1,6 +1,6 @@
 package com.qsgsoft.Logicbay.requirement.daimler;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import com.qsgsoft.Logicbay.pages.daimler.AdminPage;
 import com.qsgsoft.Logicbay.pages.daimler.MembershipAdminPage;
 import com.qsgsoft.Logicbay.pages.daimler.HomePage;

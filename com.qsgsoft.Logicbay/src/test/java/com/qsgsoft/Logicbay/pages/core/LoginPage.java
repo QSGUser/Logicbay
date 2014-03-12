@@ -19,9 +19,10 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		this.driver = _driver;
 	}
 
-	public void openURL() throws Exception {
+	public LoginPage openURL() throws Exception {
 		this.driver.get("http://lbapp01.logicbay.com/pc800/login/login.jsp");
 		assertTrue(isElementPresent(By.name(username), driver));
+		return this;
 	}
 	//This function is to enter username
 	public void enterUsername(String Username) throws Exception {
@@ -43,10 +44,11 @@ public class LoginPage extends WaitForElement implements URLInterface {
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 	}
 
-	public void login(String strUsername, String strPassword) throws Exception {
+	public LoginPage login(String strUsername, String strPassword) throws Exception {
 		enterUsername(strUsername);
 		enterPassword(strPassword);
 		clickLoginButton();
+		return this;
 	}
 	//This function is to accept agreement for new user
 	public void acceptAgreement() throws Exception {

@@ -1,6 +1,6 @@
 package com.qsgsoft.Logicbay.requirement.core;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
 import com.qsgsoft.Logicbay.pages.core.LoginPage;
@@ -13,17 +13,15 @@ public class Add_EditUserCore extends Configuration {
 	@Test
 	public void AddUserToCoreServer() throws Exception {
 		@SuppressWarnings("unused")
-		String gstrTO, gstrTCID;
-		
-		gstrTO = "Verify that a user can be added in Performance Center";
+		String gstrTO = "Verify that a user can be added in Performance Center",
 		gstrTCID = "132534";
 		
 		LoginPageData objLoginPageData=new LoginPageData();
 		UserCreationData objUserCreationData=new UserCreationData();
 		// Creating objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
+		objLoginPage.openURL().
+		login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.NavigateToAdmin();
@@ -44,8 +42,10 @@ public class Add_EditUserCore extends Configuration {
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password);
-		objLoginPage.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
+		
+		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password).
+		passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
+		
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }

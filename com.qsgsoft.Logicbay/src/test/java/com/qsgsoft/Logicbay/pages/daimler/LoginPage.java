@@ -18,14 +18,16 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		LoginPage.driver = _driver;
 	}
 
-	public void openURL() throws Exception {
+	public LoginPage openURL() throws Exception {
 		driver.get("http://lbapp10.logicbay.com/daimler_preprod/login/login.jsp");
+		return this;
 	}
 
-	public void login(String strUsername, String strPassword) throws Exception {
+	public LoginPage login(String strUsername, String strPassword) throws Exception {
 		this.enterUsername(strUsername);
 		enterPassword(strPassword);
 		clickLoginButton();
+		return this;
 	}
 
 	public void loginAsMember(String emailAddress, String Password)

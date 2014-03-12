@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.junit.After;
-import org.junit.Before;
+import org.testng.annotations.*;
+
 import com.qsgsoft.Logicbay.support.Configuration;
 
 public class Configuration {
@@ -16,7 +16,7 @@ public class Configuration {
 	public Properties EnvPropertyDetails;
 	private String browser;
 
-	@Before
+	@BeforeTest
 	public void setup() throws Exception {
 
 		ReadEnvironmentProperty objReadEnvironmentProperty = new ReadEnvironmentProperty();
@@ -47,7 +47,7 @@ public class Configuration {
 		return;
 	}
 
-	@After
+	@AfterTest
 	public void tearDown() throws Exception {
 		driver.close();
 		driver.quit();

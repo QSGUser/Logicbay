@@ -1,6 +1,8 @@
 package com.qsgsoft.Logicbay.support;
 
+import com.qsgsoft.Logicbay.pages.core.LoginPage;
+
 public interface URLInterface {
 
-	public void openURL() throws Exception;
+	public LoginPage openURL() throws Exception;
 }

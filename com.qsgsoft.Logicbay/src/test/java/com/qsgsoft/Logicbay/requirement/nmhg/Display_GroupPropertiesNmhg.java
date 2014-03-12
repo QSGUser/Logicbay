@@ -1,6 +1,8 @@
 package com.qsgsoft.Logicbay.requirement.nmhg;
 
-import org.junit.Test;
+
+import org.testng.annotations.Test;
+
 import com.qsgsoft.Logicbay.pages.nmhg.AdminPage;
 import com.qsgsoft.Logicbay.pages.nmhg.AssetsManagementPage;
 import com.qsgsoft.Logicbay.pages.nmhg.HomePage;

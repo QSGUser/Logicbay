@@ -1,6 +1,6 @@
 package com.qsgsoft.Logicbay.requirement.core;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import com.qsgsoft.Logicbay.pages.core.AdminPage;
 import com.qsgsoft.Logicbay.pages.core.AssetsManagementPage;
 import com.qsgsoft.Logicbay.pages.core.HomePage;
@@ -20,6 +20,7 @@ public class Display_GroupPropertiesCore extends Configuration {
 		
 		LoginPageData objLoginPageData=new LoginPageData();
 		UserGroupsData objUserGroupsData=new UserGroupsData();
+		
 		// Creating the objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL();
@@ -38,7 +39,10 @@ public class Display_GroupPropertiesCore extends Configuration {
 
 		objAdminPage.selectGroups();
 		objAssetsManagementPage.mapLinkToAsset(objUserGroupsData.QuicklinkTitle);
-		objAdminPage.returnToHome();
+		
+		objAdminPage.returnToHome()
+		            .selectDisplayGroups();
+		
 		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle);
 		objHomePage.verifyQuickLink();
 	}
