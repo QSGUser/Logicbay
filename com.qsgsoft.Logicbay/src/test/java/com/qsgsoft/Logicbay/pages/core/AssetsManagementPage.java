@@ -4,14 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.support.WaitForElement;
 
-public class AssetsManagementPage extends WaitForElement {
+import com.qsgsoft.Logicbay.WebElement.WebElements;
+
+public class AssetsManagementPage extends WebElements {
 	private String newAsset = "//img[@src='../images/admin/controls/document.gif']",
 			title = "title",
 			contenttype = "assetTypeId",
@@ -23,19 +24,14 @@ public class AssetsManagementPage extends WaitForElement {
 			searchfield = "//input[@id='search_criteria_TXT']",
 			gobutton = "search_go",
 			selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]",
-			enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']";
+			enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']",
+			mainFramename = "main", detailsFramename = "details";
 	public static WebDriver driver;
+	WebElement element;
 
 	public AssetsManagementPage(WebDriver _driver) {
+		super(_driver);
 		AssetsManagementPage.driver = _driver;
-	}
-
-	// Function to switch to other frames on the page
-	public AssetsManagementPage switchToFrame(String FrameName)
-			throws Exception {
-		driver.switchTo().window("");
-		driver.switchTo().frame(driver.findElement(By.id(FrameName)));
-		return this;
 	}
 
 	// Function to create new asset
@@ -62,70 +58,72 @@ public class AssetsManagementPage extends WaitForElement {
 	// Function to select new asset option
 	public AssetsManagementPage selectNewAsset() throws Exception {
 		Actions action = new Actions(driver);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		switchToFrame("main");
-		driver.findElement(By.xpath(newAsset));
-		action.moveToElement(driver.findElement(By.xpath(newAsset))).click()
-				.build().perform();
+		switchToFrame(mainFramename, "id");
+		element = element(newAsset, "xpath");
+		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	// Function to enter quick link title
 	public AssetsManagementPage enterLinkTitle(String linkTitle)
 			throws Exception {
-		switchToFrame("details");
-		driver.findElement(By.name(title)).clear();
-		driver.findElement(By.name(title)).sendKeys(linkTitle);
-		assertEquals(linkTitle, driver.findElement(By.name(title))
-				.getAttribute("value"));
+		switchToFrame(detailsFramename, "id");
+		element = element(title, "name");
+		element.clear();
+		element.sendKeys(linkTitle);
+		assertEquals(linkTitle, element.getAttribute("value"));
 		return this;
 	}
 
 	// Function to select content type for quick link
 	public AssetsManagementPage selectContentType(String contentType)
 			throws Exception {
-		assertTrue(isElementPresent(By.name(contenttype), driver));
-		new Select(driver.findElement(By.name(contenttype)))
-				.selectByVisibleText(contentType);
-		String strSelectedVal = new Select(driver.findElement(By
-				.name(contenttype))).getFirstSelectedOption().getText();
-		assertTrue(strSelectedVal.equals(contentType));
+		assertTrue(isElementPresent(By.name(contenttype)));
+		element = element(contenttype, "name");
+		new Select(element).selectByVisibleText(contentType);
+		String SelectedVal = new Select(element).getFirstSelectedOption()
+				.getText();
+		assertTrue(SelectedVal.equals(contentType));
 		return this;
 	}
 
 	// Function to enter quicklink URL
 	public AssetsManagementPage enterURL(String url) throws Exception {
-		driver.findElement(By.name(urlfield)).clear();
-		driver.findElement(By.name(urlfield)).sendKeys(url);
-		assertEquals(url,
-				driver.findElement(By.name(urlfield)).getAttribute("value"));
+		element = element(urlfield, "name");
+		element.clear();
+		element.sendKeys(url);
+		assertEquals(url, element.getAttribute("value"));
 		return this;
 	}
 
 	// Function to save the changes
 	public AssetsManagementPage selectSave() throws Exception {
-		driver.findElement(By.name(savebutton)).click();
+		element = element(savebutton, "name");
+		element.click();
 		return this;
 	}
 
 	// Function to select quick links option on Quick links page
 	public AssetsManagementPage selectquicklink() throws Exception {
-		switchToFrame("main");
-		driver.findElement(By.xpath(quicklink)).click();
+		switchToFrame(mainFramename, "id");
+		element = element(quicklink, "xpath");
+		element.click();
 		return this;
 	}
 
 	// Function to select new option to craeet quicklink
 	public AssetsManagementPage selectnew() throws Exception {
-		driver.findElement(By.xpath(selectNew)).click();
+		element = element(selectNew, "xpath");
+		element.click();
 		return this;
 	}
 
 	// Function to choose asset
 	public AssetsManagementPage chooseAsset(String linkTitle) throws Exception {
-		switchToFrame("details");
+		switchToFrame(detailsFramename, "id");
 		String mainWindowHandle = driver.getWindowHandle();
-		driver.findElement(By.cssSelector(chooseAsset)).click();
+		element = element(chooseAsset, "css");
+		element.click();
 		Thread.sleep(5000);
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
@@ -139,27 +137,36 @@ public class AssetsManagementPage extends WaitForElement {
 		}
 		String assetMenu = driver.getTitle();
 		assertTrue(assetMenu.contains("Choose Asset"));
-		driver.switchTo().frame(driver.findElement(By.id("main")));
-		driver.findElement(By.xpath(searchfield)).clear();
-		driver.findElement(By.xpath(searchfield)).sendKeys(linkTitle);
+		searchAsset(linkTitle);
+		switchToFrame(detailsFramename, "id");
+		selectSave();
+		return this;
+	}
+
+	public AssetsManagementPage searchAsset(String linkTitle) throws Exception {
+		element = element(mainFramename, "id");
+		driver.switchTo().frame(element);
+		element = element(searchfield, "xpath");
+		element.clear();
+		element.sendKeys(linkTitle);
 		selectGobutton();
 		selectAssetlink(linkTitle);
-		switchToFrame("details");
-		selectSave();
 		return this;
 	}
 
 	// Function to select 'go' button on chosse asset page
 	public AssetsManagementPage selectGobutton() throws Exception {
-		driver.findElement(By.id(gobutton)).click();
+		element = element(gobutton, "id");
+		element.click();
 		return this;
 	}
 
 	// Function to enable created quick link
 	public AssetsManagementPage enableLink(String linkTitle) throws Exception {
-		switchToFrame("main");
+		switchToFrame(mainFramename, "id");
 		Thread.sleep(1000);
-		driver.findElement(By.xpath(enablebutton)).click();
+		element = element(enablebutton, "xpath");
+		element.click();
 		Thread.sleep(1000);
 		return this;
 	}
@@ -167,7 +174,8 @@ public class AssetsManagementPage extends WaitForElement {
 	// Function to select quicklink from choose asset page
 	public AssetsManagementPage selectAssetlink(String linkTitle)
 			throws Exception {
-		driver.findElement(By.xpath(selectAssetLink)).click();
+		element = element(selectAssetLink, "xpath");
+		element.click();
 		return this;
 	}
 }

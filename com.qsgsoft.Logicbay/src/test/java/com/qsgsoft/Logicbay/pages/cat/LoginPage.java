@@ -1,8 +1,5 @@
 package com.qsgsoft.Logicbay.pages.cat;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage{
@@ -19,8 +16,8 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage{
 	}
 	
 	public LoginPage clickLoginButton() throws Exception {
-		driver.findElement(By.xpath(loginbutton)).click();
-		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+		element=element(loginbutton,"xpath");
+		element.click();
 		return this;
 	}
 	

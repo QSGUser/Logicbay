@@ -45,21 +45,21 @@ public class UserPage extends com.qsgsoft.Logicbay.pages.core.UserPage {
 	}
 
 	public UserPage selectUserName(String UserName) throws Exception {
-		assertTrue(isElementPresent(By.id(usernamefield), driver));
-		new Select(driver.findElement(By.id(usernamefield)))
+		assertTrue(isElementPresent(By.id(usernamefield)));
+		element=element(usernamefield,"id");
+		new Select(element)
 				.selectByVisibleText(UserName);
-		String strSelectedVal = new Select(driver.findElement(By
-				.id(usernamefield))).getFirstSelectedOption().getText();
-		assertTrue(strSelectedVal.equals(UserName));
+		String SelectedVal = new Select(element).getFirstSelectedOption().getText();
+		assertTrue(SelectedVal.equals(UserName));
 		return this;
 	}
 
 	public UserPage selectAccount(String associatedAccount) throws Exception {
-		assertTrue(isElementPresent(By.id(accountfield), driver));
-		new Select(driver.findElement(By.id(accountfield)))
+		assertTrue(isElementPresent(By.id(accountfield)));
+		element=element(accountfield,"id");
+		new Select(element)
 				.selectByVisibleText(associatedAccount);
-		String strSelectedVal = new Select(driver.findElement(By
-				.id(accountfield))).getFirstSelectedOption().getText();
+		String strSelectedVal = new Select(element).getFirstSelectedOption().getText();
 		assertTrue(strSelectedVal.equals(associatedAccount));
 		return this;
 	}

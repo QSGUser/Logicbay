@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import com.qsgsoft.Logicbay.requirement.daimler.*;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ Add_EditUserDaimler.class, })
+@Suite.SuiteClasses({ AddEditUserDaimler.class, })
 public class DaimlerRequirementTest {
 
 }
