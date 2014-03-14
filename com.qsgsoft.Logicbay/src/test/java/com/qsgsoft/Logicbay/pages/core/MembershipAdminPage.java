@@ -38,6 +38,7 @@ public class MembershipAdminPage extends WebElements {
 
 	public MembershipAdminPage verifyTarget() throws Exception {
 		assertTrue(isElementPresent(By.xpath(checkTarget)));
+		
 		return this;
 	}
 
@@ -51,6 +52,7 @@ public class MembershipAdminPage extends WebElements {
 	public MembershipAdminPage selectSubmitOnMapping() throws Exception {
 		Actions action = new Actions(driver);
 		element = element(selectSubmit, "xpath");
+		element.click();
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}

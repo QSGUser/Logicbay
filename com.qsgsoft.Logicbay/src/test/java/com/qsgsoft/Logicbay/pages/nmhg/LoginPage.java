@@ -14,4 +14,15 @@ public class LoginPage extends com.qsgsoft.Logicbay.pages.core.LoginPage {
 		driver.get("https://test.materialshandlingcentral.com/nmhgstg/login/login.jsp");
 		return this;
 	}
+	
+	// This function is to reset the password for new user login
+		public LoginPage passwordReset(String Password, String newPassword)
+				throws Exception {
+			Thread.sleep(2000);
+			enterNewPassword(newPassword);
+			enterConfirmPassword(newPassword);
+			selectSubmit();
+			Thread.sleep(2000);
+			return this;
+		}
 }

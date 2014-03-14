@@ -36,7 +36,7 @@ public class HomePage extends WebElements {
 	public HomePage selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFramename, "name");
-		waitForElement(CampusTab,"xpath");
+		//waitForElement(CampusTab,"xpath");
 		element = element(CampusTab, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
@@ -102,7 +102,7 @@ public class HomePage extends WebElements {
 		switchToFrame(mainFramename, "name");
 		element = element(linkTitle, "linktext");
 		action.moveToElement(element)
-				.click().build().perform();
+		.click().build().perform();
 		return this;
 	}
 

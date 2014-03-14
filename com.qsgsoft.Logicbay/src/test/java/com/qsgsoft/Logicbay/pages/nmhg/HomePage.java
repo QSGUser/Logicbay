@@ -34,7 +34,7 @@ public class HomePage extends com.qsgsoft.Logicbay.pages.core.HomePage {
 	public HomePage selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFrameName, "id");
-		driver.switchTo().frame(subframe);
+		switchToFrame(subframe,"");
 		element = element(Admin, "xpath");
 		action.moveToElement(element).click()
 				.build().perform();

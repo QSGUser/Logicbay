@@ -17,7 +17,7 @@ public class UserCreationData {
 			JobRole = "Administrator", 
 			CenterSubtype = "None",
 			CenterSrc = "Performance Center", 
-			NewPassword = "Logic@2025",
+			NewPassword = "Logic@2125",
 			AssociatedAccount = "None";
 			
 }

@@ -9,9 +9,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<wait.time>30</wait.time>
-		<wait.timeshort>15</wait.timeshort>
-		<wait.timelong>60</wait.timelong>
 	</properties>
 	<build>
 		<resources>
@@ -21,7 +18,6 @@
 			</resource>
 		</resources>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
