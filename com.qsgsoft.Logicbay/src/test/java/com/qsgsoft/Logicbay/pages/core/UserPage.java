@@ -1,13 +1,12 @@
 package com.qsgsoft.Logicbay.pages.core;
 
 import static org.junit.Assert.*;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 
 public class UserPage extends WebElements {
 	private String usernamefield = "username",

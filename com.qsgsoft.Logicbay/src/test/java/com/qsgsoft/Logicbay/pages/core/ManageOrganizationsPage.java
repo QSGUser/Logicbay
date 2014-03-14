@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 
 public class ManageOrganizationsPage extends WebElements {
 	private String selectDivision = "selRootOrgId", orgNamefield = "orgName",

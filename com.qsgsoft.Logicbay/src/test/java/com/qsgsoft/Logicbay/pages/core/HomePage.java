@@ -7,7 +7,7 @@ import java.util.Set;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 
 public class HomePage extends WebElements {
 	private String CampusTab = "//*[contains(text(),'Campus')]",

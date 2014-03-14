@@ -3,7 +3,7 @@ package com.qsgsoft.Logicbay.pages.core;
 import lib.URLInterface;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 import static org.junit.Assert.*;
 
 public class LoginPage extends WebElements implements URLInterface {
@@ -56,7 +56,6 @@ public class LoginPage extends WebElements implements URLInterface {
 		enterUsername(Username);
 		enterPassword(Password);
 		clickLoginButton();
-		
 		return this;
 	}
 

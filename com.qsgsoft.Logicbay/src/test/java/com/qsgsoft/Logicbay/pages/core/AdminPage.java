@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 import static org.junit.Assert.*;
 
 public class AdminPage extends WebElements {

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import com.qsgsoft.Logicbay.WebElement.WebElements;
+import lib.WebElements;
 
 public class MembershipAdminPage extends WebElements {
 	private String centerMembership = "//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]",
