@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import lib.WebElements;
 
-public class MembershipAdminPage extends WebElements {
+public class MembershipPage extends WebElements {
 	private String centerMembership = "//div[@id='tab_data_6']/table/tbody/tr[2]/td[1]",
 			getItems = "//input[@name='btnGetItems']",
 			selectSrc = "//select[@class='cListField'][@name='srcList']",
@@ -23,50 +23,47 @@ public class MembershipAdminPage extends WebElements {
 	public WebDriver driver;
 	WebElement element;
 
-	public MembershipAdminPage(WebDriver _driver) {
+	public MembershipPage(WebDriver _driver) {
 		super(_driver);
 		this.driver = _driver;
 	}
 
-	public MembershipAdminPage selectcenterMembership() throws Exception {
-		element = element(centerMembership, "xpath");
+	public MembershipPage selectcenterMembership() throws Exception {
+		element = getElement(centerMembership, "xpath");
 		element.click();
-		Thread.sleep(1000);
-		driver.switchTo().alert().accept();
+		handleAlert();
 		return this;
 	}
 
-	public MembershipAdminPage verifyTarget() throws Exception {
+	public MembershipPage verifyTarget() throws Exception {
 		assertTrue(isElementPresent(By.xpath(checkTarget)));
-		
 		return this;
 	}
 
-	public MembershipAdminPage selectgetItems() throws Exception {
-		Thread.sleep(2000);
-		element = element(getItems, "xpath");
+	public MembershipPage selectgetItems() throws Exception {
+		element = getElement(getItems, "xpath");
 		element.click();
 		return this;
 	}
 
-	public MembershipAdminPage selectSubmitOnMapping() throws Exception {
+	public MembershipPage selectSubmitOnMapping() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(selectSubmit, "xpath");
+		element = getElement(selectSubmit, "xpath");
 		element.click();
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
-	public MembershipAdminPage selectReturnOnMapping() throws Exception {
+	public MembershipPage selectReturnOnMapping() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(selectReturn, "xpath");
+		element = getElement(selectReturn, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
-	public MembershipAdminPage selectsrcToMap(String src) throws Exception {
+	public MembershipPage selectsrcToMap(String src) throws Exception {
 		assertTrue(isElementPresent(By.xpath(selectSrc)));
-		element = element(selectSrc, "xpath");
+		element = getElement(selectSrc, "xpath");
 		new Select(element).selectByVisibleText(src);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -74,33 +71,33 @@ public class MembershipAdminPage extends WebElements {
 		return this;
 	}
 
-	public MembershipAdminPage selectMap() throws Exception {
-		Thread.sleep(2000);
-		element = element(moveRight, "xpath");
+	public MembershipPage selectMap() throws Exception {
+		
+		element = getElement(moveRight, "xpath");
 		element.click();
 		return this;
 	}
 
-	public MembershipAdminPage selectorganizationMemebership(String subType,
+	public MembershipPage selectorganizationMemebership(String subType,
 			String src, String key) throws Exception {
-		Thread.sleep(2000);
-		element = element(organizationMemebership, "xpath");
+		
+		element = getElement(organizationMemebership, "xpath");
 		element.click();
 		driver.switchTo().alert().accept();
 		return this;
 	}
 
-	public MembershipAdminPage enterKeyword(String key) throws Exception {
-		element = element(keywordField, "name");
+	public MembershipPage enterKeyword(String key) throws Exception {
+		element = getElement(keywordField, "name");
 		element.clear();
 		element.sendKeys(key);
 		assertEquals(key, element.getAttribute("value"));
 		return this;
 	}
 
-	public MembershipAdminPage selectsubType(String subType) throws Exception {
+	public MembershipPage selectsubType(String subType) throws Exception {
 		assertTrue(isElementPresent(By.id(selectsubType)));
-		element = element(selectsubType, "id");
+		element = getElement(selectsubType, "id");
 		new Select(element).selectByVisibleText(subType);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -108,23 +105,22 @@ public class MembershipAdminPage extends WebElements {
 		return this;
 	}
 
-	public MembershipAdminPage selectAllowInheritance() throws Exception {
+	public MembershipPage selectAllowInheritance() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(allowInheritance, "xpath");
+		element = getElement(allowInheritance, "xpath");
 		action.moveToElement(element)
 				.click().build().perform();
 		return this;
 	}
 
-	public MembershipAdminPage administeredMembership() throws Exception {
-		Thread.sleep(2000);
-		element = element(administeredMembership, "xpath");
+	public MembershipPage administeredMembership() throws Exception {
+		element = getElement(administeredMembership, "xpath");
 		element.click();
 		driver.switchTo().alert().accept();
 		return this;
 	}
 
-	public MembershipAdminPage MapToadministeredMembership(String subType,
+	public MembershipPage MapToadministeredMembership(String subType,
 			String src, String key) throws Exception {
 		administeredMembership();
 		selectsubType(subType);
@@ -139,7 +135,7 @@ public class MembershipAdminPage extends WebElements {
 		return this;
 	}
 
-	public MembershipAdminPage MapToCenterMembership(String subType, String src)
+	public MembershipPage MapToCenterMembership(String subType, String src)
 			throws Exception {
 		selectcenterMembership();
 		selectsubType(subType);
@@ -152,7 +148,7 @@ public class MembershipAdminPage extends WebElements {
 		return this;
 	}
 
-	public MembershipAdminPage MapToOrgMembership(String subType, String src,
+	public MembershipPage MapToOrgMembership(String subType, String src,
 			String key) throws Exception {
 		selectorganizationMemebership(subType, src, key);
 		selectsubType(subType);

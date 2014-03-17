@@ -46,7 +46,7 @@ public class UserPage extends pages.core.UserPage {
 
 	public UserPage selectUserName(String UserName) throws Exception {
 		assertTrue(isElementPresent(By.id(usernamefield)));
-		element=element(usernamefield,"id");
+		element=getElement(usernamefield,"id");
 		new Select(element)
 				.selectByVisibleText(UserName);
 		String SelectedVal = new Select(element).getFirstSelectedOption().getText();
@@ -56,7 +56,7 @@ public class UserPage extends pages.core.UserPage {
 
 	public UserPage selectAccount(String associatedAccount) throws Exception {
 		assertTrue(isElementPresent(By.id(accountfield)));
-		element=element(accountfield,"id");
+		element=getElement(accountfield,"id");
 		new Select(element)
 				.selectByVisibleText(associatedAccount);
 		String strSelectedVal = new Select(element).getFirstSelectedOption().getText();

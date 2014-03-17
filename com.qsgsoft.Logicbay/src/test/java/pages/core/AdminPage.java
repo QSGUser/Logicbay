@@ -1,6 +1,5 @@
 package pages.core;
 
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -50,19 +49,27 @@ public class AdminPage extends WebElements {
 		selectManageOrganizations();
 		return this;
 	}
+	
+	public AdminPage verifyAdminPage(String title)throws Exception{
+		waitForPageToLoad();
+		String adminPagetitle = driver.getTitle();
+		assertTrue(adminPagetitle.contains(title));
+		return this;
+	}
 
 	// Function to select users option on admin page
-	public void selectUser() throws Exception {
+	public AdminPage selectUser() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(contentFrameName, "id");
-		element = element(users, "xpath");
+		element = getElement(users, "xpath");
 		action.moveToElement(element).click().build().perform();
+		return this;
 	}
 
 	// Function to select Add Users option
 	public AdminPage selectAddUser() throws Exception {
 		assertTrue(isElementPresent(By.xpath(addusers)));
-		element = element(addusers, "xpath");
+		element = getElement(addusers, "xpath");
 		element.click();
 		return this;
 	}
@@ -71,7 +78,7 @@ public class AdminPage extends WebElements {
 	public AdminPage selectAssets() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(contentFrameName, "id");
-		element = element(assets, "xpath");
+		element = getElement(assets, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -79,16 +86,15 @@ public class AdminPage extends WebElements {
 	// Function to select Manage Assets option
 	public AdminPage selectManageAssets() throws Exception {
 		assertTrue(isElementPresent(By.xpath(manageAssets)));
-		element = element(manageAssets, "xpath");
+		element = getElement(manageAssets, "xpath");
 		element.click();
 		return this;
 	}
 
 	// Function to return to home from admin Page
 	public AdminPage returnToHome() throws Exception {
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		switchToFrame(contentFrameName, "id");
-		element = element(returnTohome, "xpath");
+		element = getElement(returnTohome, "xpath");
 		element.click();
 		return this;
 	}
@@ -97,7 +103,7 @@ public class AdminPage extends WebElements {
 	public AdminPage selectDisplayGroups() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(contentFrameName, "id");
-		element = element(displayGroups, "xpath");
+		element = getElement(displayGroups, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -106,7 +112,7 @@ public class AdminPage extends WebElements {
 	public AdminPage selectQuicklinks() throws Exception {
 		Actions action = new Actions(driver);
 		assertTrue(isElementPresent(By.xpath(quickLinks)));
-		element = element(quickLinks, "xpath");
+		element = getElement(quickLinks, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -115,7 +121,7 @@ public class AdminPage extends WebElements {
 	public AdminPage selectUserGroups() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(contentFrameName, "id");
-		element = element(userGroups, "xpath");
+		element = getElement(userGroups, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -123,7 +129,7 @@ public class AdminPage extends WebElements {
 	// Function to select Manage organizations
 	public AdminPage selectManageOrganizations() throws Exception {
 		assertTrue(isElementPresent(By.xpath(manageOrganizations)));
-		element = element(manageOrganizations, "xpath");
+		element = getElement(manageOrganizations, "xpath");
 		element.click();
 		return this;
 	}

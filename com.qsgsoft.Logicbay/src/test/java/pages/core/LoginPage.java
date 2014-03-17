@@ -28,7 +28,7 @@ public class LoginPage extends WebElements implements URLInterface {
 
 	// This function is to enter username
 	public LoginPage enterUsername(String Username) throws Exception {
-		element = element(username, "name");
+		element = getElement(username, "name");
 		element.clear();
 		element.sendKeys(Username);
 		assertEquals(Username, element.getAttribute("value"));
@@ -37,7 +37,7 @@ public class LoginPage extends WebElements implements URLInterface {
 
 	// This function is to enter password
 	public LoginPage enterPassword(String Password) throws Exception {
-		element = element(password, "name");
+		element = getElement(password, "name");
 		element.clear();
 		element.sendKeys(Password);
 		assertEquals(Password, element.getAttribute("value"));
@@ -46,7 +46,7 @@ public class LoginPage extends WebElements implements URLInterface {
 
 	// This function is to click on login button
 	public LoginPage clickLoginButton() throws Exception {
-		element = element(loginbutton, "id");
+		element = getElement(loginbutton, "id");
 		element.click();
 		return this;
 	}
@@ -61,15 +61,14 @@ public class LoginPage extends WebElements implements URLInterface {
 
 	// This function is to accept agreement for new user
 	public LoginPage acceptAgreement() throws Exception {
-		Thread.sleep(3000);
-		element = element(accept, "xpath");
+		element = getElement(accept, "xpath");
 		element.click();
 		return this;
 	}
 
 	// This function is to enter new password on edit password form
 	public LoginPage enterNewPassword(String newPassword) throws Exception {
-		element = element(newpassword, "name");
+		element = getElement(newpassword, "name");
 		element.clear();
 		element.sendKeys(newPassword);
 		assertEquals(newPassword, element.getAttribute("value"));
@@ -79,7 +78,7 @@ public class LoginPage extends WebElements implements URLInterface {
 	// This function is to confirm new password on edit password form
 	public LoginPage enterConfirmPassword(String confirmPassword)
 			throws Exception {
-		element = element(confirmnewpassword, "name");
+		element = getElement(confirmnewpassword, "name");
 		element.clear();
 		element.sendKeys(confirmPassword);
 		assertEquals(confirmPassword, element.getAttribute("value"));
@@ -88,22 +87,19 @@ public class LoginPage extends WebElements implements URLInterface {
 
 	// This function is to select submit button on edit password form
 	public LoginPage selectSubmit() throws Exception {
-		element = element(submitbutton, "id");
+		element = getElement(submitbutton, "id");
 		element.click();
-		Thread.sleep(2000);
-		driver.switchTo().alert().accept();
+		handleAlert();
 		return this;
 	}
 
 	// This function is to reset the password for new user login
 	public LoginPage passwordReset(String Password, String newPassword)
 			throws Exception {
-		Thread.sleep(2000);
 		enterPassword(Password);
 		enterNewPassword(newPassword);
 		enterConfirmPassword(newPassword);
 		selectSubmit();
-		Thread.sleep(2000);
 		return this;
 	}
 }

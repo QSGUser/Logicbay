@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import lib.WebElements;
 
-public class ManageOrganizationsPage extends WebElements {
+public class OrganizationPage extends WebElements {
 	private String selectDivision = "selRootOrgId", orgNamefield = "orgName",
 			orgCodefield = "orgCode", savebutton = "save",
 			selectNew = "//div[@id='dNewMenuItem']",
@@ -18,12 +18,12 @@ public class ManageOrganizationsPage extends WebElements {
 	public WebDriver driver;
 	WebElement element;
 
-	public ManageOrganizationsPage(WebDriver _driver) {
+	public OrganizationPage(WebDriver _driver) {
 		super(_driver);
 		this.driver = _driver;
 	}
 
-	public ManageOrganizationsPage createOrg(String newOrg, String orgName,
+	public OrganizationPage createOrg(String newOrg, String orgName,
 			String orgCode) throws Exception {
 		selectDivision(newOrg);
 		enterOrgName(orgName);
@@ -32,7 +32,7 @@ public class ManageOrganizationsPage extends WebElements {
 		return this;
 	}
 
-	public ManageOrganizationsPage selectCreatedOrg(String orgName)
+	public OrganizationPage selectCreatedOrg(String orgName)
 			throws Exception {
 		selectDivision(orgName);
 		selectOrg();
@@ -40,7 +40,7 @@ public class ManageOrganizationsPage extends WebElements {
 		return this;
 	}
 
-	public ManageOrganizationsPage createSubOrg(String orgName, String orgCode)
+	public OrganizationPage createSubOrg(String orgName, String orgCode)
 			throws Exception {
 		enterOrgName(orgName);
 		enterCode(orgCode);
@@ -49,20 +49,20 @@ public class ManageOrganizationsPage extends WebElements {
 	}
 
 	// This function is to select organization form drop down
-	public ManageOrganizationsPage selectDivision(String Division)
+	public OrganizationPage selectDivision(String Division)
 			throws Exception {
 		switchToFrame(mainFramename, "id");
 		assertTrue(isElementPresent(By.name(selectDivision)));
-		element = element(selectDivision, "name");
+		element = getElement(selectDivision, "name");
 		new Select(element).selectByVisibleText(Division);
 		return this;
 	}
 
 	// This function is to enter organization and sub organization name
-	public ManageOrganizationsPage enterOrgName(String orgName)
+	public OrganizationPage enterOrgName(String orgName)
 			throws Exception {
 		switchToFrame(detailsFrameName, "id");
-		element = element(orgNamefield, "name");
+		element = getElement(orgNamefield, "name");
 		element.clear();
 		element.sendKeys(orgName);
 		assertEquals(orgName, element.getAttribute("value"));
@@ -70,8 +70,8 @@ public class ManageOrganizationsPage extends WebElements {
 	}
 
 	// This function is to enter organization and sub organization code
-	public ManageOrganizationsPage enterCode(String orgCode) throws Exception {
-		element = element(orgCodefield, "name");
+	public OrganizationPage enterCode(String orgCode) throws Exception {
+		element = getElement(orgCodefield, "name");
 		element.clear();
 		element.sendKeys(orgCode);
 		assertEquals(orgCode, element.getAttribute("value"));
@@ -79,24 +79,22 @@ public class ManageOrganizationsPage extends WebElements {
 	}
 
 	// This function is to save the changes
-	public ManageOrganizationsPage selectSave() throws Exception {
-		element = element(savebutton, "name");
+	public OrganizationPage selectSave() throws Exception {
+		element = getElement(savebutton, "name");
 		element.click();
 		return this;
 	}
 
 	// This function is to select organization from results table
-	public ManageOrganizationsPage selectOrg() throws Exception {
-		Thread.sleep(2000);
-		element = element(selectOrg, "xpath");
+	public OrganizationPage selectOrg() throws Exception {
+		element = getElement(selectOrg, "xpath");
 		element.click();
 		return this;
 	}
 
 	// This function is to click on new option
-	public ManageOrganizationsPage selectNew() throws Exception {
-		Thread.sleep(2000);
-		element = element(selectNew, "xpath");
+	public OrganizationPage selectNew() throws Exception {
+		element = getElement(selectNew, "xpath");
 		element.click();
 		return this;
 	}

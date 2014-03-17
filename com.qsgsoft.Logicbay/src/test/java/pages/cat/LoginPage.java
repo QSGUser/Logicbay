@@ -16,7 +16,7 @@ public class LoginPage extends pages.core.LoginPage{
 	}
 	
 	public LoginPage clickLoginButton() throws Exception {
-		element=element(loginbutton,"xpath");
+		element=getElement(loginbutton,"xpath");
 		element.click();
 		return this;
 	}

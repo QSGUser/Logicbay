@@ -1,5 +1,6 @@
 package pages.nmhg;
 
+import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -22,10 +23,16 @@ public class HomePage extends pages.core.HomePage {
 		return this;
 	}
 
+	public HomePage verifyHomePage(String title)throws Exception{
+		waitForPageToLoad();
+		String homePagetitle = driver.getTitle();
+		assertTrue(homePagetitle.contains(title));
+		return this;
+	}
 	public HomePage selectCenterTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFrameName, "name");
-		element = element(CenterTab, "xpath");
+		element = getElement(CenterTab, "xpath");
 		action.moveToElement(element).click()
 				.build().perform();
 		return this;
@@ -33,9 +40,9 @@ public class HomePage extends pages.core.HomePage {
 
 	public HomePage selectAdmin() throws Exception {
 		Actions action = new Actions(driver);
-		switchToFrame(mainFrameName, "id");
+		switchToFrame(mainFrameName, "name");
 		switchToFrame(subframe,"");
-		element = element(Admin, "xpath");
+		element = getElement(Admin, "xpath");
 		action.moveToElement(element).click()
 				.build().perform();
 		return this;

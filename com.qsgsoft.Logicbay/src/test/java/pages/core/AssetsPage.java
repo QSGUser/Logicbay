@@ -11,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import lib.WebElements;
 
-public class AssetsManagementPage extends WebElements {
+public class AssetsPage extends WebElements {
 	private String newAsset = "//img[@src='../images/admin/controls/document.gif']",
 			title = "title",
 			contenttype = "assetTypeId",
@@ -22,19 +22,20 @@ public class AssetsManagementPage extends WebElements {
 			chooseAsset = "div#assetField2>input[name='chooseAsset']",
 			searchfield = "//input[@id='search_criteria_TXT']",
 			gobutton = "search_go",
+			assetPagetitle="Choose Asset",
 			selectAssetLink = "//table[@id='assetTable']/tbody/tr[contains(text(),linkTitle)]",
 			enablebutton = "//img[@src='../images/admin/controls/active_dis.gif']",
 			mainFramename = "main", detailsFramename = "details";
 	public static WebDriver driver;
 	WebElement element;
 
-	public AssetsManagementPage(WebDriver _driver) {
+	public AssetsPage(WebDriver _driver) {
 		super(_driver);
-		AssetsManagementPage.driver = _driver;
+		AssetsPage.driver = _driver;
 	}
 
 	// Function to create new asset
-	public AssetsManagementPage createNewAsset(String linkTitle,
+	public AssetsPage createNewAsset(String linkTitle,
 			String contentType, String url) throws Exception {
 		selectNewAsset();
 		enterLinkTitle(linkTitle);
@@ -45,7 +46,7 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to map quick link to assets
-	public AssetsManagementPage mapLinkToAsset(String linkTitle)
+	public AssetsPage mapLinkToAsset(String linkTitle)
 			throws Exception {
 		selectquicklink();
 		selectnew();
@@ -55,19 +56,19 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to select new asset option
-	public AssetsManagementPage selectNewAsset() throws Exception {
+	public AssetsPage selectNewAsset() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "id");
-		element = element(newAsset, "xpath");
+		element = getElement(newAsset, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	// Function to enter quick link title
-	public AssetsManagementPage enterLinkTitle(String linkTitle)
+	public AssetsPage enterLinkTitle(String linkTitle)
 			throws Exception {
 		switchToFrame(detailsFramename, "id");
-		element = element(title, "name");
+		element = getElement(title, "name");
 		element.clear();
 		element.sendKeys(linkTitle);
 		assertEquals(linkTitle, element.getAttribute("value"));
@@ -75,10 +76,10 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to select content type for quick link
-	public AssetsManagementPage selectContentType(String contentType)
+	public AssetsPage selectContentType(String contentType)
 			throws Exception {
 		assertTrue(isElementPresent(By.name(contenttype)));
-		element = element(contenttype, "name");
+		element = getElement(contenttype, "name");
 		new Select(element).selectByVisibleText(contentType);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -87,8 +88,8 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to enter quicklink URL
-	public AssetsManagementPage enterURL(String url) throws Exception {
-		element = element(urlfield, "name");
+	public AssetsPage enterURL(String url) throws Exception {
+		element = getElement(urlfield, "name");
 		element.clear();
 		element.sendKeys(url);
 		assertEquals(url, element.getAttribute("value"));
@@ -96,34 +97,34 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to save the changes
-	public AssetsManagementPage selectSave() throws Exception {
-		element = element(savebutton, "name");
+	public AssetsPage selectSave() throws Exception {
+		element = getElement(savebutton, "name");
 		element.click();
 		return this;
 	}
 
 	// Function to select quick links option on Quick links page
-	public AssetsManagementPage selectquicklink() throws Exception {
+	public AssetsPage selectquicklink() throws Exception {
 		switchToFrame(mainFramename, "id");
-		element = element(quicklink, "xpath");
+		element = getElement(quicklink, "xpath");
 		element.click();
 		return this;
 	}
 
 	// Function to select new option to craeet quicklink
-	public AssetsManagementPage selectnew() throws Exception {
-		element = element(selectNew, "xpath");
+	public AssetsPage selectnew() throws Exception {
+		element = getElement(selectNew, "xpath");
 		element.click();
 		return this;
 	}
 
 	// Function to choose asset
-	public AssetsManagementPage chooseAsset(String linkTitle) throws Exception {
+	public AssetsPage chooseAsset(String linkTitle) throws Exception {
 		switchToFrame(detailsFramename, "id");
 		String mainWindowHandle = driver.getWindowHandle();
-		element = element(chooseAsset, "css");
+		element = getElement(chooseAsset, "css");
 		element.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
 		while (ite.hasNext()) {
@@ -135,17 +136,17 @@ public class AssetsManagementPage extends WebElements {
 			}
 		}
 		String assetMenu = driver.getTitle();
-		assertTrue(assetMenu.contains("Choose Asset"));
+		assertTrue(assetMenu.contains(assetPagetitle));
 		searchAsset(linkTitle);
 		switchToFrame(detailsFramename, "id");
 		selectSave();
 		return this;
 	}
 
-	public AssetsManagementPage searchAsset(String linkTitle) throws Exception {
-		element = element(mainFramename, "id");
+	public AssetsPage searchAsset(String linkTitle) throws Exception {
+		element = getElement(mainFramename, "id");
 		driver.switchTo().frame(element);
-		element = element(searchfield, "xpath");
+		element = getElement(searchfield, "xpath");
 		element.clear();
 		element.sendKeys(linkTitle);
 		selectGobutton();
@@ -154,26 +155,24 @@ public class AssetsManagementPage extends WebElements {
 	}
 
 	// Function to select 'go' button on chosse asset page
-	public AssetsManagementPage selectGobutton() throws Exception {
-		element = element(gobutton, "id");
+	public AssetsPage selectGobutton() throws Exception {
+		element = getElement(gobutton, "id");
 		element.click();
 		return this;
 	}
 
 	// Function to enable created quick link
-	public AssetsManagementPage enableLink(String linkTitle) throws Exception {
+	public AssetsPage enableLink(String linkTitle) throws Exception {
 		switchToFrame(mainFramename, "id");
-		Thread.sleep(1000);
-		element = element(enablebutton, "xpath");
+		element = getElement(enablebutton, "xpath");
 		element.click();
-		Thread.sleep(1000);
 		return this;
 	}
 
 	// Function to select quicklink from choose asset page
-	public AssetsManagementPage selectAssetlink(String linkTitle)
+	public AssetsPage selectAssetlink(String linkTitle)
 			throws Exception {
-		element = element(selectAssetLink, "xpath");
+		element = getElement(selectAssetLink, "xpath");
 		element.click();
 		return this;
 	}

@@ -1,9 +1,9 @@
 package requirement.nmhg;
 
-import lib.Configuration;
 import org.testng.annotations.Test;
+import lib.Configuration;
 import pages.nmhg.AdminPage;
-import pages.nmhg.AssetsManagementPage;
+import pages.nmhg.AssetsPage;
 import pages.nmhg.HomePage;
 import pages.nmhg.LoginPage;
 import dataobject.nmhg.*;
@@ -16,29 +16,31 @@ public class DisplayGroupProperties extends Configuration {
 		String gstrTO = "Verify that a quicklink can be added by associating to an existing asset",
 			   gstrTCID = "132537";
 		
-		LoginPageData objLoginPageData=new LoginPageData();
-		UserGroupsData objUserGroupsData=new UserGroupsData();
-		// Creating the objects and calling the functions
+		LoginData objLoginData = new LoginData();
+		AssetsData objAssetsData=new AssetsData();
+		
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL();
-		objLoginPage.login(objLoginPageData.adminUserName, objLoginPageData.adminPassword);
+		objLoginPage.login(objLoginData.adminUserName, objLoginData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
-		objHomePage.NavigateToAdmin();
+		objHomePage.verifyHomePage(objLoginData.homePagetitle)
+					.NavigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
 		objAdminPage.selectAssetOption();
 
-		AssetsManagementPage objAssetsManagementPage = new AssetsManagementPage(
+		AssetsPage objAssetsPage = new AssetsPage(
 				this.driver);
-		objAssetsManagementPage.createNewAsset(objUserGroupsData.QuicklinkTitle,
-				objUserGroupsData.ContentType, objUserGroupsData.LinkURL);
+		objAssetsPage.createNewAsset(objAssetsData.QuicklinkTitle,
+				objAssetsData.ContentType, objAssetsData.LinkURL);
 
 		objAdminPage.selectGroups();
-		objAssetsManagementPage.mapLinkToAsset(objUserGroupsData.QuicklinkTitle);
+		objAssetsPage.mapLinkToAsset(objAssetsData.QuicklinkTitle);
 		
 		objAdminPage.returnToHome();
-		objHomePage.selectQuickLink(objUserGroupsData.QuicklinkTitle)
+		objHomePage.verifyHomePage(objLoginData.homePagetitle);
+		objHomePage.selectQuickLink(objAssetsData.QuicklinkTitle)
 					.verifyQuickLink();
 	}
 }

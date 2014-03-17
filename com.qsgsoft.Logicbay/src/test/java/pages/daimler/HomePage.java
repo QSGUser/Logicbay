@@ -24,11 +24,17 @@ public class HomePage extends pages.core.HomePage {
 		selectAdmin();
 		return this;
 	}
+	public HomePage verifyHomePage(String title)throws Exception{
+		waitForPageToLoad();
+		String homePagetitle = driver.getTitle();
+		assertTrue(homePagetitle.contains(title));
+		return this;
+	}
 
 	public HomePage selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFramename, "name");
-		element = element(CenterTab, "xpath");
+		element = getElement(CenterTab, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -37,7 +43,7 @@ public class HomePage extends pages.core.HomePage {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "name");
 		driver.switchTo().frame(adminsubframe);
-		element = element(Admin, "xpath");
+		element = getElement(Admin, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -46,9 +52,9 @@ public class HomePage extends pages.core.HomePage {
 	public HomePage selectMyProfile(String username) throws Exception {
 		switchToFrame(topFramename, "name");
 		String mainWindowHandle = driver.getWindowHandle();
-		element = element(myprofile, "id");
+		element = getElement(myprofile, "id");
 		element.click();
-		Thread.sleep(5000);
+		waitForPageToLoad();
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
 		while (ite.hasNext()) {

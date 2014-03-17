@@ -1,15 +1,14 @@
 package requirement.cat;
 
-
+import org.testng.annotations.Test;
 import lib.Configuration;
 
-import org.junit.Test;
 import dataobject.cat.LoginPageData;
-import dataobject.core.UserCreationData;
+import dataobject.core.UserPageData;
 import pages.core.AdminPage;
 import pages.core.HomePage;
 import pages.cat.LoginPage;
-import pages.core.MembershipAdminPage;
+import pages.core.MembershipPage;
 import pages.core.UserPage;
 
 public class AddEditUser extends Configuration {
@@ -22,7 +21,7 @@ public class AddEditUser extends Configuration {
 		gstrTCID = "132534";
 		
 		LoginPageData objLoginPageData=new LoginPageData();
-		UserCreationData objUserCreationData=new UserCreationData();
+		UserPageData objUserCreationData=new UserPageData();
 		// Creating objects and calling the functions
 		LoginPage objLoginPage = new LoginPage(this.driver);
 		objLoginPage.openURL()
@@ -40,7 +39,7 @@ public class AddEditUser extends Configuration {
 				objUserCreationData.TimeZone, objUserCreationData.Locale, objUserCreationData.MemberStatus, objUserCreationData.SystemRole,
 				objUserCreationData.JobRole, objUserCreationData.Gender);
 		
-		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
+		MembershipPage objMembershipAdminPage = new MembershipPage(
 				this.driver);
 		objMembershipAdminPage.MapToCenterMembership(objUserCreationData.CenterSubtype,
 				objUserCreationData.CenterSrc);
@@ -48,7 +47,7 @@ public class AddEditUser extends Configuration {
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
 		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password)
-		.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
+					.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
 		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
 	}
 }

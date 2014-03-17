@@ -18,11 +18,10 @@ public class LoginPage extends pages.core.LoginPage {
 	// This function is to reset the password for new user login
 		public LoginPage passwordReset(String Password, String newPassword)
 				throws Exception {
-			Thread.sleep(2000);
 			enterNewPassword(newPassword);
 			enterConfirmPassword(newPassword);
 			selectSubmit();
-			Thread.sleep(2000);
+			waitForPageToLoad();
 			return this;
 		}
 }

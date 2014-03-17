@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitForElement {
 	public WebDriver driver;
@@ -87,5 +89,14 @@ public class WaitForElement {
 			blnPageLoaded = ((JavascriptExecutor) driver).executeScript(
 					"return document.readyState").equals("complete");
 		} while (blnPageLoaded = false);
+	}
+	
+	public void handleAlert()throws Exception{
+		WebDriverWait wait = new WebDriverWait(driver, 300);
+		if (wait.until(ExpectedConditions.alertIsPresent()) == null) {
+			System.out.println("alert was not present");
+		} else {
+			driver.switchTo().alert().accept();
+		}
 	}
 }

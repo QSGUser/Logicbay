@@ -16,7 +16,6 @@ public class HomePage extends WebElements {
 			topFramename = "topFrame", mainFramename = "mainFrame",
 			adminsubframe = "menuiframe_4", 
 			profileFramename = "profile",
-			
 			pageTitle = "Google";
 	public WebElement element;
 	public static WebDriver driver;
@@ -31,13 +30,18 @@ public class HomePage extends WebElements {
 		selectAdmin();
 		return this;
 	}
-
+	
+	public HomePage verifyHomePage(String title)throws Exception{
+		String homePagetitle = driver.getTitle();
+		assertTrue(homePagetitle.contains(title));
+		return this;
+	}
+	
 	// Function to select campus tab on home page
 	public HomePage selectCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFramename, "name");
-		//waitForElement(CampusTab,"xpath");
-		element = element(CampusTab, "xpath");
+		element = getElement(CampusTab, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -47,7 +51,7 @@ public class HomePage extends WebElements {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "name");
 		switchToFrame(adminsubframe, "");
-		element = element(admin, "xpath");
+		element = getElement(admin, "xpath");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -56,7 +60,7 @@ public class HomePage extends WebElements {
 	public HomePage logOff() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFramename, "name");
-		element = element(logoff, "id");
+		element = getElement(logoff, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
@@ -65,9 +69,9 @@ public class HomePage extends WebElements {
 	public HomePage selectMyProfile(String username) throws Exception {
 		switchToFrame(topFramename, "name");
 		String mainWindowHandle = driver.getWindowHandle();
-		element = element(myprofile, "id");
+		element = getElement(myprofile, "id");
 		element.click();
-		Thread.sleep(5000);
+		waitForPageToLoad();
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
 		while (ite.hasNext()) {
@@ -80,7 +84,7 @@ public class HomePage extends WebElements {
 		}
 		String assetMenu = driver.getTitle();
 		assertTrue(assetMenu.contains("Edit Profile"));
-		element=element(profileFramename, "name");
+		element=getElement(profileFramename, "name");
 		driver.switchTo().frame(profileFramename);
 		verifyUser(username);
 		driver.switchTo().window(mainWindowHandle);
@@ -88,7 +92,7 @@ public class HomePage extends WebElements {
 	}
 	
 	public HomePage verifyUser(String username)throws Exception{
-		element=element(email, "id");
+		element=getElement(email, "id");
 		String LoginUser = element.getAttribute(
 				"value");
 		assertEquals(username, LoginUser);
@@ -100,7 +104,7 @@ public class HomePage extends WebElements {
 	public HomePage selectQuickLink(String linkTitle) throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "name");
-		element = element(linkTitle, "linktext");
+		element = getElement(linkTitle, "linktext");
 		action.moveToElement(element)
 		.click().build().perform();
 		return this;
@@ -108,7 +112,7 @@ public class HomePage extends WebElements {
 
 	public HomePage verifyQuickLink() throws Exception {
 		String mainWindowHandle = driver.getWindowHandle();
-		Thread.sleep(5000);
+		waitForPageToLoad();
 		Set<String> a = driver.getWindowHandles();
 		Iterator<String> ite = a.iterator();
 		while (ite.hasNext()) {

@@ -40,30 +40,30 @@ public class LoginPage extends pages.core.LoginPage {
 	}
 
 	public LoginPage clickLoginButton() throws Exception {
-		element = element(loginbutton, "name");
+		element = getElement(loginbutton, "name");
 		element.click();
 		return this;
 	}
 
 	public LoginPage enterMemberPassword(String Password) throws Exception {
 		Actions action = new Actions(driver);
-		element = element(password, "id");
+		element = getElement(password, "id");
 		action.moveToElement(element).build().perform();
 		element.click();
-		element = element(enterpassword, "id");
+		element = getElement(enterpassword, "id");
 		driver.findElement(By.id(enterpassword)).sendKeys(Password);
 		return this;
 	}
 
 	public LoginPage clickMemberLogin() throws Exception {
-		element = element(loginArrowfield, "xpath");
+		element = getElement(loginArrowfield, "xpath");
 		element.click();
 		return this;
 	}
 
 	public LoginPage acceptAgreement() throws Exception {
-		element(agreefield, "name").click();
-		element(okfield, "name").click();
+		getElement(agreefield, "name").click();
+		getElement(okfield, "name").click();
 		return this;
 	}
 }

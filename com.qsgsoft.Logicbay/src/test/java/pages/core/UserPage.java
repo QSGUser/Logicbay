@@ -34,34 +34,34 @@ public class UserPage extends WebElements {
 	public UserPage switchToGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "id");
-		element = element(generalTab, "id");
+		element = getElement(generalTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	public UserPage switchToStatusTab() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(statusTab, "id");
+		element = getElement(statusTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	public UserPage switchToSettingsTab() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(settingsTab, "id");
+		element = getElement(settingsTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	public UserPage switchToAffiliationsTab() throws Exception {
 		Actions action = new Actions(driver);
-		element = element(AffiliationsTab, "id");
+		element = getElement(AffiliationsTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
 	public UserPage enterusername(String username) throws Exception {
-		element = element(usernamefield, "id");
+		element = getElement(usernamefield, "id");
 		element.clear();
 		element.sendKeys(username);
 		assertEquals(username, element.getAttribute("value"));
@@ -70,7 +70,7 @@ public class UserPage extends WebElements {
 
 	public UserPage enterConfirmUsername(String confirmUsername)
 			throws Exception {
-		element = element(confirmUsernamefield, "id");
+		element = getElement(confirmUsernamefield, "id");
 		element.clear();
 		element.sendKeys(confirmUsername);
 		assertEquals(confirmUsername, element.getAttribute("value"));
@@ -78,7 +78,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterEmail(String emailAddress) throws Exception {
-		element = element(emailfield, "id");
+		element = getElement(emailfield, "id");
 		element.clear();
 		element.sendKeys(emailAddress);
 		assertEquals(emailAddress, element.getAttribute("value"));
@@ -86,7 +86,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterConfirmEmail(String emailAddress) throws Exception {
-		element = element(confirmEmailfield, "id");
+		element = getElement(confirmEmailfield, "id");
 		element.clear();
 		element.sendKeys(emailAddress);
 		assertEquals(emailAddress, element.getAttribute("value"));
@@ -95,7 +95,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectSalutation(String salutation) throws Exception {
 		assertTrue(isElementPresent(By.name(salutationfield)));
-		element = element(salutationfield, "name");
+		element = getElement(salutationfield, "name");
 		new Select(element).selectByVisibleText(salutation);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -104,7 +104,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterFirstName(String firstName) throws Exception {
-		element = element(firstnamefield, "id");
+		element = getElement(firstnamefield, "id");
 		element.clear();
 		element.sendKeys(firstName);
 		assertEquals(firstName, element.getAttribute("value"));
@@ -112,7 +112,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterMiddleName(String middleName) throws Exception {
-		element = element(middlenamefield, "id");
+		element = getElement(middlenamefield, "id");
 		element.clear();
 		element.sendKeys(middleName);
 		assertEquals(middleName, element.getAttribute("value"));
@@ -120,7 +120,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterLastName(String lastName) throws Exception {
-		element = element(lastnamefield, "id");
+		element = getElement(lastnamefield, "id");
 		element.clear();
 		element.sendKeys(lastName);
 		assertEquals(lastName, element.getAttribute("value"));
@@ -128,7 +128,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterPassword(String password) throws Exception {
-		element = element(passwordfield, "id");
+		element = getElement(passwordfield, "id");
 		element.clear();
 		element.sendKeys(password);
 		assertEquals(password, element.getAttribute("value"));
@@ -136,7 +136,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterConfirmPassword(String password) throws Exception {
-		element = element(confirmpasswordfield, "id");
+		element = getElement(confirmpasswordfield, "id");
 		element.clear();
 		element.sendKeys(password);
 		assertEquals(password, element.getAttribute("value"));
@@ -144,7 +144,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterTechOrEmpID(String ID) throws Exception {
-		element = element(employeeIdfield, "id");
+		element = getElement(employeeIdfield, "id");
 		element.clear();
 		element.sendKeys(ID);
 		assertEquals(ID, element.getAttribute("value"));
@@ -153,7 +153,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectTimeZone(String TimeZone) throws Exception {
 		assertTrue(isElementPresent(By.name(timezone)));
-		element = element(timezone, "name");
+		element = getElement(timezone, "name");
 		new Select(element).selectByVisibleText(TimeZone);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -163,7 +163,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectLocale(String Locale) throws Exception {
 		assertTrue(isElementPresent(By.name(localefield)));
-		element = element(localefield, "name");
+		element = getElement(localefield, "name");
 		new Select(element).selectByVisibleText(Locale);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -173,7 +173,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectMemberStatus(String MemberStatus) throws Exception {
 		assertTrue(isElementPresent(By.name(memberStatus)));
-		element = element(memberStatus, "name");
+		element = getElement(memberStatus, "name");
 		new Select(element).selectByVisibleText(MemberStatus);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -183,7 +183,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectSystemRole(String SystemRole) throws Exception {
 		assertTrue(isElementPresent(By.name(systemRole)));
-		element = element(systemRole, "name");
+		element = getElement(systemRole, "name");
 		new Select(element).selectByVisibleText(SystemRole);
 		String SelectedVal = new Select(element).getFirstSelectedOption()
 				.getText();
@@ -193,7 +193,7 @@ public class UserPage extends WebElements {
 
 	public UserPage selectJobRole(String JobRole) throws Exception {
 		assertTrue(isElementPresent(By.name(jobRole)));
-		element = element(jobRole, "name");
+		element = getElement(jobRole, "name");
 		new Select(element)
 				.selectByVisibleText(JobRole);
 		String SelectedVal = new Select(element)
@@ -203,7 +203,7 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage enterJobTitle(String JobTitle) throws Exception {
-		element = element(jobtitle, "id");
+		element = getElement(jobtitle, "id");
 		element.clear();
 		element.sendKeys(JobTitle);
 		assertEquals(JobTitle, element
@@ -212,17 +212,15 @@ public class UserPage extends WebElements {
 	}
 
 	public UserPage selectSave() throws Exception {
-		element = element(savebutton, "name");
+		element = getElement(savebutton, "name");
 		element.click();
-		Thread.sleep(2000);
-		driver.switchTo().alert().accept();
-		Thread.sleep(2000);
-		driver.switchTo().alert().accept();
+		handleAlert();
+		handleAlert();
 		return this;
 	}
 
 	public UserPage selectGender(String genderType) throws Exception {
-		element = element(gender, "xpath");
+		element = getElement(gender, "xpath");
 		element.click();
 		return this;
 	}

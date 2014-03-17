@@ -42,6 +42,7 @@ public class Configuration {
 		return;
 	}
 
+
 	@AfterTest
 	public void tearDown() throws Exception {
 		driver.close();

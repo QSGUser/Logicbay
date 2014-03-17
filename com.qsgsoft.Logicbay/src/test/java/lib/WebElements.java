@@ -12,7 +12,7 @@ public class WebElements extends WaitForElement {
 		this.driver = _driver;
 	}
 
-	public WebElement element(String elementId, String locatorStrategy)
+	public WebElement getElement(String elementId, String locatorStrategy)
 			throws Exception {
 		WebElement element = null;
 		switch (locatorStrategy) {

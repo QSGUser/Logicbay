@@ -1,11 +1,11 @@
 package requirement.core;
 
-import lib.Configuration;
 import org.testng.annotations.Test;
+import lib.Configuration;
 import pages.core.AdminPage;
 import pages.core.HomePage;
 import pages.core.LoginPage;
-import pages.core.MembershipAdminPage;
+import pages.core.MembershipPage;
 import pages.core.UserPage;
 import dataobject.core.*;
 
@@ -15,42 +15,43 @@ public class AddEditUser extends Configuration {
 		@SuppressWarnings("unused")
 		String gstrTO = "Verify that a user can be added in Performance Center", gstrTCID = "132534";
 
-		LoginPageData objLoginPageData = new LoginPageData();
-		UserCreationData objUserCreationData = new UserCreationData();
-		// Creating objects and calling the functions
+		LoginData objLoginData = new LoginData();
+		UserPageData objUserData = new UserPageData();
+		
 		LoginPage objLoginPage = new LoginPage(this.driver);
-		objLoginPage.openURL().login(objLoginPageData.adminUserName,
-				objLoginPageData.adminPassword);
+		objLoginPage.openURL()
+					.login(objLoginData.adminUserName,objLoginData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
-		objHomePage.NavigateToAdmin();
+		objHomePage.verifyHomePage(objLoginData.homePagetitle)
+				   .NavigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
 		objAdminPage.SelectUserAdmin();
 
 		UserPage objUserPage = new UserPage(this.driver);
-		objUserPage.AddUser(objUserCreationData.UserName,
-				objUserCreationData.EmailAddress,
-				objUserCreationData.Salutation, objUserCreationData.FirstName,
-				objUserCreationData.MiddleName, objUserCreationData.LastName,
-				objUserCreationData.Password, objUserCreationData.TimeZone,
-				objUserCreationData.Locale, objUserCreationData.MemberStatus,
-				objUserCreationData.SystemRole, objUserCreationData.JobRole,
-				objUserCreationData.Gender);
+		objUserPage.AddUser(objUserData.UserName,
+				objUserData.EmailAddress,
+				objUserData.Salutation, objUserData.FirstName,
+				objUserData.MiddleName, objUserData.LastName,
+				objUserData.Password, objUserData.TimeZone,
+				objUserData.Locale, objUserData.MemberStatus,
+				objUserData.SystemRole, objUserData.JobRole,
+				objUserData.Gender);
 
-		MembershipAdminPage objMembershipAdminPage = new MembershipAdminPage(
+		MembershipPage objMemberPage = new MembershipPage(
 				this.driver);
-		objMembershipAdminPage.MapToCenterMembership(
-				objUserCreationData.CenterSubtype,
-				objUserCreationData.CenterSrc);
+		objMemberPage.MapToCenterMembership(
+				objUserData.CenterSubtype,
+				objUserData.CenterSrc);
 
 		objAdminPage.returnToHome();
+		objHomePage.verifyHomePage(objLoginData.homePagetitle);
 		objHomePage.logOff();
 
-		objLoginPage.login(objUserCreationData.UserName,
-				objUserCreationData.Password).passwordReset(
-				objUserCreationData.Password, objUserCreationData.NewPassword);
+		objLoginPage.login(objUserData.UserName,objUserData.Password)
+					.passwordReset(objUserData.Password, objUserData.NewPassword);
 
-		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
+		objHomePage.selectMyProfile(objUserData.EmailAddress);
 	}
 }

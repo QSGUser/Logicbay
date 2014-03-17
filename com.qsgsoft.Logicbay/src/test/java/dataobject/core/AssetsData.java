@@ -1,6 +1,6 @@
 package dataobject.core;
 
-public class UserGroupsData {
+public class AssetsData {
 	public String QuicklinkTitle = "Qlink" + System.currentTimeMillis(),
 	ContentType = "URL",
 	LinkURL = "http://www.google.com",
