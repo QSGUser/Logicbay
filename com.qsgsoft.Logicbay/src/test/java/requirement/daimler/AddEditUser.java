@@ -12,7 +12,7 @@ import dataobject.daimler.*;
 public class AddEditUser extends Configuration {
 
 	@Test
-	public void AddUserToDaimlerServer() throws Exception {
+	public void addUserToCenter() throws Exception {
 		@SuppressWarnings("unused")
 		String gstrTO = "Verify that a user can be added in Performance Center", gstrTCID = "132534";
 
@@ -25,32 +25,32 @@ public class AddEditUser extends Configuration {
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.verifyHomePage(objLoginData.homePagetitle)
-					.NavigateToAdmin();
+					.navigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
-		objAdminPage.SelectUserAdmin();
+		objAdminPage.addUser();
 
 		UserPage objUserPage = new UserPage(this.driver);
-		objUserPage.AddUser(objUserData.UserName, objUserData.EmailAddress,
-				objUserData.FirstName, objUserData.MiddleName,
-				objUserData.LastName, objUserData.Password,
-				objUserData.TecnicalId, objUserData.TimeZone,
-				objUserData.Locale, objUserData.MemberStatus,
-				objUserData.SystemRole, objUserData.JobRole,
-				objUserData.AssociatedAccount);
+		objUserPage.addNewUser(objUserData.userName, objUserData.emailId,
+				objUserData.firstName, objUserData.middleName,
+				objUserData.lastName, objUserData.password,
+				objUserData.tecnicalId, objUserData.timeZone,
+				objUserData.locale, objUserData.memberStatus,
+				objUserData.systemRole, objUserData.jobRole,
+				objUserData.associatedAccount);
 
 		MembershipPage objMemberPage = new MembershipPage(this.driver);
-		objMemberPage.MapToCenterMembership(objUserData.CenterSubtype,
-				objUserData.CenterSrc);
+		objMemberPage.mapToCenterMembership(objUserData.centerSubtype,
+				objUserData.centerSrc);
 
 		objAdminPage.returnToHome();
 		objHomePage.verifyHomePage(objLoginData.homePagetitle);
 		objHomePage.logOff();
 
-		objLoginPage.loginAsMember(objUserData.EmailAddress, objUserData.Password)
+		objLoginPage.loginAsMember(objUserData.emailId, objUserData.password)
 					.acceptAgreement()
-					.passwordReset(objUserData.Password, objUserData.NewPassword);
+					.passwordReset(objUserData.password, objUserData.newPassword);
 
-		objHomePage.selectMyProfile(objUserData.EmailAddress);
+		objHomePage.verifyProfile(objUserData.emailId);
 	}
 }

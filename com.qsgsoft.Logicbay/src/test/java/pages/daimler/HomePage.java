@@ -16,11 +16,11 @@ public class HomePage extends pages.core.HomePage {
 	
 	public HomePage(WebDriver _driver) {
 		super(_driver);
-		HomePage.driver = _driver;
+		this.driver = _driver;
 	}
 
-	public HomePage NavigateToAdmin() throws Exception {
-		selectCampusTab();
+	public HomePage navigateToAdmin() throws Exception {
+		clickCampusTab();
 		selectAdmin();
 		return this;
 	}
@@ -31,7 +31,7 @@ public class HomePage extends pages.core.HomePage {
 		return this;
 	}
 
-	public HomePage selectCampusTab() throws Exception {
+	public HomePage clickCampusTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFramename, "name");
 		element = getElement(CenterTab, "xpath");
@@ -49,7 +49,7 @@ public class HomePage extends pages.core.HomePage {
 	}
 
 	// Function to select my profile
-	public HomePage selectMyProfile(String username) throws Exception {
+	public HomePage verifyProfile(String username) throws Exception {
 		switchToFrame(topFramename, "name");
 		String mainWindowHandle = driver.getWindowHandle();
 		element = getElement(myprofile, "id");

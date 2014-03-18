@@ -10,18 +10,18 @@ import lib.WebElements;
 
 public class UserPage extends WebElements {
 	private String usernamefield = "username",
-			confirmUsernamefield = "confirm_username", emailfield = "email",
-			confirmEmailfield = "confirm_email",
-			salutationfield = "salutation", firstnamefield = "first_name",
-			middlenamefield = "middle_name", lastnamefield = "last_name",
-			passwordfield = "new_password",
-			confirmpasswordfield = "confirm_new_password",
-			employeeIdfield = "employee_id", localefield = "localeFK",
-			timezone = "timezone", generalTab = "tab_1", statusTab = "tab_2",
-			settingsTab = "tab_3", AffiliationsTab = "tab_6",
-			memberStatus = "approvalStatus", systemRole = "role",
-			jobRole = "job", jobtitle = "empType", savebutton = "saveGroup",
-			gender = "//input[@type='radio']", mainFramename = "main";
+			       confirmUsernamefield = "confirm_username", emailfield = "email",
+			       confirmEmailfield = "confirm_email",
+			       salutationfield = "salutation", firstnamefield = "first_name",
+			       middlenamefield = "middle_name", lastnamefield = "last_name",
+			       passwordfield = "new_password",
+			       confirmpasswordfield = "confirm_new_password",
+			       employeeIdfield = "employee_id", localefield = "localeFK",
+			       timezone = "timezone", generalTab = "tab_1", statusTab = "tab_2",
+			       settingsTab = "tab_3", AffiliationsTab = "tab_6",
+			       memberStatus = "approvalStatus", systemRole = "role",
+			       jobRole = "job", jobtitle = "empType", savebutton = "saveGroup",
+			       gender = "//input[@type='radio']", mainFramename = "main";
 
 	public WebDriver driver;
 	public WebElement element;
@@ -31,7 +31,7 @@ public class UserPage extends WebElements {
 		this.driver = _driver;
 	}
 
-	public UserPage switchToGeneralTab() throws Exception {
+	public UserPage selectGeneralTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(mainFramename, "id");
 		element = getElement(generalTab, "id");
@@ -39,28 +39,28 @@ public class UserPage extends WebElements {
 		return this;
 	}
 
-	public UserPage switchToStatusTab() throws Exception {
+	public UserPage selectStatusTab() throws Exception {
 		Actions action = new Actions(driver);
 		element = getElement(statusTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
-	public UserPage switchToSettingsTab() throws Exception {
+	public UserPage selectSettingsTab() throws Exception {
 		Actions action = new Actions(driver);
 		element = getElement(settingsTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
-	public UserPage switchToAffiliationsTab() throws Exception {
+	public UserPage selectAffiliationsTab() throws Exception {
 		Actions action = new Actions(driver);
 		element = getElement(AffiliationsTab, "id");
 		action.moveToElement(element).click().build().perform();
 		return this;
 	}
 
-	public UserPage enterusername(String username) throws Exception {
+	public UserPage enterUserName(String username) throws Exception {
 		element = getElement(usernamefield, "id");
 		element.clear();
 		element.sendKeys(username);
@@ -143,7 +143,7 @@ public class UserPage extends WebElements {
 		return this;
 	}
 
-	public UserPage enterTechOrEmpID(String ID) throws Exception {
+	public UserPage enterEmpId(String ID) throws Exception {
 		element = getElement(employeeIdfield, "id");
 		element.clear();
 		element.sendKeys(ID);
@@ -211,7 +211,7 @@ public class UserPage extends WebElements {
 		return this;
 	}
 
-	public UserPage selectSave() throws Exception {
+	public UserPage clickSave() throws Exception {
 		element = getElement(savebutton, "name");
 		element.click();
 		handleAlert();
@@ -225,13 +225,13 @@ public class UserPage extends WebElements {
 		return this;
 	}
 
-	public UserPage AddUser(String userName, String emailAddress,
+	public UserPage addNewUser(String userName, String emailAddress,
 			String salutation, String firstName, String middleName,
 			String lastName, String password, String timeZone, String locale,
 			String MemberStatus, String SystemRole, String JobRole,
 			String genderType) throws Exception {
-		switchToGeneralTab();
-		enterusername(userName);
+		selectGeneralTab();
+		enterUserName(userName);
 		enterConfirmUsername(userName);
 		enterEmail(emailAddress);
 		enterConfirmEmail(emailAddress);
@@ -244,13 +244,13 @@ public class UserPage extends WebElements {
 		selectTimeZone(timeZone);
 		selectLocale(locale);
 		selectGender(genderType);
-		switchToStatusTab();
+		selectStatusTab();
 		selectMemberStatus(MemberStatus);
-		switchToSettingsTab();
+		selectSettingsTab();
 		selectSystemRole(SystemRole);
 		selectJobRole(JobRole);
-		selectSave();
-		switchToAffiliationsTab();
+		clickSave();
+		selectAffiliationsTab();
 		return this;
 	}
 }

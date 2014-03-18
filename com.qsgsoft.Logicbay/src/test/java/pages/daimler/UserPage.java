@@ -9,19 +9,18 @@ public class UserPage extends pages.core.UserPage {
 
 	private String usernamefield = "usernameMode",
 				   accountfield = "accountUsed";
-	public static WebDriver driver;
-
+	
 	public UserPage(WebDriver _driver) {
 		super(_driver);
-		UserPage.driver = _driver;
+		this.driver = _driver;
 	}
 
-	public UserPage AddUser(String userName, String emailAddress, String firstName,
+	public UserPage addNewUser(String userName, String emailAddress, String firstName,
 			String middleName, String lastName, String password,
 			String technicalId, String timeZone, String locale,
 			String memberStatus, String systemRole, String jobRole,
 			String associatedAccount) throws Exception {
-		this.switchToGeneralTab();
+		this.selectGeneralTab();
 		selectUserName(userName);
 		enterEmail(emailAddress);
 		enterConfirmEmail(emailAddress);
@@ -30,17 +29,17 @@ public class UserPage extends pages.core.UserPage {
 		enterLastName(lastName);
 		enterPassword(password);
 		enterConfirmPassword(password);
-		enterTechOrEmpID(technicalId);
+		enterEmpId(technicalId);
 		selectTimeZone(timeZone);
 		selectLocale(locale);
-		switchToStatusTab();
+		selectStatusTab();
 		selectMemberStatus(memberStatus);
-		switchToSettingsTab();
+		selectSettingsTab();
 		selectSystemRole(systemRole);
 		selectJobRole(jobRole);
 		selectAccount(associatedAccount);
-		selectSave();
-		switchToAffiliationsTab();
+		clickSave();
+		selectAffiliationsTab();
 		return this;
 	}
 

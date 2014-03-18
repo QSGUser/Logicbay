@@ -90,8 +90,8 @@ public class WaitForElement {
 					"return document.readyState").equals("complete");
 		} while (blnPageLoaded = false);
 	}
-	
-	public void handleAlert()throws Exception{
+
+	public void handleAlert() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 300);
 		if (wait.until(ExpectedConditions.alertIsPresent()) == null) {
 			System.out.println("alert was not present");

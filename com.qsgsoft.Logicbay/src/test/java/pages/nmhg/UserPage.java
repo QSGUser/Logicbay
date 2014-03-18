@@ -3,19 +3,18 @@ package pages.nmhg;
 import org.openqa.selenium.WebDriver;
 
 public class UserPage extends pages.core.UserPage {
-	public static WebDriver driver;
 
 	public UserPage(WebDriver _driver) {
 		super(_driver);
-		UserPage.driver = _driver;
+		this.driver = _driver;
 	}
 
-	public UserPage AddUser(String emailAddress, String salutation,
+	public UserPage addNewUser(String emailAddress, String salutation,
 			String firstName, String middleName, String lastName,
 			String Password, String TimeZone, String Locale,
 			String MemberStatus, String SystemRole, String JobRole,
 			String JobTitle) throws Exception {
-		this.switchToGeneralTab();
+		this.selectGeneralTab();
 		enterEmail(emailAddress);
 		enterConfirmEmail(emailAddress);
 		selectSalutation(salutation);
@@ -26,14 +25,14 @@ public class UserPage extends pages.core.UserPage {
 		enterConfirmPassword(Password);
 		selectTimeZone(TimeZone);
 		selectLocale(Locale);
-		switchToStatusTab();
+		selectStatusTab();
 		selectMemberStatus(MemberStatus);
-		switchToSettingsTab();
+		selectSettingsTab();
 		selectSystemRole(SystemRole);
 		selectJobRole(JobRole);
 		enterJobTitle(JobTitle);
-		selectSave();
-		switchToAffiliationsTab();
+		clickSave();
+		selectAffiliationsTab();
 		return this;
 	}
 }

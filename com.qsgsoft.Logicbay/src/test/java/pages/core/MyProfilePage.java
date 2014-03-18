@@ -7,6 +7,5 @@ public class MyProfilePage {
 
 	public MyProfilePage(WebDriver _driver) {
 		this.driver = _driver;
-
 	}
 }

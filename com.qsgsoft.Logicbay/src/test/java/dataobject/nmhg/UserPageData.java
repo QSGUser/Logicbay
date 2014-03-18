@@ -1,6 +1,7 @@
 package dataobject.nmhg;
 
 public class UserPageData extends dataobject.core.UserPageData {
-	public String JobRole = "Administration", JobTitle = "TestJob",
-			CenterSrc = "Truck Sales Center";
+	public String jobRole = "Administration", 
+			      jobTitle = "TestJob",
+			      centerSrc = "Truck Sales Center";
 }

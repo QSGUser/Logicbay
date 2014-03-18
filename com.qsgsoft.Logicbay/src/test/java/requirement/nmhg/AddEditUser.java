@@ -12,7 +12,7 @@ import dataobject.nmhg.*;
 public class AddEditUser extends Configuration {
 
 	@Test
-	public void AddUserToNmhgServer() throws Exception {
+	public void addUserToCenter() throws Exception {
 		@SuppressWarnings("unused")
 		String gstrTO, gstrTCID;
 
@@ -27,33 +27,33 @@ public class AddEditUser extends Configuration {
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.verifyHomePage(objLoginData.homePagetitle)
-					.NavigateToAdmin();
+					.navigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
-		objAdminPage.SelectUserAdmin();
+		objAdminPage.addUser();
 
 		UserPage objUserPage = new UserPage(driver);
-		objUserPage.AddUser(objUserData.EmailAddress,
-				objUserData.Salutation, objUserData.FirstName,
-				objUserData.MiddleName, objUserData.LastName,
-				objUserData.Password, objUserData.TimeZone,
-				objUserData.Locale, objUserData.MemberStatus,
-				objUserData.SystemRole, objUserData.JobRole,
-				objUserData.JobTitle);
+		objUserPage.addNewUser(objUserData.emailId,
+				objUserData.salutation, objUserData.firstName,
+				objUserData.middleName, objUserData.lastName,
+				objUserData.password, objUserData.timeZone,
+				objUserData.locale, objUserData.memberStatus,
+				objUserData.systemRole, objUserData.jobRole,
+				objUserData.jobTitle);
 
 		MembershipPage objMemberPage = new MembershipPage(
 				this.driver);
-		objMemberPage.MapToCenterMembership(
-				objUserData.CenterSubtype,
-				objUserData.CenterSrc);
+		objMemberPage.mapToCenterMembership(
+				objUserData.centerSubtype,
+				objUserData.centerSrc);
 
 		objAdminPage.returnToHome();
 		objHomePage.verifyHomePage(objLoginData.homePagetitle);
 		objHomePage.logOff();
-		objLoginPage.login(objUserData.EmailAddress,objUserData.Password)		
+		objLoginPage.login(objUserData.emailId,objUserData.password)		
 					.acceptAgreement()
-					.passwordReset(objUserData.NewPassword,objUserData.NewPassword);
+					.passwordReset(objUserData.newPassword,objUserData.newPassword);
 		
-		objHomePage.selectMyProfile(objUserData.EmailAddress);
+		objHomePage.verifyProfile(objUserData.emailId);
 	}
 }

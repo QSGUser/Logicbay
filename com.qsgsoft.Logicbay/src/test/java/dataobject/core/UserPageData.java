@@ -1,23 +1,21 @@
 package dataobject.core;
 
 public class UserPageData {
-	// Data for creating a User
-	public String UserName = "User1" + System.currentTimeMillis(),
-			EmailAddress = "User"+System.currentTimeMillis()+"@logicbay.com",
-			Salutation = "Ms.",
-			FirstName = "test" + System.currentTimeMillis(), 
-			MiddleName = "MN"+ System.currentTimeMillis(), 
-			LastName = "logicbay"+ System.currentTimeMillis(), 
-			Password = "Qsg@2014",
-			Locale = "English", 
-			TimeZone = "Hawaii", 
-			Gender = "Male",
-			MemberStatus = "Approval Granted", 
-			SystemRole = "Default Role",
-			JobRole = "Administrator", 
-			CenterSubtype = "None",
-			CenterSrc = "Performance Center", 
-			NewPassword = "Logic@2125",
-			AssociatedAccount = "None";
-			
+	public String userName = "User1" + System.currentTimeMillis(),
+			      emailId = "User"+System.currentTimeMillis()+"@logicbay.com",
+			      salutation = "Ms.",
+			      firstName = "test" + System.currentTimeMillis(), 
+			      middleName = "MN"+ System.currentTimeMillis(), 
+			      lastName = "logicbay"+ System.currentTimeMillis(), 
+			      password = "Qsg@2014",
+			      locale = "English", 
+			      timeZone = "Hawaii", 
+			      gender = "Male",
+			      memberStatus = "Approval Granted", 
+			      systemRole = "Default Role",
+			      jobRole = "Administrator", 
+			      centerSubtype = "None",
+			      centerSrc = "Performance Center", 
+			      newPassword = "Logic@2125",
+			      associatedAccount = "None";			
 }

@@ -11,7 +11,7 @@ import dataobject.nmhg.*;
 public class DisplayGroupProperties extends Configuration {
 	
 	@Test
-	public void AddQuickLinkToAsset() throws Exception {
+	public void addQuickLinkToAsset() throws Exception {
 		@SuppressWarnings("unused")
 		String gstrTO = "Verify that a quicklink can be added by associating to an existing asset",
 			   gstrTCID = "132537";
@@ -25,22 +25,22 @@ public class DisplayGroupProperties extends Configuration {
 
 		HomePage objHomePage = new HomePage(this.driver);
 		objHomePage.verifyHomePage(objLoginData.homePagetitle)
-					.NavigateToAdmin();
+					.navigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
-		objAdminPage.selectAssetOption();
+		objAdminPage.addAsset();
 
 		AssetsPage objAssetsPage = new AssetsPage(
 				this.driver);
-		objAssetsPage.createNewAsset(objAssetsData.QuicklinkTitle,
-				objAssetsData.ContentType, objAssetsData.LinkURL);
+		objAssetsPage.createNewAsset(objAssetsData.quicklinkTitle,
+				objAssetsData.contentType, objAssetsData.linkURL);
 
-		objAdminPage.selectGroups();
-		objAssetsPage.mapLinkToAsset(objAssetsData.QuicklinkTitle);
+		objAdminPage.addQuickLink();
+		objAssetsPage.mapLinkToAsset(objAssetsData.quicklinkTitle);
 		
 		objAdminPage.returnToHome();
 		objHomePage.verifyHomePage(objLoginData.homePagetitle);
-		objHomePage.selectQuickLink(objAssetsData.QuicklinkTitle)
+		objHomePage.selectQuickLink(objAssetsData.quicklinkTitle)
 					.verifyQuickLink();
 	}
 }

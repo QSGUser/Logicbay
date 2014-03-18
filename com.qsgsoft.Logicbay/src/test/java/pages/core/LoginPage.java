@@ -8,11 +8,11 @@ import static org.junit.Assert.*;
 
 public class LoginPage extends WebElements implements URLInterface {
 	private String username = "username", password = "password",
-			loginbutton = "cmdLogin",
-			accept = "//input[@name='okbutton']",
-			newpassword = "new_password",
-			confirmnewpassword = "confirm_new_password",
-			submitbutton = "iSubmit";
+			       loginbutton = "cmdLogin",
+			       accept = "//input[@name='okbutton']",
+			       newpassword = "new_password",
+			       confirmnewpassword = "confirm_new_password",
+			       submitbutton = "iSubmit";
 	public WebDriver driver;
 	public WebElement element;
 
@@ -86,7 +86,7 @@ public class LoginPage extends WebElements implements URLInterface {
 	}
 
 	// This function is to select submit button on edit password form
-	public LoginPage selectSubmit() throws Exception {
+	public LoginPage clickSubmit() throws Exception {
 		element = getElement(submitbutton, "id");
 		element.click();
 		handleAlert();
@@ -96,10 +96,11 @@ public class LoginPage extends WebElements implements URLInterface {
 	// This function is to reset the password for new user login
 	public LoginPage passwordReset(String Password, String newPassword)
 			throws Exception {
+		waitForPageToLoad();
 		enterPassword(Password);
 		enterNewPassword(newPassword);
 		enterConfirmPassword(newPassword);
-		selectSubmit();
+		clickSubmit();
 		return this;
 	}
 }

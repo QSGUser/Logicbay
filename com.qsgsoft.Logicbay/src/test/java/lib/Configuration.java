@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class Configuration {
 
@@ -37,11 +38,9 @@ public class Configuration {
 			driver = new FirefoxDriver();
 			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		}
-
 		driver.manage().window().maximize();
 		return;
 	}
-
 
 	@AfterTest
 	public void tearDown() throws Exception {

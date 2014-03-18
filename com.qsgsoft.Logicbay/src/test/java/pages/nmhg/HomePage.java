@@ -10,15 +10,13 @@ public class HomePage extends pages.core.HomePage {
 			topFrameName = "topFrame", mainFrameName = "mainFrame",
 			subframe="menuiframe_7";
 
-	public static WebDriver driver;
-
 	public HomePage(WebDriver _driver) {
 		super(_driver);
-		HomePage.driver = _driver;
+		this.driver = _driver;
 	}
 
-	public HomePage NavigateToAdmin() throws Exception {
-		selectCenterTab();
+	public HomePage navigateToAdmin() throws Exception {
+		clickCenterTab();
 		selectAdmin();
 		return this;
 	}
@@ -29,7 +27,7 @@ public class HomePage extends pages.core.HomePage {
 		assertTrue(homePagetitle.contains(title));
 		return this;
 	}
-	public HomePage selectCenterTab() throws Exception {
+	public HomePage clickCenterTab() throws Exception {
 		Actions action = new Actions(driver);
 		switchToFrame(topFrameName, "name");
 		element = getElement(CenterTab, "xpath");

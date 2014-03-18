@@ -13,7 +13,7 @@ import pages.core.UserPage;
 
 public class AddEditUser extends Configuration {
 	@Test
-	public void AddUserToCatServer() throws Exception {
+	public void addUserToCenter() throws Exception {
 		@SuppressWarnings("unused")
 		String gstrTO, gstrTCID;
 		
@@ -28,26 +28,26 @@ public class AddEditUser extends Configuration {
 					.login(objLoginPageData.adminUserName,objLoginPageData.adminPassword);
 
 		HomePage objHomePage = new HomePage(this.driver);
-		objHomePage.NavigateToAdmin();
+		objHomePage.navigateToAdmin();
 
 		AdminPage objAdminPage = new AdminPage(this.driver);
-		objAdminPage.SelectUserAdmin();
+		objAdminPage.addUser();
 
 		UserPage objUserPage = new UserPage(this.driver);
-		objUserPage.AddUser(objUserCreationData.UserName,objUserCreationData.EmailAddress,objUserCreationData.Salutation,
-				objUserCreationData.FirstName,objUserCreationData.MiddleName,objUserCreationData.LastName, objUserCreationData.Password,
-				objUserCreationData.TimeZone, objUserCreationData.Locale, objUserCreationData.MemberStatus, objUserCreationData.SystemRole,
-				objUserCreationData.JobRole, objUserCreationData.Gender);
+		objUserPage.addNewUser(objUserCreationData.userName,objUserCreationData.emailId,objUserCreationData.salutation,
+				objUserCreationData.firstName,objUserCreationData.middleName,objUserCreationData.lastName, objUserCreationData.password,
+				objUserCreationData.timeZone, objUserCreationData.locale, objUserCreationData.memberStatus, objUserCreationData.systemRole,
+				objUserCreationData.jobRole, objUserCreationData.gender);
 		
 		MembershipPage objMembershipAdminPage = new MembershipPage(
 				this.driver);
-		objMembershipAdminPage.MapToCenterMembership(objUserCreationData.CenterSubtype,
-				objUserCreationData.CenterSrc);
+		objMembershipAdminPage.mapToCenterMembership(objUserCreationData.centerSubtype,
+				objUserCreationData.centerSrc);
 
 		objAdminPage.returnToHome();
 		objHomePage.logOff();
-		objLoginPage.login(objUserCreationData.UserName, objUserCreationData.Password)
-					.passwordReset(objUserCreationData.Password,objUserCreationData.NewPassword);
-		objHomePage.selectMyProfile(objUserCreationData.EmailAddress);
+		objLoginPage.login(objUserCreationData.userName, objUserCreationData.password)
+					.passwordReset(objUserCreationData.password,objUserCreationData.newPassword);
+		objHomePage.verifyProfile(objUserCreationData.emailId);
 	}
 }

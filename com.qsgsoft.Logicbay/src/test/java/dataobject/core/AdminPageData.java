@@ -1,5 +1,5 @@
 package dataobject.core;
 
 public class AdminPageData {
-public String adminpagetitle="Performance Center Administration";
+	public String adminPagetitle = "Performance Center Administration";
 }

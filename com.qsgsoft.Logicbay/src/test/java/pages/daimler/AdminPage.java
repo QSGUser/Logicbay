@@ -6,6 +6,6 @@ public class AdminPage extends pages.core.AdminPage{
 
 	public AdminPage(WebDriver _driver) {
 		super(_driver);
-		AdminPage.driver=_driver;
+		this.driver=_driver;
 	}
 }
